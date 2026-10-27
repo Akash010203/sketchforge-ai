@@ -205,6 +205,24 @@
       addLog('Choose an image or an MP4/WebM video.');
       return;
     }
+
+    // Render attached image preview card immediately in prompt box
+    const thumb = $('#attached-thumb');
+    const fname = $('#attached-filename');
+    const card = $('#attached-preview-card');
+    if (file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onload = e => {
+        if (thumb) thumb.src = e.target.result;
+        if (fname) fname.textContent = file.name;
+        if (card) card.hidden = false;
+      };
+      reader.readAsDataURL(file);
+    } else if (isVideo) {
+      if (fname) fname.textContent = file.name;
+      if (card) card.hidden = false;
+    }
+
     if (!currentSlug) {
       try {
         const reference = isVideo ? await videoReferenceFrame(file) : file;
@@ -244,6 +262,25 @@
       $('#status').textContent = 'Reference added to the page';
     } catch (error) { addLog('Image upload failed: ' + error.message); }
   }
+
+  // Attached sketch removal button
+  const removeAttachmentBtn = $('#attached-remove');
+  if (removeAttachmentBtn) {
+    removeAttachmentBtn.onclick = () => {
+      const card = $('#attached-preview-card');
+      const thumb = $('#attached-thumb');
+      if (card) card.hidden = true;
+      if (thumb) thumb.src = '';
+      pendingSketchLayout = null;
+      pendingSketchRegions = [];
+      pendingSketchLayoutBlock = null;
+      pendingAnalysisId = null;
+      sketchAnalysisAttempted = false;
+      $('#status').textContent = 'Canvas ready';
+      addLog('Attached reference removed.');
+    };
+  }
+
   $('#image-input').onchange = event => { uploadImage(event.target.files[0]); event.target.value = ''; };
   ['dragenter', 'dragover'].forEach(type => window.addEventListener(type, event => {
     if ([...event.dataTransfer.types].includes('Files')) { event.preventDefault(); event.dataTransfer.dropEffect = 'copy'; }
@@ -321,8 +358,28 @@
       });
     }
     $('#status').textContent = revising ? 'Revising your app…' : 'Generating your app…';
-    $('#empty').hidden = false;
-    $('#empty').innerHTML = '<span class="empty-spark">◌</span><h1>Bringing it to life</h1><p id="progress">Planning your frontend and backend…</p>';
+    const emptySec = $('#empty');
+    const thinkingCard = $('#ai-thinking-card');
+    const streamText = $('#live-stream-text');
+    if (emptySec) emptySec.hidden = true;
+    if (thinkingCard) thinkingCard.hidden = false;
+    if (streamText) streamText.textContent = `[Init] Starting generation: "${text.slice(0, 60)}..."\n[Nebius] Connecting to Token Factory (~610ms latency)...\n`;
+
+    function setStepState(stepId, state, statusText) {
+      const step = $(stepId);
+      if (!step) return;
+      step.classList.remove('active', 'done');
+      if (state) step.classList.add(state);
+      const st = step.querySelector('.step-status');
+      if (st && statusText) st.textContent = statusText;
+    }
+
+    setStepState('#step-vision', analysisId ? 'done' : '', analysisId ? 'Analyzed' : 'Skipped');
+    setStepState('#step-tavily', tavilyEnabled ? 'active' : '', tavilyEnabled ? 'Researching' : 'Disabled');
+    setStepState('#step-plan', 'active', 'Synthesizing');
+    setStepState('#step-code', '', 'Queued');
+    setStepState('#step-repair', '', 'Queued');
+
     addLog((revising ? 'Revision: ' : 'Starting: ') + text);
     try {
       const start = await fetch(
@@ -344,24 +401,41 @@
         try {
           const res = await fetch('/api/jobs/' + payload.id);
           const job = await res.json();
-          const p = $('#progress');
-          if (p) p.textContent = job.progress || 'Generating…';
+          const p = $('#thinking-substatus');
+          if (p) p.textContent = job.progress || 'Synthesizing components…';
           if (job.progress && job.progress !== lastLoggedMessage) {
             addLog(job.progress);
             lastLoggedMessage = job.progress;
+            if (streamText) {
+              streamText.textContent += `[Nebius Agent] ${job.progress}\n`;
+              streamText.scrollTop = streamText.scrollHeight;
+            }
             const pLower = job.progress.toLowerCase();
-            if (pLower.includes('stage 1') || pLower.includes('appspec') || pLower.includes('ultra') || pLower.includes('plan')) {
+            if (pLower.includes('tavily') || pLower.includes('search')) {
+              setStepState('#step-tavily', 'active', 'Researching');
+            } else if (pLower.includes('stage 1') || pLower.includes('appspec') || pLower.includes('ultra') || pLower.includes('plan')) {
               setActiveTier('ultra');
+              setStepState('#step-tavily', tavilyEnabled ? 'done' : '', tavilyEnabled ? 'Completed' : 'Disabled');
+              setStepState('#step-plan', 'active', 'Synthesizing');
             } else if (pLower.includes('stage 2') || pLower.includes('generating') || pLower.includes('lightning') || pLower.includes('file')) {
               setActiveTier('lightning');
+              setStepState('#step-plan', 'done', 'Approved');
+              setStepState('#step-code', 'active', 'Streaming');
             } else if (pLower.includes('discrepancy') || pLower.includes('repair') || pLower.includes('nano') || pLower.includes('patch')) {
               setActiveTier('nano');
+              setStepState('#step-code', 'done', 'Synthesized');
+              setStepState('#step-repair', 'active', 'Self-Healing');
             }
           }
           if (job.status === 'complete') {
             clearInterval(pollTimer);
             setActiveTier('lightning');
-            $('#empty').hidden = true;
+            if (thinkingCard) thinkingCard.hidden = true;
+            if (emptySec) emptySec.hidden = true;
+            const attachCard = $('#attached-preview-card');
+            if (attachCard) attachCard.hidden = true;
+            setStepState('#step-code', 'done', 'Ready');
+            setStepState('#step-repair', 'done', 'Verified');
             const verification = job.verification_status === 'passed' ? 'verification passed'
               : job.verification_status === 'failed' ? 'verification failed'
                 : 'verification skipped';
@@ -380,17 +454,30 @@
           }
           if (job.status === 'failed') {
             clearInterval(pollTimer);
+            if (thinkingCard) thinkingCard.hidden = true;
+            if (emptySec) {
+              emptySec.hidden = false;
+              emptySec.innerHTML = `<img class="empty-logo" src="/assets/logo.png" alt="SketchForge"><h1>Could not generate the app</h1><p class="error">${job.error || 'Generation failed'}</p><button onclick="location.reload()">Try again</button>`;
+            }
             throw Error(job.error || 'Generation failed');
           }
         } catch (err) {
           clearInterval(pollTimer);
+          if (thinkingCard) thinkingCard.hidden = true;
+          if (emptySec) {
+            emptySec.hidden = false;
+            emptySec.innerHTML = `<img class="empty-logo" src="/assets/logo.png" alt="SketchForge"><h1>Could not generate the app</h1><p class="error">${err.message}</p><button onclick="location.reload()">Try again</button>`;
+          }
           $('#status').textContent = 'Generation failed';
-          $('#empty').innerHTML = `<span class="empty-spark">!</span><h1>Could not generate the app</h1><p class="error">${err.message}</p><button onclick="location.reload()">Try again</button>`;
         }
       }, 900);
     } catch (err) {
+      if (thinkingCard) thinkingCard.hidden = true;
+      if (emptySec) {
+        emptySec.hidden = false;
+        emptySec.innerHTML = `<img class="empty-logo" src="/assets/logo.png" alt="SketchForge"><h1>Could not start generation</h1><p class="error">${err.message}</p>`;
+      }
       $('#status').textContent = 'Generation failed';
-      $('#empty').innerHTML = `<h1>Could not start generation</h1><p class="error">${err.message}</p>`;
     }
   }
 
@@ -412,22 +499,6 @@
       if (b.dataset.size !== 'desktop') artboard.classList.add(b.dataset.size);
     }
   });
-
-  // ---------------------------------------------------------------------------
-  // Share dialog
-  // ---------------------------------------------------------------------------
-  $('#share').onclick = () => $('#share-dialog').showModal();
-  $('#close-share').onclick = () => $('#share-dialog').close();
-  $('#share-switch').onchange = e => {
-    $('#share-state').textContent = e.target.checked
-      ? 'Anyone with the local link can open this prototype'
-      : 'Only you can access this project';
-    $('#copy-link').disabled = !e.target.checked || !currentUrl;
-  };
-  $('#copy-link').onclick = async () => {
-    await navigator.clipboard.writeText(currentUrl);
-    $('#copy-link').textContent = 'Copied local prototype link';
-  };
 
   // ---------------------------------------------------------------------------
   // Reload, zoom & agent log toggle

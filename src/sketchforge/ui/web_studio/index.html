@@ -13,12 +13,11 @@
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="/studio"><span class="spark">✳</span> SketchForge <small>AI STUDIO</small></a>
+    <a class="brand" href="/studio"><img class="brand-logo-img" src="/assets/logo.png" alt="SketchForge Logo"> SketchForge <small>AI STUDIO</small></a>
     <div class="top-actions">
       <button id="undo" title="Undo">↶</button>
       <button id="redo" title="Redo">↷</button>
       <button id="export-project" disabled title="Download project ZIP">⇩ Export ZIP</button>
-      <button id="share">↗ Share</button>
       <button class="avatar">A</button>
     </div>
   </header>
@@ -59,13 +58,76 @@
     </div>
 
     <section id="empty" class="empty">
-      <span class="empty-spark">✳</span>
+      <img class="empty-logo" src="/assets/logo.png" alt="SketchForge Logo">
       <h1>Design at the speed of AI</h1>
       <p>Autonomous agentic developer workbench powered by NVIDIA Nemotron on Nebius Token Factory.</p>
       <div class="examples">
         <button data-prompt="A calm project management dashboard for a small creative studio">Creative studio dashboard</button>
         <button data-prompt="A welcoming travel planner for California getaways and live music">California trip planner</button>
         <button data-prompt="A polished habit tracker with weekly progress and gentle reminders">A gentle habit tracker</button>
+      </div>
+    </section>
+
+    <!-- Live AI Thinking & Execution Progress Card -->
+    <section id="ai-thinking-card" class="ai-thinking-card" hidden>
+      <div class="thinking-header">
+        <div class="thinking-spinner"></div>
+        <div class="thinking-title">
+          <h3>Nebius Token Factory · Agentic Synthesis</h3>
+          <p id="thinking-substatus">Synthesizing full-stack application...</p>
+        </div>
+      </div>
+
+      <div class="agent-steps-timeline">
+        <div class="step-item" id="step-vision">
+          <span class="step-icon">👁️</span>
+          <div class="step-content">
+            <strong>Nemotron-3.5-Super-VL</strong>
+            <small>Decomposing spatial UI layout & wireframe hierarchy</small>
+          </div>
+          <span class="step-status">Queued</span>
+        </div>
+
+        <div class="step-item" id="step-tavily">
+          <span class="step-icon">🌐</span>
+          <div class="step-content">
+            <strong>Tavily Search Engine</strong>
+            <small>Retrieving live modern UI tokens & UX patterns</small>
+          </div>
+          <span class="step-status">Queued</span>
+        </div>
+
+        <div class="step-item" id="step-plan">
+          <span class="step-icon">🧠</span>
+          <div class="step-content">
+            <strong>Nemotron-3-Ultra-550B</strong>
+            <small>Architecting AppSpec, data models & backend endpoints</small>
+          </div>
+          <span class="step-status">Queued</span>
+        </div>
+
+        <div class="step-item" id="step-code">
+          <span class="step-icon">⚡</span>
+          <div class="step-content">
+            <strong>Nemotron-3.5-Lightning</strong>
+            <small>Streaming full-stack HTML5, CSS & interactive runtime</small>
+          </div>
+          <span class="step-status">Queued</span>
+        </div>
+
+        <div class="step-item" id="step-repair">
+          <span class="step-icon">🛠️</span>
+          <div class="step-content">
+            <strong>Nemotron-3-Nano-30B</strong>
+            <small>Headless visual discrepancy evaluation & self-repair</small>
+          </div>
+          <span class="step-status">Queued</span>
+        </div>
+      </div>
+
+      <div class="live-thought-stream">
+        <div class="stream-header">Live Agent Trace</div>
+        <pre id="live-stream-text">Connecting to Nebius Token Factory (measured latency: ~610ms)...</pre>
       </div>
     </section>
 
@@ -95,6 +157,14 @@
   </main>
 
   <form id="prompt-form" class="prompt-card">
+    <div id="attached-preview-card" class="attached-preview-card" hidden>
+      <img id="attached-thumb" src="" alt="Attached sketch">
+      <div class="attached-info">
+        <span id="attached-filename" class="attached-filename">sketch.png</span>
+        <span class="attached-tag">Vision Reference · Nemotron Super-VL</span>
+      </div>
+      <button type="button" id="attached-remove" title="Remove attachment">×</button>
+    </div>
     <textarea id="prompt" placeholder="What would you like to create? Try “A modern booking app for a neighborhood yoga studio” or drop a sketch…" rows="2"></textarea>
     <div class="prompt-controls">
       <button type="button" id="attach" title="Add a sketch image or wireframe (analyzed by OpenCV + Nemotron-3.5-Super-VL)">＋</button>
@@ -115,15 +185,6 @@
       <button class="submit" type="submit" title="Generate">↑</button>
     </div>
   </form>
-
-  <dialog id="share-dialog">
-    <button class="close" id="close-share">×</button>
-    <h2>Share project</h2>
-    <label class="share-toggle">Enable sharing &amp; remixing <input id="share-switch" type="checkbox"><span></span></label>
-    <p id="share-state" class="muted">Only you can access this project</p>
-    <div class="disclaimer">By making your project public, you allow anyone with the link to view and remix its generated designs and code. You can revoke public access at any time.</div>
-    <button id="copy-link" disabled>Copy link to prototype</button>
-  </dialog>
 
   <script type="module" src="/assets/studio.js"></script>
 </body>

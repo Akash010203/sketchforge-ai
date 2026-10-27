@@ -34,3 +34,51 @@
 .tavily-toggle-btn .tavily-dot{width:6px;height:6px;border-radius:50%;background:#64748b;transition:all .2s ease}
 .tavily-toggle-btn.active .tavily-dot{background:#818cf8;box-shadow:0 0 8px #818cf8;animation:tierPulse 2s infinite}
 
+/* ---------------------------------------------------------------------------
+ * NVIDIA-Style Logo & Branding
+ * --------------------------------------------------------------------------- */
+.brand-logo-img{width:26px;height:26px;object-fit:contain;margin-right:8px;vertical-align:middle;filter:drop-shadow(0 0 8px #76b900aa);transition:transform .2s ease,filter .2s ease}
+.brand-logo-img:hover{transform:scale(1.08);filter:drop-shadow(0 0 14px #76b900dd)}
+.empty-logo{width:88px;height:88px;object-fit:contain;margin-bottom:14px;filter:drop-shadow(0 0 24px #76b90088);animation:logoGlowPulse 3s ease-in-out infinite}
+@keyframes logoGlowPulse{
+  0%,100%{transform:scale(1);filter:drop-shadow(0 0 20px #76b90077)}
+  50%{transform:scale(1.05);filter:drop-shadow(0 0 35px #76b900dd)}
+}
+
+/* ---------------------------------------------------------------------------
+ * Attached Image Preview Card (Claude / ChatGPT style)
+ * --------------------------------------------------------------------------- */
+.attached-preview-card{display:flex;align-items:center;gap:12px;background:#14141cf5;border:1px solid #76b90055;border-radius:14px;padding:7px 12px;margin-bottom:10px;width:fit-content;max-width:100%;box-shadow:0 4px 20px #0008,0 0 16px #76b90018}
+.attached-preview-card img{width:46px;height:46px;object-fit:cover;border-radius:9px;border:1px solid #ffffff22;background:#000}
+.attached-info{display:flex;flex-direction:column;gap:2px}
+.attached-filename{font-size:12px;font-weight:600;color:#f3f2f7;max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.attached-tag{font-size:10px;color:#76b900;text-transform:uppercase;letter-spacing:.6px;font-weight:600}
+#attached-remove{background:transparent;border:0;color:#888;font-size:20px;padding:0 6px;cursor:pointer;line-height:1;transition:color .2s}
+#attached-remove:hover{color:#fb7185}
+
+/* ---------------------------------------------------------------------------
+ * Live AI Thinking & Execution Progress Card
+ * --------------------------------------------------------------------------- */
+.ai-thinking-card{position:absolute;inset:75px 12% 130px 360px;display:flex;flex-direction:column;justify-content:center;max-width:680px;margin:auto;background:#121218eb;border:1px solid #76b90044;border-radius:20px;padding:26px 32px;box-shadow:0 24px 70px #000e,0 0 45px #76b90018;backdrop-filter:blur(18px);z-index:2}
+.thinking-header{display:flex;align-items:center;gap:16px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid #ffffff12}
+.thinking-spinner{width:28px;height:28px;border:3px solid #76b90022;border-top-color:#76b900;border-radius:50%;animation:spin .85s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.thinking-title h3{margin:0 0 4px;font-size:16px;color:#f3f2f7;font-weight:650;letter-spacing:-.2px}
+.thinking-title p{margin:0;font-size:12px;color:#94a3b8}
+
+.agent-steps-timeline{display:flex;flex-direction:column;gap:9px}
+.step-item{display:flex;align-items:center;gap:12px;padding:8px 12px;border-radius:10px;background:#191922;border:1px solid #ffffff0a;transition:all .3s ease}
+.step-item.active{border-color:#76b90088;background:#76b90018;box-shadow:0 0 16px #76b90022}
+.step-item.active .step-status{color:#76b900;font-weight:700}
+.step-item.done{border-color:#38bdf833;background:#38bdf808;opacity:.85}
+.step-item.done .step-status{color:#38bdf8}
+.step-icon{font-size:16px;width:24px;text-align:center}
+.step-content{flex:1;display:flex;flex-direction:column;gap:1px}
+.step-content strong{font-size:12px;color:#e2e8f0}
+.step-content small{font-size:10px;color:#94a3b8}
+.step-status{font-size:10px;text-transform:uppercase;letter-spacing:.6px;font-weight:600;color:#64748b}
+
+.live-thought-stream{margin-top:16px;background:#09090ef2;border-radius:10px;padding:10px 14px;border:1px solid #ffffff12}
+.stream-header{font-size:10px;color:#76b900;font-weight:700;text-transform:uppercase;letter-spacing:.8px}
+#live-stream-text{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:11px;color:#a1a1aa;margin:6px 0 0;max-height:85px;overflow-y:auto;white-space:pre-wrap;line-height:1.45}
+
