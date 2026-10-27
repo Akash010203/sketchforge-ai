@@ -1,95 +1,153 @@
 # Design IR specification (schema 1.0.0)
 
-The Design IR is the single contract between vision, layout, rendering, editing, evaluation and
-repair. A `DesignDocument` remains one page; a `DesignProject` composes independently valid page
-documents and provides application routes. Its canonical pydantic v2 models are defined under `src/sketchforge/domain/`; the historical
-`src/sketchforge/design_ir/schema.py` import path re-exports those models. It is serialised as
-deterministic JSON (`serialization.to_json`: schema field order, 2-space indent, UTF-8).
+Design IR defines the data contract used by SketchForge across vision, layout, rendering, editing, evaluation, and repair.
+
+A `DesignDocument` represents a single page. A `DesignProject` combines multiple valid page documents and defines how users navigate between them.
+
+The canonical Pydantic v2 models live under `src/sketchforge/domain/`. The older import path, `src/sketchforge/design_ir/schema.py`, re-exports these models for compatibility.
+
+Documents are serialized as deterministic JSON using `serialization.to_json`, with fields in schema order, two-space indentation, and UTF-8 encoding.
 
 ## Conventions
 
-* **Coordinates are absolute page coordinates in design pixels** (top-left origin, y down), for
-  every component regardless of nesting. A component's box is *not* relative to its parent in the
-  IR (the HTML/CSS export converts to parent-relative). Moving a component with `MoveCommand`
-  moves its whole subtree.
-* `BBox` is immutable, finite, rounded to 3 decimals and must have `w > 0`, `h > 0`.
-* Design width is 1024 px for landscape sketches and 414 px for portrait ones
-  (`config/app.yaml`); `metadata.source_transform` records `design = (source − offset) × scale`.
-* IDs match `^[a-z][a-z0-9_-]{0,63}$` and are stable for the life of a document (`input-1`, …).
-* Unknown fields are rejected (`extra="forbid"`); assignments are re-validated.
+- **Coordinates:** All component positions use absolute page coordinates in design pixels, with the origin at the top-left and the y-axis increasing downward. Child coordinates are not relative to their parents. HTML/CSS export converts them to parent-relative positions where needed. Moving a component with `MoveCommand` moves its entire subtree.
+- **Bounding boxes:** `BBox` is immutable, contains finite values rounded to three decimal places, and requires `w > 0` and `h > 0`.
+- **Page width:** Landscape sketches use a design width of 1024 px, while portrait sketches use 414 px. These defaults are defined in `config/app.yaml`. The `metadata.source_transform` field records the transformation as `design = (source − offset) × scale`.
+- **IDs:** IDs must match `^[a-z][a-z0-9_-]{0,63}$` and remain stable throughout a document's lifetime. Examples include `input-1` and `card-1`.
+- **Validation:** Unknown fields are rejected through `extra="forbid"`, and assignments are revalidated.
 
-## Document
+## Document structure
 
-| Field | Meaning |
+| Field | Description |
 |---|---|
-| `schema_version` | `"1.0.0"`; documents from a newer version are rejected, older ones are migrated (`migrations.py`) |
-| `document_id`, `name` | identity and display name |
-| `page` | `width`, `height`, `background`, `viewport {width, height, device}` |
-| `root_id` | id of the single `page` component (the root) |
-| `components` | flat list; hierarchy via `parent_id`; sibling paint order by `z_index` then list order |
-| `metadata` | `source_image_sha256`, `source_size`, `source_transform`, `pipeline_version`, `notes` |
+| `schema_version` | The schema version, currently `"1.0.0"`. Newer versions are rejected, while older versions are migrated through `migrations.py`. |
+| `document_id`, `name` | Document identity and display name. |
+| `page` | Page dimensions, background color, and viewport settings (`width`, `height`, `device`). |
+| `root_id` | ID of the single root component, which must have type `page`. |
+| `components` | A flat component list. Hierarchy is defined by `parent_id`; sibling paint order follows `z_index`, then list order. |
+| `metadata` | Source image SHA-256 hash, source dimensions, source transformation, pipeline version, and notes. |
 
 ## Multi-page projects
 
-`DesignProject` is the multi-page routing envelope. It contains a stable `project_id`, a list of
-single-page `DesignDocument` values, one `PageRoute` per page, and a `start_page_id`. A route maps
-the page document's `document_id` to an absolute URL path (for example `/` or `/settings`), with an
-optional display title and authentication requirement. Project validation rejects duplicate page
-IDs, duplicate routes (case-insensitive), references to missing pages, pages without routes, and
-an unknown start page. Page documents remain unchanged and can still be serialized and hashed using
-the existing single-document APIs.
+`DesignProject` provides the routing structure for multi-page applications. It contains a stable `project_id`, a list of `DesignDocument` instances, one `PageRoute` per page, and a `start_page_id`.
 
-## Component
+Each route maps a page's `document_id` to an absolute URL path, such as `/` or `/settings`. Routes can also include a display title and an authentication requirement.
 
-| Field | Meaning |
+Project validation rejects duplicate page IDs, duplicate routes (case-insensitive), routes that reference missing pages, pages without routes, and unknown start pages.
+
+Each page remains an independent `DesignDocument`. Existing single-document serialization and hashing APIs continue to work without modification.
+
+## Component model
+
+| Field | Description |
 |---|---|
-| `type` | `page, container, header, sidebar, footer, card, button, input, text, heading, image, divider, checkbox, radio, unknown` |
-| `bbox`, `z_index`, `parent_id` | geometry and tree position |
-| `text`, `text_is_inferred` | text content; **`true` means a placeholder, not the user's words** (sketch text is not recognised). A user edit sets it to `false` |
-| `typography` | `font_family, font_size (6–200), font_weight, line_height, text_align, color` (only on text-bearing types) |
-| `style` | `fill, stroke, stroke_width, corner_radius, opacity` (`#rrggbb[aa]`, `transparent`, `none`) |
-| `layout` | containers only: `mode (absolute/flex/grid), direction, gap, padding, align_items, justify_content, columns, inferred`. Geometry stays authoritative; this is a constraint and code-generation hint |
-| `detection` | provenance for image-derived components: `confidence, source (heuristic/model/user/synthetic/remote), source_bbox (original-image px), type_scores, evidence[], ambiguous` |
-| `states`, `interactions` | component states and `{event, action, target, inferred}` (inferred = guessed) |
-| `visible`, `locked`, `editable` | editing guards: a locked component or a field not listed in `editable` cannot be changed by user commands |
-| `codegen` | filled by the generation phase (Phase 8): `component_name`, `file_path` |
+| `type` | Component type: `page`, `container`, `header`, `sidebar`, `footer`, `card`, `button`, `input`, `text`, `heading`, `image`, `divider`, `checkbox`, `radio`, or `unknown`. |
+| `bbox`, `z_index`, `parent_id` | Geometry, paint order, and hierarchy. |
+| `text`, `text_is_inferred` | Text content and whether it is a placeholder. When `text_is_inferred` is `true`, the text is inferred rather than recognized from the user's sketch. A user edit sets it to `false`. |
+| `typography` | Text styling: `font_family`, `font_size` (6 to 200), `font_weight`, `line_height`, `text_align`, and `color`. Available only on text-bearing component types. |
+| `style` | Visual properties: `fill`, `stroke`, `stroke_width`, `corner_radius`, and `opacity`. Colors accept `#rrggbb[aa]`, `transparent`, or `none`. |
+| `layout` | Container-only settings: `mode` (`absolute`, `flex`, or `grid`), `direction`, `gap`, `padding`, `align_items`, `justify_content`, `columns`, and `inferred`. Geometry remains authoritative; layout settings guide constraint handling and code generation. |
+| `detection` | Provenance for image-derived components, including `confidence`, `source` (`heuristic`, `model`, `user`, `synthetic`, or `remote`), `source_bbox` in original-image pixels, `type_scores`, `evidence[]`, and `ambiguous`. |
+| `states`, `interactions` | Component states and interaction definitions. Each interaction contains `event`, `action`, `target`, and `inferred`; `inferred` indicates that the interaction was guessed. |
+| `visible`, `locked`, `editable` | Editing controls. Locked components and fields excluded from `editable` cannot be changed through user commands. |
+| `codegen` | Generation metadata populated during Phase 8, including `component_name` and `file_path`. |
 
-## Validation (`validation.validate_document`)
+## Validation rules
 
-Errors make a document unusable (`raise_if_invalid()` is the gate used by the workflow):
-`E_SCHEMA_VERSION`, `E_DUPLICATE_ID`, `E_ROOT_COUNT` (exactly one parentless component),
-`E_ROOT_MISSING`, `E_ROOT_PARENT`, `E_PARENT_MISSING`, `E_SELF_PARENT`, `E_PAGE_NOT_ROOT` (only the
-root may be type `page`), `E_CYCLE`, `E_UNREACHABLE` (not connected to the root), `E_OUTSIDE_PAGE`
-(box entirely off the page).
+`validation.validate_document` reports errors that make a document unusable. The workflow uses `raise_if_invalid()` as the validation gate.
 
-Warnings are findings, not failures: `W_ROOT_BOX` (root differs from page size),
-`W_OUTSIDE_PAGE` and `W_OVERFLOW_PARENT` (extends past page/parent beyond 1 px — the evaluator and
-repair engine own these as `OVERFLOW_*` issues), `W_TEXT_ON_NON_TEXT` (text on a divider/image/page),
-`W_INFERRED_FLAG_NO_TEXT`. Geometry checks are skipped when the tree itself is broken
-(cycle / missing parent / duplicate id). `serialization.from_dict` additionally validates every field
-through the models.
+The supported error codes are:
+
+- `E_SCHEMA_VERSION`: Unsupported schema version.
+- `E_DUPLICATE_ID`: Duplicate component IDs.
+- `E_ROOT_COUNT`: The document does not have exactly one parentless component.
+- `E_ROOT_MISSING`: The specified root does not exist.
+- `E_ROOT_PARENT`: The root has a parent.
+- `E_PARENT_MISSING`: A component references a missing parent.
+- `E_SELF_PARENT`: A component references itself as its parent.
+- `E_PAGE_NOT_ROOT`: A component other than the root has type `page`.
+- `E_CYCLE`: The component hierarchy contains a cycle.
+- `E_UNREACHABLE`: A component is disconnected from the root.
+- `E_OUTSIDE_PAGE`: A component's bounding box lies entirely outside the page.
+
+Warnings identify issues without automatically invalidating the document:
+
+- `W_ROOT_BOX`: The root bounding box differs from the page dimensions.
+- `W_OUTSIDE_PAGE`: A component extends beyond the page.
+- `W_OVERFLOW_PARENT`: A component extends more than 1 px beyond its parent. The evaluator and repair engine handle these as `OVERFLOW_*` issues.
+- `W_TEXT_ON_NON_TEXT`: Text is assigned to a divider, image, or page.
+- `W_INFERRED_FLAG_NO_TEXT`: The inferred-text flag is set when no text is present.
+
+Geometry checks are skipped when the component tree is structurally broken by a cycle, missing parent, or duplicate ID. In addition, `serialization.from_dict` validates every field through the Pydantic models.
 
 ## Editing contract
 
-All changes go through `editor.Command`s that (1) validate through the models, (2) capture the exact
-prior state, and (3) can be undone byte-for-byte (`document_hash` equality is tested). A failed
-command leaves the document untouched.
+All document changes must go through `editor.Command` implementations. Each command must:
 
-## Versioning
+1. Validate changes through the models.
+2. Capture the exact previous state.
+3. Support byte-for-byte undo, verified through `document_hash` equality.
 
-`SCHEMA_VERSION` follows MAJOR.MINOR.PATCH. A migration is a pure `dict → dict` function registered
-for one version step (`Migrator.register`); the shipped chain is empty because 1.0.0 is the first
-version. The mechanism is tested with a throw-away chain.
+If a command fails, the document must remain unchanged.
 
-## Example (abridged)
+## Versioning and migrations
+
+`SCHEMA_VERSION` follows semantic versioning in `MAJOR.MINOR.PATCH` format.
+
+Each migration is a pure `dict → dict` function registered for a single version step through `Migrator.register`. Since `1.0.0` is the first schema version, the shipped migration chain is empty. The migration mechanism is tested separately using a temporary migration chain.
+
+## Example
+
+The following abridged JSON illustrates a page document with a root component and an inferred input field.
 
 ```json
-{"schema_version": "1.0.0", "document_id": "doc", "name": "login_page_synthetic.png",
- "page": {"width": 1024.0, "height": 743.0, "background": "#ffffff", "viewport": {"width": 1024, "height": 743, "device": "desktop"}},
- "root_id": "page",
- "components": [
-  {"id": "page", "type": "page", "parent_id": null, "bbox": {"x": 0, "y": 0, "w": 1024, "h": 743}, ...},
-  {"id": "input-1", "type": "input", "parent_id": "card-1", "text": "Enter text", "text_is_inferred": true,
-   "bbox": {"x": 355.122, "y": 237.215, "w": 250.0, "h": 38.0},
-   "detection": {"confidence": 0.82, "source": "heuristic", "ambiguous": true, ...}}]}
+{
+  "schema_version": "1.0.0",
+  "document_id": "doc",
+  "name": "login_page_synthetic.png",
+  "page": {
+    "width": 1024.0,
+    "height": 743.0,
+    "background": "#ffffff",
+    "viewport": {
+      "width": 1024,
+      "height": 743,
+      "device": "desktop"
+    }
+  },
+  "root_id": "page",
+  "components": [
+    {
+      "id": "page",
+      "type": "page",
+      "parent_id": null,
+      "bbox": {
+        "x": 0,
+        "y": 0,
+        "w": 1024,
+        "h": 743
+      }
+    },
+    {
+      "id": "input-1",
+      "type": "input",
+      "parent_id": "card-1",
+      "text": "Enter text",
+      "text_is_inferred": true,
+      "bbox": {
+        "x": 355.122,
+        "y": 237.215,
+        "w": 250.0,
+        "h": 38.0
+      },
+      "detection": {
+        "confidence": 0.82,
+        "source": "heuristic",
+        "ambiguous": true
+      }
+    }
+  ]
+}
 ```
+
+The example is abbreviated. A complete document must include all required fields and satisfy the schema's validation rules.
