@@ -1,103 +1,67 @@
 # Known limitations
 
-Read these before relying on any result. Each entry is something that was observed or is true by
-construction, not a hypothetical.
+Read these limitations before relying on any result. Each one reflects an observed issue or a constraint in the current implementation.
 
 ## Evidence
 
-* **Real photographed sketches perform poorly.** The checked-in one-image grid-paper benchmark
-  (`experiments/results/current_real_photo.json`) reports F1 **0.0333** and type accuracy
-  **0.0000**. It is too small to generalize from, but it is strong evidence that photo sketch
-  detection is not production-ready. Synthetic measurements must not be represented as photo
-  performance.
-* The classifier rules were tuned on three layouts; two other layouts were held out and scored
-  slightly differently (type accuracy 0.985 vs 0.946). The held-out set is small (42 sketches).
-* Confidence values (`type_scores`) are rule scores, **not calibrated probabilities**.
+- **Real photographed sketches perform poorly.** The checked-in one-image grid-paper benchmark (`experiments/results/current_real_photo.json`) reports an F1 score of **0.0333** and type accuracy of **0.0000**. This benchmark is too small to support broad conclusions, but it clearly indicates that photo-based sketch detection is not production-ready. Synthetic benchmark results must not be presented as performance on real photographs.
+- The classifier rules were tuned on three layouts. Two other layouts were held out for evaluation and produced slightly different type accuracy scores: **0.985 versus 0.946**. The held-out set contains only 42 sketches.
+- Confidence values in `type_scores` are rule-based scores, not calibrated probabilities.
 
 ## Vision
 
-* Perspective correction now attempts to detect and rectify one dominant page quadrilateral.
-  This is heuristic and may fail on cluttered scenes, curled pages, weak borders or shadows;
-  the photo benchmark remains unrun because no photographed samples/annotations are checked in.
-* **Handwriting OCR is optional.** Install `sketchforge[ocr]` and set `SKETCHFORGE_OCR_MODEL` to
-  `microsoft/trocr-base-handwritten` (or a local compatible TrOCR model) to recognize candidate
-  text lines. The first run may download model weights. Recognition is best-effort: missed or
-  unreadable text remains a clearly flagged placeholder (`text_is_inferred = true`); verify OCR
-  output before relying on it. OCR is off by default.
-* A sketch needs a visible page frame or consistent margins to find the page area; with no drawn
-  frame the ink bounding box is used and noted.
-* Known confusions: card ↔ container, checkbox ↔ radio when poorly drawn, text ↔ heading (heading
-  is decided by relative height), text-line splitting under very thin, very thick or blurred
-  strokes (`thin` condition is the weakest: held-out F1 0.915).
-* A large squarish ink cluster is classified as image with `heading` close behind (flagged ambiguous).
-* Blank or near-blank images raise a clear error rather than returning an empty design.
+- Perspective correction attempts to detect and rectify one dominant page quadrilateral. This heuristic can fail on cluttered scenes, curled pages, weak borders, or shadows. The photo benchmark has not been run because no photographed samples or annotations are checked in.
+- **Handwriting OCR is optional.** To enable it, install `sketchforge[ocr]` and set `SKETCHFORGE_OCR_MODEL` to `microsoft/trocr-base-handwritten` or a compatible local TrOCR model. The first run may download model weights. Recognition is best-effort. Missed or unreadable text remains a flagged placeholder with `text_is_inferred = true`. Check OCR output before relying on it. OCR is disabled by default.
+- Page detection relies on a visible page frame or consistent margins. If neither is available, the system uses the ink bounding box and records that choice.
+- Known classification errors include:
+  - Card versus container.
+  - Checkbox versus radio button when the drawing is unclear.
+  - Text versus heading, where heading classification depends on relative height.
+  - Incorrect text-line splitting when strokes are very thin, very thick, or blurred. The `thin` condition performs worst, with a held-out F1 score of **0.915**.
+- A large, roughly square cluster of ink may be classified as an image, with heading as the next most likely class. The system flags this result as ambiguous.
+- Blank or nearly blank images produce a clear error instead of an empty design.
 
 ## Layout, evaluation and repair
 
-* Text fit uses an **estimated** glyph width (± ~10 %), not a font engine.
-* Repair rules cover the 10 issue codes through geometric edits only (translate, resize, restyle,
-  reduce font size to a floor of 10 px). They cannot fix problems that need new content or a
-  redesign; those are reported as remaining.
-* Repair success is partly "trial and reject": some candidates (widen, shrink) are tried and rolled
-  back by the regression check. This is by design and recorded in the report.
-* On drawings whose *baseline* (before any injected fault) already contains detection artefacts
-  (e.g. the `settings_page` sketch under `thin` strokes produces several overlapping text boxes),
-  the engine can stall: it stops after the no-progress window instead of redesigning. See
-  EXPERIMENT_LOG for the matrix failures.
-* Injected faults are our own; the matrix measures how well the engine repairs *those*, not
-  arbitrary user mistakes.
+- Text fitting relies on estimated glyph widths, with an expected error of approximately ±10%. It does not use a font-rendering engine.
+- Repair rules cover all 10 issue codes through geometric edits: translation, resizing, restyling, and font-size reduction to a minimum of 10 px. They cannot resolve issues that require new content or a redesign, so those issues remain in the report.
+- Repair uses a trial-and-reject process. For example, the engine may try widening or shrinking an element, then roll back the change if the regression check fails. This behavior is intentional and recorded in the report.
+- The engine can stall when a drawing already contains detection errors before any test fault is injected. For example, the `settings_page` sketch under `thin` strokes produces several overlapping text boxes. In this situation, the engine stops after the no-progress window rather than attempting a redesign. See `EXPERIMENT_LOG` for matrix failures.
+- Injected faults are generated by the project itself. The evaluation matrix measures how well the engine repairs those faults, not arbitrary mistakes in user-created designs.
 
 ## Application
 
-* Desktop UI verified on Qt's **offscreen** platform only; no interactive display was available in the
-  build environment, so real-window look-and-feel, high-DPI behaviour and platform file dialogs were
-  not exercised.
-* The canvas supports select, drag-move and a bottom-right resize handle; there is no
-  add/delete-component tool, multi-select drag or snapping yet.
-* Project files store the design, source sketch, renders and reports, but **not** vision
-  detections (re-import regenerates them) or the undo history.
-* Only one document is open at a time.
+- Desktop UI tests have run only on Qt's **offscreen** platform. The build environment had no interactive display, so the real window appearance, high-DPI behavior, and native file dialogs have not been tested.
+- The canvas supports selection, drag-to-move, and resizing through a handle in the bottom-right corner. Adding or deleting components, dragging multiple selections, and snapping are not yet supported.
+- Project files save the design, source sketch, renders, and reports. They do not save vision detections, which are regenerated during re-import, or the undo history.
+- Only one document can be open at a time.
 
 ## Generated backend targets
 
-* The project generator can emit SQLite, PostgreSQL, and MySQL schema definitions. PostgreSQL/MySQL
-  and SQLAlchemy projects need a matching `DATABASE_URL` and database driver; this workspace does
-  not provision or connect to a database server for the generated project.
-* SQLAlchemy is the Python ORM path for all three databases. Prisma output includes a schema and
-  Prisma CLI migration/client scripts under `backend/`; it does not generate a Python API or CRUD
-  implementation. Prisma authentication is not supported.
-* Generated Python APIs support Flask REST, FastAPI REST, or Strawberry GraphQL CRUD. GraphQL
-  exposes list and create/update/delete operations through GraphQL mutations; REST provides the
-  standard CRUD routes. These generated APIs are starter code and still need deployment-specific
-  rate limits, logging, monitoring, and operational configuration.
-* Optional authentication provides scrypt password hashes, JWT bearer tokens with server-side
-  logout revocation, protected CRUD routes, and Google OAuth2 routes for Flask/FastAPI/GraphQL
-  projects. Google OAuth requires `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`; set a stable,
-  random `AUTH_SECRET` for deployments. The Studio preview supplies a temporary local secret when
-  one is not configured. OAuth account linking currently uses verified email as the account key.
-* Alembic scaffolding is emitted when selected with SQLAlchemy. Create the first revision and apply
-  it with the commands in the generated README. Schema autogeneration must be reviewed before
-  applying migrations.
+- The project generator can produce SQLite, PostgreSQL, and MySQL schema definitions. Generated PostgreSQL and MySQL projects, as well as SQLAlchemy projects, require a matching `DATABASE_URL` and database driver. The workspace does not provision or connect to a database server for the generated project.
+- SQLAlchemy is the Python ORM option for all three databases. Prisma output includes a schema and Prisma CLI migration/client scripts under `backend/`. It does not generate a Python API or CRUD implementation, and Prisma authentication is not supported.
+- Generated Python APIs support Flask REST, FastAPI REST, and Strawberry GraphQL CRUD. GraphQL exposes list and create/update/delete operations through mutations, while REST provides standard CRUD routes. These APIs are starter code and still require deployment-specific rate limits, logging, monitoring, and operational configuration.
+- Optional authentication includes scrypt password hashing, JWT bearer tokens with server-side logout revocation, protected CRUD routes, and Google OAuth2 routes for Flask, FastAPI, and GraphQL projects. Google OAuth requires `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`. Deployments must set a stable, random `AUTH_SECRET`. If none is configured, the Studio preview supplies a temporary local secret. OAuth account linking currently uses verified email as the account key.
+- When SQLAlchemy is selected, the generator can also create Alembic scaffolding. Create the first revision and apply it using the commands in the generated README. Review schema autogeneration output before applying migrations.
 
-## Currently in progress / remaining items
+## Work in progress and remaining items
 
-* **Vision**: Collect and annotate licensed photographed sketches, then run `scripts/benchmark_photographs.py`. The benchmark runner is implemented, but no photograph scores are available until a non-empty local manifest and its image/annotation files are supplied.
-* **Models & Training**: A 10-epoch CUDA run was reported on generated synthetic layouts (best validation loss 0.3606 at epoch 5; held-out set is one unseen synthetic template). Workspace inspection found that `checkpoints/component_detector_v1/best.pt` still contains an earlier epoch 5 checkpoint (loss 0.147449), because old checkpoint history was considered during pruning. The manager now starts a fresh history per training run; rerun manually to save the reported run's weights. Detection IoU/mAP are not implemented and remain 0; no real-sketch benefit is established. The layout model has architecture, dataset, and inference code, but no trained checkpoint.
-* **Dataset processing**: 1,000 WebSight samples were normalized to PNG/HTML/JSON under `datasets/processed/websight-v02/`. They have no component bounding-box labels and are not detector-training data. DrawnUI source files are absent from this checkout; the processing command is ready for when they are provided.
-* **Retrieval**: Hybrid BM25/vector retrieval is local and dependency-free by default. Its default vector representation is feature hashing, which provides token-level similarity rather than pretrained semantic embeddings; a local embedding function can be supplied.
-* **Integrations**: Nebius client is implemented and verified against an in-process mock transport; live verification requires running `scripts/verify_nebius.py` with a valid `NEBIUS_API_KEY`. NVIDIA local runtime hooks (`integrations/nvidia/runtime.py`) are pending.
-* **Testing & Execution**: TypeScript checking invokes `npx tsc --noEmit` through the command sandbox. Browser smoke tests still rely on a host-installed Playwright CLI, its browser runtime, and a separately running preview server; they are not autonomous in a clean sandbox.
-* **Packaging**: `scripts/package_application.py --pyinstaller` builds a single-file Windows GUI executable when run on Windows with `.[ui]` and PyInstaller installed. This checkout has not produced or interactively verified a distributable `.exe`.
-* **Application**: The browser Studio is the primary workflow. The PySide desktop workbench remains
-  a compatibility interface for local Design IR editing; not every desktop panel has a browser
-  equivalent yet. Browser natural-language project revision requires a configured AI provider.
+- **Vision:** Licensed photographed sketches still need to be collected and annotated. The benchmark runner is implemented, but `scripts/benchmark_photographs.py` cannot produce scores until a non-empty local manifest and its corresponding image and annotation files are supplied.
+- **Models and training:** A 10-epoch CUDA training run was reported on generated synthetic layouts. The best reported validation loss was **0.3606 at epoch 5**, and the held-out set contains one unseen synthetic template. However, workspace inspection found that `checkpoints/component_detector_v1/best.pt` still contains an earlier epoch 5 checkpoint with a loss of **0.147449**. Old checkpoint history was included during pruning. The manager now starts a fresh history for each training run, but the run must be repeated manually to save the reported weights. Detection IoU and mAP are not implemented and remain at 0. No improvement on real sketches has been established. The layout model has architecture, dataset, and inference code, but no trained checkpoint.
+- **Dataset processing:** 1,000 WebSight samples have been normalized to PNG, HTML, and JSON under `datasets/processed/websight-v02/`. They do not contain component bounding-box labels and therefore cannot be used to train the detector. DrawnUI source files are missing from this checkout. The processing command is ready once those files are supplied.
+- **Retrieval:** Hybrid BM25/vector retrieval runs locally without dependencies by default. Its default vector representation uses feature hashing, which measures token-level similarity rather than semantic similarity from pretrained embeddings. A local embedding function can be supplied.
+- **Integrations:** The Nebius client is implemented and has been verified against an in-process mock transport. Live verification requires a valid `NEBIUS_API_KEY` and a run of `scripts/verify_nebius.py`. NVIDIA local runtime hooks in `integrations/nvidia/runtime.py` are still pending.
+- **Testing and execution:** TypeScript checks run `npx tsc --noEmit` through the command sandbox. Browser smoke tests still depend on a Playwright CLI installed on the host, its browser runtime, and a separately running preview server. They cannot run autonomously in a clean sandbox.
+- **Packaging:** Running `scripts/package_application.py --pyinstaller` on Windows with `.[ui]` and PyInstaller installed builds a single-file Windows GUI executable. This checkout has not yet produced or interactively verified a distributable `.exe`.
+- **Application:** The browser Studio is the primary workflow. The PySide desktop workbench remains a compatibility interface for editing the local Design IR, and some desktop panels do not yet have browser equivalents. Natural-language project revisions in the browser require a configured AI provider.
 
-## Hardware & Environment
+## Hardware and environment
 
-Verified local workstation environment:
-* **OS**: Windows 11 (AMD64)
-* **CPU**: 12 logical cores
-* **GPU**: NVIDIA GeForce RTX 4050 Laptop GPU (6,141 MiB VRAM, Driver 591.74)
-* **PyTorch**: 2.6.0+cu124 with CUDA 12.4 acceleration enabled
-* **Storage**: 728.19 GB total, 443.90 GB free (planning budget: 221.95 GB)
-* **Training capability**: Full CUDA GPU acceleration is available locally for training compact detectors and layout models.
+The following local workstation configuration has been verified:
+
+- **OS:** Windows 11 (AMD64)
+- **CPU:** 12 logical cores
+- **GPU:** NVIDIA GeForce RTX 4050 Laptop GPU, 6,141 MiB VRAM, driver 591.74
+- **PyTorch:** 2.6.0+cu124, with CUDA 12.4 acceleration enabled
+- **Storage:** 728.19 GB total, 443.90 GB free. The planning budget is 221.95 GB.
+- **Training:** Local CUDA acceleration is available for training compact detectors and layout models.
