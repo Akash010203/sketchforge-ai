@@ -253,7 +253,6 @@ docker run -p 8080:8080 -e NEBIUS_API_KEY=$NEBIUS_API_KEY sketchforge-nebius
 - **Core Documentation**:
   - 📖 [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — Comprehensive architecture specification
   - 📋 [`TASKS.md`](TASKS.md) — Verified milestone task ledger
-  - 🎬 [`docs/DEMO_VIDEO_SCRIPT.md`](docs/DEMO_VIDEO_SCRIPT.md) — 3-minute video recording storyboard
   - 🔬 [`docs/TECHNICAL_REPORT.md`](docs/TECHNICAL_REPORT.md) — In-depth technical report
 
 ---
