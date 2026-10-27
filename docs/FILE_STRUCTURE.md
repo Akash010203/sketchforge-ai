@@ -1,51 +1,52 @@
 # File structure
 
-The repository follows the directory layout in the master engineering specification. The requested directories now exist in their specified locations. Python modules and operational documents are added when their milestone begins; planned areas are intentionally kept free of fake or empty implementation files.
+The repository follows the directory layout defined in the master engineering specification. All requested directories have been created in their specified locations. Python modules and operational documents are added as their milestones begin, so planned areas remain free of empty or placeholder implementation files.
 
 ## Repository map
 
 | Path | Responsibility | Current state |
 |---|---|---|
-| `config/` | Application, logging, model, training, dataset, evaluation, and provider defaults | Active application/provider/evaluation settings; model/training/dataset defaults are disabled or license-gated |
-| `docs/` | Architecture, implementation, Design IR, dataset, model, security, performance, and operational documentation | Architecture, Design IR, plan, dataset audit, security, integration, limitations, and experiment log exist; milestone-specific docs state current status |
-| `assets/` | Icons, themes, and sample sketches | Sample sketches are implemented; icons and themes are reserved |
-| `datasets/` | Dataset manifest and local raw, processed, synthetic, quarantine, and evaluation data | Manifest under `manifests/`; only synthetic sample sketches are currently used |
-| `checkpoints/` | Locally trained model artifacts | Component detector checkpoint exists but needs refresh after checkpoint-history fix; layout model is untrained |
-| `experiments/` | Reproducible configurations and measured results | Result directory exists; new experiments are added with evidence |
-| `scripts/` | Environment inspection, dataset audit, demo, benchmarks, and packaging commands | Environment/storage inspection, synthetic samples, dataset audit, visual evaluation, and packaging scripts exist |
-| `src/sketchforge/` | Desktop application and local engineering workflows | Implemented areas listed below; later-phase packages are reserved |
-| `tests/` | Unit, integration, end-to-end, fixtures, and evaluation assets | Unit/integration/end-to-end tests and edit benchmark exist |
-| `output/` | Generated projects, renders, reports, and logs | Runtime output; ignored by Git |
+| `config/` | Application, logging, model, training, dataset, evaluation, and provider defaults | Application, provider, and evaluation settings are active. Model, training, and dataset defaults are disabled or license-gated. |
+| `docs/` | Architecture, implementation, Design IR, dataset, model, security, performance, and operational documentation | Architecture, Design IR, planning, dataset audit, security, integration, limitations, and experiment log documents exist. Milestone-specific documents record the current status. |
+| `assets/` | Icons, themes, and sample sketches | Sample sketches are implemented. Icons and themes are reserved for later work. |
+| `datasets/` | Dataset manifest and local raw, processed, synthetic, quarantine, and evaluation data | The manifest is under `manifests/`. Current testing uses synthetic sample sketches only. |
+| `checkpoints/` | Locally trained model artifacts | The component detector checkpoint needs to be refreshed after the checkpoint-history fix. The layout model has not been trained. |
+| `experiments/` | Reproducible configurations and measured results | The results directory exists, and new experiments are added with supporting evidence. |
+| `scripts/` | Environment inspection, dataset audit, demo, benchmarks, and packaging commands | Environment and storage inspection, synthetic sample generation, dataset auditing, visual evaluation, and packaging scripts are available. |
+| `src/sketchforge/` | Desktop application and local engineering workflows | The implemented packages are listed below. Packages for later milestones remain reserved. |
+| `tests/` | Unit, integration, end-to-end, fixtures, and evaluation assets | Unit, integration, and end-to-end tests are available, along with the edit benchmark. |
+| `output/` | Generated projects, renders, reports, and logs | Used for runtime output and ignored by Git. |
 
 ## Implemented Python areas
 
-- `application/`, `ui/`, `domain/`, `design_ir/`, `vision/`, `layout/`, `rendering/`, and `editor/` implement the desktop workflow, structured design, image pipeline, editable rendering, and editing commands.
-- `evaluation/`, `repair/`, and `orchestration/` implement measurement, bounded repairs, and workflow control.
-- `storage/`, `utilities/`, and `datasets/synthetic_generator.py` provide local project storage, common utilities, and original synthetic sketches.
-- `integrations/` contains the provider contract and isolated Nebius/NVIDIA integrations. Network calls remain disabled unless configured and consented to.
-- `assist/` contains natural-language edit planning and validation.
-- `generation/` implements full application generation: `generation/frontend/` (React+TS, HTML/CSS component, page, and style generators), focused backend generators in `generation/backend/`, and packaged text templates in `generation/templates/` for reusable project boilerplate.
-- `execution/` and `verification/` implement sandboxed execution with strict command allowlists, resource limits, and lint/typecheck/build/test/browser verification runners.
-- `models/component_detector/` and `training/` implement the lightweight CNN detector architecture (MobileNet-style FPN-lite) and training loop (dataloader, early stopping, metrics, checkpointing).
+- `application/`, `ui/`, `domain/`, `design_ir/`, `vision/`, `layout/`, `rendering/`, and `editor/` cover the desktop workflow, structured design representation, image processing, editable rendering, and editing commands.
+- `evaluation/`, `repair/`, and `orchestration/` handle measurement, bounded repairs, and workflow control.
+- `storage/`, `utilities/`, and `datasets/synthetic_generator.py` provide local project storage, shared utilities, and synthetic sketches generated by the project.
+- `integrations/` defines the provider contract and keeps Nebius and NVIDIA integrations isolated. Network calls remain disabled unless they are configured and the user has consented.
+- `assist/` handles natural-language edit planning and validation.
+- `generation/` builds complete applications. `generation/frontend/` contains React and TypeScript generators for HTML/CSS components, pages, and styles. `generation/backend/` contains focused backend generators, while `generation/templates/` stores reusable text templates for project boilerplate.
+- `execution/` and `verification/` provide sandboxed execution with strict command allowlists and resource limits. Verification runners cover linting, type checks, builds, tests, and browser checks.
+- `models/component_detector/` and `training/` contain the lightweight CNN detector architecture, based on a MobileNet-style FPN-lite design, and its training loop. The loop includes data loading, early stopping, metrics, and checkpointing.
 
-## Intentionally planned areas
+## Planned areas
 
-The following package directories are reserved for upcoming milestones:
-- `models/layout_model/`: Compact layout model predicting bounding boxes and flex groupings.
+These package directories are reserved for upcoming milestones:
+
+- `models/layout_model/`: A compact layout model that predicts bounding boxes and flex groupings.
 - `retrieval/`: RAG indexing for design guidelines and code snippets.
-- Secondary UI dialogs: `layer_panel.py`, `settings_dialog.py`, `training_panel.py`, `dataset_panel.py`.
+- Secondary UI dialogs: `layer_panel.py`, `settings_dialog.py`, `training_panel.py`, and `dataset_panel.py`.
 
 ## Structural choices and extensions
 
 | Specification path | Repository choice | Reason |
 |---|---|---|
-| `application/commands.py` | Editor command classes remain in `editor/` | Avoids a forwarding-only second command layer |
-| `domain/{project,component,layout,interaction,validation}.py` | Own the project, component, layout, interaction, and document validation contracts; shared strict model base and component enum live alongside them | `design_ir/schema.py` and `design_ir/validation.py` remain backwards-compatible import surfaces |
-| `layout/hierarchy.py` | Owns containment and reading-order inference; `vision/layout_inference.py` re-exports it | Keeps geometric interpretation with layout rules while preserving the existing vision import |
-| `layout/responsive_rules.py` | Reserved until responsive code generation begins | No current workflow consumes responsive rules |
-| `orchestration/workflow.py` | Concrete sketch and repair workflows are split into `sketch_workflow.py` and `repair_workflow.py` | Each workflow has separate state transitions |
-| `assist/` | Added as a separate package | Natural-language editing is implemented and isolated from core design modules |
-| `uv.lock` | Not present | The project does not currently use uv |
-| `LICENSE` | Present | Retained as a project-root file; its terms are owned by the project author |
+| `application/commands.py` | Editor command classes remain in `editor/` | Avoids adding a second command layer that only forwards calls. |
+| `domain/{project,component,layout,interaction,validation}.py` | These modules define the project, component, layout, interaction, and document-validation contracts. The shared strict model base and component enum live alongside them. | `design_ir/schema.py` and `design_ir/validation.py` remain available as backward-compatible import paths. |
+| `layout/hierarchy.py` | Owns containment and reading-order inference. `vision/layout_inference.py` re-exports it. | Keeps geometric interpretation with the layout rules while preserving the existing vision import. |
+| `layout/responsive_rules.py` | Reserved until responsive code generation begins | No current workflow uses responsive rules. |
+| `orchestration/workflow\.py` | Concrete sketch and repair workflows are split into `sketch_workflow\.py` and `repair_workflow\.py`. | Each workflow has its own state transitions. |
+| `assist/` | Added as a separate package | Natural-language editing is implemented independently of the core design modules. |
+| `uv.lock` | Not present | The project does not currently use uv. |
+| `LICENSE` | Present | Kept at the project root. The project author is responsible for its terms. |
 
-Do not treat reserved directories as implemented features. Track feature progress in `TASKS.md` and update this map as modules move from planned to implemented.
+Reserved directories do not indicate implemented features. Track progress in `TASKS.md` and update this map as modules move from planned to implemented.
