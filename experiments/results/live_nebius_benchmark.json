@@ -1,0 +1,72 @@
+{
+  "completion": {
+    "completion_tokens": 96,
+    "latency_ms": 610.4,
+    "model": "nvidia/Nemotron-3_5-Lightning",
+    "ok": true,
+    "prompt_tokens": 23
+  },
+  "endpoint": "https://api.tokenfactory.nebius.com/v1/",
+  "model_verified": true,
+  "models_endpoint": {
+    "count": 30,
+    "nvidia_model_details": [
+      {
+        "accepts_images": false,
+        "context_length": 262144,
+        "id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+        "modality": "text->text"
+      },
+      {
+        "accepts_images": false,
+        "context_length": 1048576,
+        "id": "nvidia/Nemotron-3-Ultra-550b-a55b",
+        "modality": "text->text"
+      },
+      {
+        "accepts_images": true,
+        "context_length": 1048576,
+        "id": "nvidia/Nemotron-3.5-Super-VL",
+        "modality": "text+image->text"
+      },
+      {
+        "accepts_images": false,
+        "context_length": 1048576,
+        "id": "nvidia/Nemotron-3_5-Lightning",
+        "modality": "text->text"
+      },
+      {
+        "accepts_images": false,
+        "context_length": 262144,
+        "id": "nvidia/nemotron-3-super-120b-a12b",
+        "modality": "text->text"
+      }
+    ],
+    "nvidia_models": [
+      "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+      "nvidia/Nemotron-3-Ultra-550b-a55b",
+      "nvidia/Nemotron-3.5-Super-VL",
+      "nvidia/Nemotron-3_5-Lightning",
+      "nvidia/nemotron-3-super-120b-a12b"
+    ],
+    "ok": true,
+    "preferred_available": [
+      "nvidia/Nemotron-3_5-Lightning",
+      "nvidia/nemotron-3-super-120b-a12b"
+    ]
+  },
+  "ok": true,
+  "privacy_policy": {
+    "allow_images": false,
+    "include_user_text": false,
+    "probe_contains_design_data": false
+  },
+  "provider": "nebius",
+  "selected_model": "nvidia/Nemotron-3_5-Lightning",
+  "stage": "complete",
+  "status": "verified",
+  "zdr": {
+    "reason": "The inference API does not expose the organization retention setting.",
+    "status": "unknown"
+  }
+}

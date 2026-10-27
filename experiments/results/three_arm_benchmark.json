@@ -1,0 +1,2576 @@
+{
+  "fixture": {
+    "condition": "clean",
+    "layouts": [
+      "login_page",
+      "dashboard",
+      "mobile_form"
+    ],
+    "seed": 11
+  },
+  "rows": [
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 9.71,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "c01"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "c01",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 9.41,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "c01",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 9.08,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "c02"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "c02",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 10.01,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "c02",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 13.33,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "c03"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "c03",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 7.52,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "c03",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "local",
+      "duration_ms": 6.03,
+      "errors": [
+        "new or worsened evaluator issues: ['LOW_CONTRAST:button-1:']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "c04"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
+      "task_id": "c04",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_repaired",
+      "arm": "hybrid",
+      "duration_ms": 162.5,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 1,
+      "task_id": "c04",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 4.88,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "c05"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "c05",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 5.26,
+      "errors": [],
+      "expected": "edit",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 8196.68,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
+      "task_id": "c05",
+      "total_tokens": 2058
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 6.96,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "c06"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "c06",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 8.68,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "c06",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 6.04,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "c07"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "c07",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 9.03,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "c07",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 5.95,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "c08"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "c08",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 5.35,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "c08",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 4.59,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "t01"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "model",
+      "duration_ms": 5.7,
+      "errors": [],
+      "expected": "edit",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 7907.47,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
+      "task_id": "t01",
+      "total_tokens": 2055
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 5.57,
+      "errors": [],
+      "expected": "edit",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 10681.22,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
+      "task_id": "t01",
+      "total_tokens": 2026
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 4.51,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "t02"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 8555.74,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "t02",
+      "total_tokens": 2118
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 7.32,
+      "errors": [],
+      "expected": "edit",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 8611.86,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
+      "task_id": "t02",
+      "total_tokens": 2118
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 7.14,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "t03"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "t03",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 7.36,
+      "errors": [],
+      "expected": "edit",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 3397.49,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
+      "task_id": "t03",
+      "total_tokens": 2424
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 7.57,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "t04"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "t04",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 6.98,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "t04",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 5.1,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "t05"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "t05",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 11.43,
+      "errors": [],
+      "expected": "edit",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 4026.21,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
+      "task_id": "t05",
+      "total_tokens": 1982
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "local",
+      "duration_ms": 13.55,
+      "errors": [
+        "new or worsened evaluator issues: ['LOW_CONTRAST:button-1:']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "t06"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "t06",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_repaired",
+      "arm": "hybrid",
+      "duration_ms": 577.43,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 1,
+      "task_id": "t06",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 9.46,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "m01"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "model",
+      "duration_ms": 5.18,
+      "errors": [],
+      "expected": "edit",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 8042.22,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
+      "task_id": "m01",
+      "total_tokens": 2080
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 5.15,
+      "errors": [],
+      "expected": "edit",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 8448.68,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
+      "task_id": "m01",
+      "total_tokens": 2106
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "local",
+      "duration_ms": 6.88,
+      "errors": [
+        "new or worsened evaluator issues: ['MISALIGNED:sidebar-1:center_y']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "m02"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
+      "task_id": "m02",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "hybrid",
+      "duration_ms": 341.27,
+      "errors": [
+        "new or worsened evaluator issues: ['MISALIGNED:sidebar-1:center_y']"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "m02",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 6.15,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "m03"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "m03",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 6.82,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "m03",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 6.16,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "m04"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "m04",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 7.49,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "m04",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "local",
+      "duration_ms": 8.12,
+      "errors": [
+        "new or worsened evaluator issues: ['MISALIGNED:button-1:right']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "m05"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "m05",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_repaired",
+      "arm": "hybrid",
+      "duration_ms": 345.17,
+      "errors": [
+        "button-1.x: expected 300, got 312.016"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 1,
+      "task_id": "m05",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "local",
+      "duration_ms": 4.68,
+      "errors": [
+        "new or worsened evaluator issues: ['MISALIGNED:checkbox-1:left']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "m06"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "m06",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_repaired",
+      "arm": "hybrid",
+      "duration_ms": 338.22,
+      "errors": [
+        "checkbox-1.dx: expected -6, got None"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 1,
+      "task_id": "m06",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "local",
+      "duration_ms": 5.11,
+      "errors": [
+        "new or worsened evaluator issues: ['OVERFLOW_PARENT:button-1:right']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "r01"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "r01",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_repaired",
+      "arm": "hybrid",
+      "duration_ms": 336.95,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 1,
+      "task_id": "r01",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 8.47,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "r02"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "r02",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 6.87,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "r02",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 8.36,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "r03"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
+      "task_id": "r03",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 10.93,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "r03",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 6.97,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "r04"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "r04",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 5.41,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "r04",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 4.66,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "r05"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "r05",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 6.22,
+      "errors": [],
+      "expected": "edit",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 4002.59,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
+      "task_id": "r05",
+      "total_tokens": 2167
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "local",
+      "duration_ms": 6.59,
+      "errors": [
+        "new or worsened evaluator issues: ['OVERFLOW_PAGE:button-1:right']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "r06"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "r06",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_repaired",
+      "arm": "hybrid",
+      "duration_ms": 144.47,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 1,
+      "task_id": "r06",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 7.11,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "r07"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "r07",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 8.39,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "r07",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "local",
+      "duration_ms": 4.66,
+      "errors": [
+        "new or worsened evaluator issues: ['TEXT_CLIPPED:heading-1:']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "f01"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "f01",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_repaired",
+      "arm": "hybrid",
+      "duration_ms": 381.59,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 1,
+      "task_id": "f01",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "local",
+      "duration_ms": 7.64,
+      "errors": [
+        "new or worsened evaluator issues: ['TEXT_CLIPPED:heading-2:', 'TEXT_OVERFLOW:heading-2:']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "f02"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "f02",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_repaired",
+      "arm": "hybrid",
+      "duration_ms": 572.38,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 2,
+      "task_id": "f02",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "local",
+      "duration_ms": 6.53,
+      "errors": [
+        "new or worsened evaluator issues: ['TEXT_CLIPPED:heading-1:', 'TEXT_OVERFLOW:heading-1:']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "f03"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "f03",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_repaired",
+      "arm": "hybrid",
+      "duration_ms": 196.04,
+      "errors": [
+        "heading-1.font_size: expected 26, got 21.5"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 2,
+      "task_id": "f03",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 4.86,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "k01"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "k01",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 5.63,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "k01",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 6.98,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "k02"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "k02",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 8.22,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "k02",
+      "total_tokens": 0
+    },
+    {
+      "actual": "refuse",
+      "arm": "local",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "task_id": "k03"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "k03",
+      "total_tokens": 0
+    },
+    {
+      "actual": "refuse",
+      "arm": "hybrid",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "k03",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 4.89,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "x01"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "x01",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 6.78,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "x01",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 7.18,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "x02"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "x02",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 7.99,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "x02",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 5.09,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "x03"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "x03",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 5.61,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "x03",
+      "total_tokens": 0
+    },
+    {
+      "actual": "refuse",
+      "arm": "local",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "task_id": "x04"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "x04",
+      "total_tokens": 0
+    },
+    {
+      "actual": "refuse",
+      "arm": "hybrid",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "x04",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 7.72,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "x05"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "x05",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 7.98,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "x05",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "local",
+      "duration_ms": 4.9,
+      "errors": [
+        "new or worsened evaluator issues: ['OVERFLOW_PARENT:button-1:right']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "x06"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "x06",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_repaired",
+      "arm": "hybrid",
+      "duration_ms": 325.27,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 1,
+      "task_id": "x06",
+      "total_tokens": 0
+    },
+    {
+      "actual": "refuse",
+      "arm": "local",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "task_id": "p01"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "p01",
+      "total_tokens": 0
+    },
+    {
+      "actual": "refuse",
+      "arm": "hybrid",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "p01",
+      "total_tokens": 0
+    },
+    {
+      "actual": "refuse",
+      "arm": "local",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "task_id": "p02"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "p02",
+      "total_tokens": 0
+    },
+    {
+      "actual": "refuse",
+      "arm": "hybrid",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "p02",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "local",
+      "duration_ms": 8.48,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "p03"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "p03",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 7.98,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "p03",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "local",
+      "duration_ms": 6.2,
+      "errors": [
+        "new or worsened evaluator issues: ['TEXT_CLIPPED:heading-1:', 'TEXT_OVERFLOW:heading-1:']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "p04"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "p04",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_repaired",
+      "arm": "hybrid",
+      "duration_ms": 195.49,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 2,
+      "task_id": "p04",
+      "total_tokens": 0
+    },
+    {
+      "actual": "refuse",
+      "arm": "local",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "task_id": "p05"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "p05",
+      "total_tokens": 0
+    },
+    {
+      "actual": "refuse",
+      "arm": "hybrid",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "p05",
+      "total_tokens": 0
+    },
+    {
+      "actual": "refuse",
+      "arm": "local",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "task_id": "p06"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "p06",
+      "total_tokens": 0
+    },
+    {
+      "actual": "refuse",
+      "arm": "hybrid",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "p06",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "local",
+      "duration_ms": 5.21,
+      "errors": [
+        "new or worsened evaluator issues: ['OVERFLOW_PARENT:button-1:right']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "l01"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "l01",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_repaired",
+      "arm": "hybrid",
+      "duration_ms": 325.31,
+      "errors": [],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 1,
+      "task_id": "l01",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "local",
+      "duration_ms": 4.8,
+      "errors": [
+        "new or worsened evaluator issues: ['OVERFLOW_PARENT:button-1:bottom']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "l02"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "l02",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "hybrid",
+      "duration_ms": 130.27,
+      "errors": [
+        "new or worsened evaluator issues: ['OVERFLOW_PARENT:button-1:bottom']"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "l02",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "local",
+      "duration_ms": 5.46,
+      "errors": [
+        "new or worsened evaluator issues: ['TEXT_CLIPPED:heading-1:', 'TEXT_OVERFLOW:heading-1:']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "l03"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "l03",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_repaired",
+      "arm": "hybrid",
+      "duration_ms": 323.55,
+      "errors": [
+        "heading-1.font_size: expected '>', got 10.0"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 1,
+      "task_id": "l03",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "local",
+      "duration_ms": 7.72,
+      "errors": [
+        "new or worsened evaluator issues: ['OVERLAP:button-1,sidebar-1:', 'OVERLAP:card-1,sidebar-1:', 'OVERLAP:image-2,sidebar-1:']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "l04"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "l04",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "hybrid",
+      "duration_ms": 337.9,
+      "errors": [
+        "new or worsened evaluator issues: ['OVERLAP:button-1,sidebar-1:', 'OVERLAP:card-1,sidebar-1:', 'OVERLAP:image-2,sidebar-1:']"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "l04",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "local",
+      "duration_ms": 6.4,
+      "errors": [
+        "new or worsened evaluator issues: ['OVERFLOW_PAGE:heading-1:top']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "l05"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "l05",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "hybrid",
+      "duration_ms": 59.22,
+      "errors": [
+        "new or worsened evaluator issues: ['OVERFLOW_PAGE:heading-1:top']"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "l05",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "local",
+      "duration_ms": 4.87,
+      "errors": [
+        "new or worsened evaluator issues: ['OVERFLOW_PAGE:card-1:bottom', 'OVERLAP:card-1,text-4:']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "l06"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [
+        "planner refused an edit task"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "l06",
+      "total_tokens": 0
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "hybrid",
+      "duration_ms": 919.28,
+      "errors": [
+        "new or worsened evaluator issues: ['OVERFLOW_PAGE:card-1:bottom', 'OVERLAP:card-1,text-4:']"
+      ],
+      "expected": "edit",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": false,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "repair_patches": 0,
+      "task_id": "l06",
+      "total_tokens": 0
+    },
+    {
+      "actual": "refuse",
+      "arm": "local",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "passed": true,
+      "task_id": "n01"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "n01",
+      "total_tokens": 0
+    },
+    {
+      "actual": "refuse",
+      "arm": "hybrid",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "n01",
+      "total_tokens": 0
+    },
+    {
+      "actual": "refuse",
+      "arm": "local",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "passed": true,
+      "task_id": "n02"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "n02",
+      "total_tokens": 0
+    },
+    {
+      "actual": "refuse",
+      "arm": "hybrid",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "n02",
+      "total_tokens": 0
+    },
+    {
+      "actual": "refuse",
+      "arm": "local",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "passed": true,
+      "task_id": "n03"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 8494.35,
+      "passed": true,
+      "planner": "model_unavailable",
+      "planner_outcome": "refused",
+      "planner_reason": "The available operations do not include a delete or remove function for components.",
+      "task_id": "n03",
+      "total_tokens": 2087
+    },
+    {
+      "actual": "refuse",
+      "arm": "hybrid",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "n03",
+      "total_tokens": 0
+    },
+    {
+      "actual": "refuse",
+      "arm": "local",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "passed": true,
+      "task_id": "n04"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "n04",
+      "total_tokens": 0
+    },
+    {
+      "actual": "refuse",
+      "arm": "hybrid",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "n04",
+      "total_tokens": 0
+    },
+    {
+      "actual": "refuse",
+      "arm": "local",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "passed": true,
+      "task_id": "n05"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 3343.13,
+      "passed": true,
+      "planner": "model_unavailable",
+      "planner_outcome": "refused",
+      "planner_reason": "The instruction 'make it bigger' is ambiguous about which component to resize and in what way.",
+      "task_id": "n05",
+      "total_tokens": 2023
+    },
+    {
+      "actual": "refuse",
+      "arm": "hybrid",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 3549.65,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "refused",
+      "planner_reason": "The instruction 'make it bigger' is ambiguous and does not specify which component should be enlarged.",
+      "task_id": "n05",
+      "total_tokens": 2056
+    },
+    {
+      "actual": "refuse",
+      "arm": "local",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "passed": true,
+      "task_id": "n06"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "n06",
+      "total_tokens": 0
+    },
+    {
+      "actual": "refuse",
+      "arm": "hybrid",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "n06",
+      "total_tokens": 0
+    },
+    {
+      "actual": "refuse",
+      "arm": "local",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "passed": true,
+      "task_id": "n07"
+    },
+    {
+      "actual": "refuse",
+      "arm": "model",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "model_unavailable",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "n07",
+      "total_tokens": 0
+    },
+    {
+      "actual": "refuse",
+      "arm": "hybrid",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "model": null,
+      "model_latency_ms": 0,
+      "passed": true,
+      "planner": "local_fallback",
+      "planner_outcome": "provider_error",
+      "planner_reason": "the service returned an empty answer",
+      "task_id": "n07",
+      "total_tokens": 0
+    }
+  ],
+  "summary": {
+    "hybrid": {
+      "outcomes": {
+        "applied_clean": 27,
+        "applied_repaired": 13,
+        "applied_with_issues": 5,
+        "refuse": 13
+      },
+      "pass_rate": 0.7414,
+      "passed": 43,
+      "tasks": 58
+    },
+    "local": {
+      "outcomes": {
+        "applied_clean": 27,
+        "applied_with_issues": 18,
+        "refuse": 13
+      },
+      "pass_rate": 0.5862,
+      "passed": 34,
+      "tasks": 58
+    },
+    "model": {
+      "outcomes": {
+        "applied_clean": 2,
+        "refuse": 56
+      },
+      "pass_rate": 0.1552,
+      "passed": 9,
+      "tasks": 58
+    }
+  },
+  "version": 1
+}

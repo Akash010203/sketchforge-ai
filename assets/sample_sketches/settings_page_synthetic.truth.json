@@ -1,0 +1,198 @@
+{
+  "layout": "settings_page",
+  "canvas": [
+    1160,
+    900
+  ],
+  "seed": 7,
+  "condition": "shadow",
+  "components": [
+    {
+      "index": 0,
+      "type": "page",
+      "bbox": [
+        80.0,
+        60.0,
+        1000.0,
+        780.0
+      ],
+      "parent": null
+    },
+    {
+      "index": 1,
+      "type": "header",
+      "bbox": [
+        80.0,
+        60.0,
+        1000.0,
+        70.0
+      ],
+      "parent": 0
+    },
+    {
+      "index": 2,
+      "type": "heading",
+      "bbox": [
+        110.0,
+        78.0,
+        200.0,
+        30.0
+      ],
+      "parent": 1
+    },
+    {
+      "index": 3,
+      "type": "card",
+      "bbox": [
+        140.0,
+        180.0,
+        880.0,
+        520.0
+      ],
+      "parent": 0
+    },
+    {
+      "index": 4,
+      "type": "text",
+      "bbox": [
+        170.0,
+        232.0,
+        160.0,
+        16.0
+      ],
+      "parent": 3
+    },
+    {
+      "index": 5,
+      "type": "input",
+      "bbox": [
+        520.0,
+        220.0,
+        460.0,
+        46.0
+      ],
+      "parent": 3
+    },
+    {
+      "index": 6,
+      "type": "text",
+      "bbox": [
+        170.0,
+        312.0,
+        180.0,
+        16.0
+      ],
+      "parent": 3
+    },
+    {
+      "index": 7,
+      "type": "input",
+      "bbox": [
+        520.0,
+        300.0,
+        460.0,
+        46.0
+      ],
+      "parent": 3
+    },
+    {
+      "index": 8,
+      "type": "text",
+      "bbox": [
+        170.0,
+        392.0,
+        200.0,
+        16.0
+      ],
+      "parent": 3
+    },
+    {
+      "index": 9,
+      "type": "input",
+      "bbox": [
+        520.0,
+        380.0,
+        460.0,
+        46.0
+      ],
+      "parent": 3
+    },
+    {
+      "index": 10,
+      "type": "text",
+      "bbox": [
+        170.0,
+        472.0,
+        220.0,
+        16.0
+      ],
+      "parent": 3
+    },
+    {
+      "index": 11,
+      "type": "input",
+      "bbox": [
+        520.0,
+        460.0,
+        460.0,
+        46.0
+      ],
+      "parent": 3
+    },
+    {
+      "index": 12,
+      "type": "checkbox",
+      "bbox": [
+        170.0,
+        560.0,
+        24.0,
+        24.0
+      ],
+      "parent": 3
+    },
+    {
+      "index": 13,
+      "type": "text",
+      "bbox": [
+        210.0,
+        564.0,
+        200.0,
+        16.0
+      ],
+      "parent": 3
+    },
+    {
+      "index": 14,
+      "type": "checkbox",
+      "bbox": [
+        170.0,
+        610.0,
+        24.0,
+        24.0
+      ],
+      "parent": 3
+    },
+    {
+      "index": 15,
+      "type": "text",
+      "bbox": [
+        210.0,
+        614.0,
+        220.0,
+        16.0
+      ],
+      "parent": 3
+    },
+    {
+      "index": 16,
+      "type": "button",
+      "bbox": [
+        820.0,
+        760.0,
+        200.0,
+        54.0
+      ],
+      "parent": 0
+    }
+  ]
+}

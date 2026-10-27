@@ -1,0 +1,22 @@
+# Nebius Serverless Job Specification
+apiVersion: v1
+kind: NebiusServerlessJob
+metadata:
+  name: sketchforge-batch-processor
+spec:
+  runtime: python311
+  timeoutSeconds: 300
+  resources:
+    cpu: 2
+    memory: "4Gi"
+  env:
+    - name: NEBIUS_API_KEY
+      valueFrom:
+        secretKeyRef:
+          name: nebius-token-factory-secret
+          key: api-key
+    - name: TAVILY_API_KEY
+      valueFrom:
+        secretKeyRef:
+          name: tavily-search-secret
+          key: api-key
