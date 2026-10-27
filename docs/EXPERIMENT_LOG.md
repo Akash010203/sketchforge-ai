@@ -1,97 +1,183 @@
 # Experiment log
 
-Newest last. Every entry says what was changed, what was measured before and after, and whether the
-change was to the **system** or to the **test fixture** (the latter is called out explicitly so a
-better number is never mistaken for a better engine). All data is synthetic; see KNOWN_LIMITATIONS.
+Entries are listed in chronological order, with the newest last. Each records what changed, what was measured before and after, and whether the change affected the system or the test fixture. Fixture changes are identified explicitly so improvements caused by easier tests are not mistaken for improvements in the engine.
 
-## E1 — Detection benchmark baseline (Phase 1)
+All results use synthetic data. See `KNOWN_LIMITATIONS`.
 
-Generator layouts: tuning = `login_page`, `dashboard`, `mobile_form`; held-out = `landing_page`,
-`settings_page`. Conditions: clean, shadow, noisy, lowcontrast, blur, thin, thick. Seeds 11–13.
-The classifier rules were adjusted while looking at the tuning layouts only.
+## E1. Detection benchmark baseline (Phase 1)
 
-## E2 — Squarish ink clusters → `image` (system change)
+The generator used three tuning layouts: `login_page`, `dashboard`, and `mobile_form`. The held-out layouts were `landing_page` and `settings_page`.
 
-*Observation:* logos/icons drawn as scribbles were typed `text`/`heading`. *Change:* a large
-(≥ 28 design px tall), squarish (width/height ≤ 1.4) ink cluster scores `image` 0.50 with `heading`
-0.40 close behind, so it is flagged ambiguous (`vision/component_detection.py`). *Result* (commit
-`947366c`): tuning type accuracy 0.970 → 0.985, held-out unchanged. The rule was written while looking
-at tuning layouts, so the tuning gain is optimistic; the unchanged held-out figure is the honest one.
-Also: `align_snap_radius_px` 24 → 16 (fewer false "meant to be aligned" groupings).
+Tests covered seven conditions: clean, shadow, noisy, lowcontrast, blur, thin, and thick. Seeds 11–13 were used throughout.
 
-## E3 — Detection benchmark, current (`scripts/evaluate_layout.py`, seeds 11–13)
+Classifier rules were adjusted using the tuning layouts only. The held-out layouts were excluded from that process.
 
-| Set | Sketches | F1 | Precision | Recall | Type acc. | Mean IoU | Failures | ms/sketch |
+## E2. Squarish ink clusters classified as images (system change)
+
+**Problem:** Logos and icons drawn as scribbles were often classified as `text` or `heading`.
+
+**Change:** In `vision/component_detection.py`, an ink cluster at least 28 design pixels tall and with a width-to-height ratio of 1.4 or less now receives an `image` score of 0.50, with `heading` close behind at 0.40. The detector marks these cases as ambiguous.
+
+**Results:** Commit `947366c` improved type accuracy on tuning layouts from 0.970 to 0.985. Held-out accuracy remained unchanged.
+
+Because the rule was developed using the tuning layouts, the improvement there may be optimistic. The unchanged held-out result provides a more reliable measure of generalization.
+
+The same change also reduced `align_snap_radius_px` from 24 to 16 to avoid falsely grouping nearby edges as intentionally aligned.
+
+## E3. Current detection benchmark
+
+Command: `scripts/evaluate_layout.py`, using seeds 11–13.
+
+| Dataset | Sketches | F1 | Precision | Recall | Type accuracy | Mean IoU | Failures | ms/sketch |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
 | Tuning layouts | 63 | 0.973 | 0.972 | 0.974 | 0.985 | 0.840 | 0 | 157 |
-| **Held-out layouts** | 42 | **0.982** | 0.978 | 0.986 | **0.946** | 0.835 | 0 | 164 |
+| **Held-out layouts** | **42** | **0.982** | 0.978 | 0.986 | **0.946** | 0.835 | 0 | 164 |
 
-By condition (held-out F1 / type acc.): clean 1.000 / 0.938 · shadow 1.000 / 0.938 · noisy 1.000 / 0.941 ·
-lowcontrast 1.000 / 0.938 · blur 0.984 / 0.957 · thick 0.973 / 0.953 · **thin 0.915 / 0.958** (weakest:
-stroke breaks split text lines). Remaining type errors: card↔container, checkbox↔radio, text↔heading.
-Full table: `experiments/results/detection_benchmark.json`.
+### Results by condition
 
-## E4 — Repair engine development (system changes, each found by a failing real run)
+The following values show F1 and type accuracy on held-out layouts.
 
-| Symptom | Cause | Fix |
-|---|---|---|
-| Crash `BBox width must be > 0 (h=1e-13→0)` | float slivers in `intersection` | geometry computes areas from raw floats; `intersection` returns `None` below 1e-3; regression test |
-| Accepted patch created a new `MISALIGNED` | shortest translation put an input flush with a card edge | `translate_into_container` offers an *aligned* candidate (shared alignment line) before *minimal* |
-| Valid repair rejected: "3 new issues" | regrouped `UNEVEN_SPACING` keys changed identity | regression check matches **continuations** (same code, shared component, old issue vanished) |
-| Baseline 3.9 px label/radio overlap | detection sliver | build-time `trim_slivers` plus a "trim" repair candidate |
-| Dashboard overlap needing a pitch restore | one member of a repeated row displaced | `restore_pitch` candidate for runs of ≥ 4 similar siblings |
-| Engine fixed small things first and stalled | planner ordered by magnitude | coarse-to-fine priority: overflow < overlap < text/touch < misaligned < spacing < contrast/font |
-| Unfixable text overflow "repaired" by shrinking to an unreadable size | partial font shrink accepted | `shrink_font_to_floor` requires a *full* fit; test `test_unfixable_overflow_is_reported_not_papered_over` |
-
-## E5 — Repair matrix, run 1 (before the fixture fix)
-
-Layouts × conditions {clean, shadow, blur, noisy, thin} × seeds {11, 12} × 7 fault kinds = 350
-cells, 13 skipped because the layout cannot host that fault (e.g. no repeated group of ≥ 3 items for
-`spacing`) → **337 cells**. Fault detected 98.8 %, fully repaired 95.6 %, no issues left 93.5 %,
-**regressed 0.0 %**, median 283 ms. `text_overflow` repaired only 88 %.
-
-## E6 — Injected text overflow was sometimes impossible to repair (fixture change)
-
-*Diagnosis (mobile_form, seed 11):* the injector lengthened a 12 px input label to 1.15× the available
-width in whole " ab" tokens, overshooting by up to ~6 %; with the 10 px font floor the largest
-fixable overflow is ×1.2, and the box already spanned its card so it could not widen. No strategy
-could fix it, so the engine correctly reported it unfixed.
-*Change (to the injector, not the engine):* the injected overflow is now sized to stay within what a
-font shrink could absorb (`0.92 × font / floor`), and must still overflow by > 2 %.
-*Disclosure:* this makes the benchmark slightly easier on `text_overflow`; the engine's behaviour on
-truly unfixable overflow is kept covered by its own unit test.
-
-## E7 — Repair matrix, run 2 (current, `scripts/evaluate_repair.py`)
-
-| | Run 1 | Run 2 |
+| Condition | F1 | Type accuracy |
 |---|---:|---:|
-| Cells (skipped) | 337 (13) | 337 (13) |
-| Fault detected | 98.8 % | 98.8 % |
-| Fully repaired (injected fault gone, no regression) | 95.6 % | **97.0 %** |
-| No issues left at all | 93.5 % | **95.0 %** |
-| Regressed | 0.0 % | **0.0 %** |
+| Clean | 1.000 | 0.938 |
+| Shadow | 1.000 | 0.938 |
+| Noisy | 1.000 | 0.941 |
+| Low contrast | 1.000 | 0.938 |
+| Blur | 0.984 | 0.957 |
+| Thick strokes | 0.973 | 0.953 |
+| Thin strokes | 0.915 | 0.958 |
+
+Thin strokes remain the weakest condition for F1 because broken strokes can split text into separate lines.
+
+The remaining classification errors involve `card` versus `container`, `checkbox` versus `radio`, and `text` versus `heading`.
+
+Full results are available in `experiments/results/detection_benchmark.json`.
+
+## E4. Repair engine development
+
+Each fix below followed a failure observed during an actual run. All changes affected the system.
+
+| Problem observed | Cause | Fix |
+|---|---|---|
+| Crash: `BBox width must be > 0 (h=1e-13→0)` | Floating-point slivers in `intersection`. | Geometry calculations now use raw floating-point values for areas. `intersection` returns `None` for areas below `1e-3`, with a regression test covering the case. |
+| An accepted patch introduced a new `MISALIGNED` issue. | The shortest translation placed an input flush against a card edge. | `translate_into_container` now tries an aligned position using a shared alignment line before considering the minimal translation. |
+| A valid repair was rejected for creating three new issues. | Regrouping changed the identity of `UNEVEN_SPACING` issues. | Regression checking now matches continuations when the code and a shared component match and the previous issue has disappeared. |
+| Baseline labels overlapped radio controls by 3.9 px. | Detection produced narrow overlapping slivers. | Added build-time `trim_slivers` and a trim repair candidate. |
+| A dashboard overlap required restoring the original row spacing. | One item in a repeated row had shifted. | Added a `restore_pitch` candidate for runs of at least four similar siblings. |
+| The engine fixed small issues first and then stalled. | The planner prioritized issues by magnitude. | Changed the priority order to coarse-to-fine: overflow, overlap, text/touch, misalignment, spacing, then contrast/font. |
+| The engine reported a repair for text overflow by shrinking text to an unreadable size. | Partial font shrinking was accepted as a successful fix. | `shrink_font_to_floor` now requires the text to fit completely. The test `test_unfixable_overflow_is_reported_not_papered_over` verifies that unfixable cases are reported. |
+
+## E5. Repair matrix, run 1
+
+This run was completed before correcting the text-overflow test fixture.
+
+The matrix covered layouts, five conditions (`clean`, `shadow`, `blur`, `noisy`, `thin`), seeds 11 and 12, and seven fault types. Of 350 possible combinations, 13 were skipped because the layout could not support the injected fault, such as a spacing fault in a layout without a repeated group of at least three items.
+
+That left 337 evaluated cases.
+
+| Metric | Run 1 |
+|---|---:|
+| Fault detection rate | 98.8% |
+| Fully repaired, with no regression | 95.6% |
+| No issues remaining | 93.5% |
+| Regressions | 0.0% |
+| Median repair time | 283 ms |
+| Text-overflow repair rate | 88% |
+
+## E6. Correcting the text-overflow fixture
+
+**Problem:** Some injected text-overflow faults could not be repaired, even with the available repair strategies.
+
+In `mobile_form`, seed 11, the injector lengthened a 12 px input label using repeated `" ab"` tokens until its width reached 1.15 times the available space. Because tokens were added in whole units, some cases overshot the target by approximately 6%.
+
+With the minimum font size set to 10 px, the largest fixable overflow was approximately 1.2 times the available width. The input already spanned its card, so widening it was not an option. The engine correctly reported these cases as unresolved.
+
+**Change to the test fixture, not the engine:** The injector now sizes the overflow to remain within the range that font shrinking can resolve, using `0.92 × font / floor`, while requiring the injected text to overflow by more than 2%.
+
+**Benchmark disclosure:** This change makes the text-overflow benchmark slightly easier. The engine's handling of genuinely unfixable overflow remains covered by its own unit test.
+
+## E7. Repair matrix, run 2
+
+Command: `scripts/evaluate_repair.py`.
+
+| Metric | Run 1 | Run 2 |
+|---|---:|---:|
+| Evaluated cells (skipped) | 337 (13) | 337 (13) |
+| Fault detection rate | 98.8% | 98.8% |
+| Fully repaired, with no regression | 95.6% | **97.0%** |
+| No issues remaining | 93.5% | **95.0%** |
+| Regressions | 0.0% | **0.0%** |
 | Median repair time | 283 ms | 308 ms |
 
-By kind (repaired): spacing 100 %, text_overflow 98 %, small_control 98 %, low_contrast 98 %,
-misalignment 96 %, overflow 96 %, overlap 94 % (80 % with nothing left over).
-By condition: clean/shadow/noisy 100 %, blur 97 %, **thin 88 %**. By layout: mobile_form 100 %,
-dashboard/landing/login 98–99 %, **settings_page 88 %** (77 % clean).
+### Repair rate by fault type
 
-*Where it still fails:* almost all remaining failures are `settings_page` under `thin` strokes, where
-the **baseline** detection already contains several overlapping text boxes (checkbox/heading/text
-overlaps from split text lines). The engine repairs the injected fault but then stalls on
-pre-existing detection artefacts (no-progress rule) instead of redesigning. A few `blur` cases leave a
-`MISALIGNED` heading after a misalignment injection ("no applicable strategy left").
-These are reported as failures, not hidden. Full rows: `experiments/results/repair_matrix.json`.
+| Fault type | Repaired |
+|---|---:|
+| Spacing | 100% |
+| Text overflow | 98% |
+| Small controls | 98% |
+| Low contrast | 98% |
+| Misalignment | 96% |
+| Overflow | 96% |
+| Overlap | 94% |
 
-## E8 — Hardware envelope (`scripts/inspect_environment.py`, `inspect_storage.py`)
+For overlap faults, 80% of cases finished with no issues remaining.
 
-2 CPU cores, 7.84 GB RAM, no GPU, Python 3.13.16, Node 22.22, PySide6 6.12, OpenCV 5.0, NumPy 2.5,
-PyTorch not installed; 29.4 GB free disk (planning budget 14.7 GB). Demo wall time ≈ 1.3 s.
+### Results by condition
+
+| Condition | Repaired |
+|---|---:|
+| Clean | 100% |
+| Shadow | 100% |
+| Noisy | 100% |
+| Blur | 97% |
+| Thin strokes | 88% |
+
+### Results by layout
+
+| Layout | Repaired |
+|---|---:|
+| `mobile_form` | 100% |
+| `dashboard` | 98–99% |
+| `landing_page` | 98–99% |
+| `login_page` | 98–99% |
+| `settings_page` | 88% |
+
+The `settings_page` result drops to 77% when considering cases with no issues remaining.
+
+### Remaining failures
+
+Most unresolved cases involve `settings_page` under thin-stroke conditions. The baseline detections already contain several overlapping text boxes, including checkbox, heading, and text overlaps caused by split text lines.
+
+The repair engine fixes the injected fault but then stops at its no-progress rule because pre-existing detection artefacts remain. It does not currently redesign the layout to merge split text boxes.
+
+A few blur cases also retain a `MISALIGNED` heading after a misalignment fault is injected because no applicable repair strategy remains.
+
+These cases are counted as failures rather than excluded from the results.
+
+Full results are available in `experiments/results/repair_matrix.json`.
+
+## E8. Hardware and runtime environment
+
+Environment inspected using `scripts/inspect_environment.py` and `inspect_storage.py`.
+
+| Resource | Environment |
+|---|---|
+| CPU | 2 cores |
+| RAM | 7.84 GB |
+| GPU | None |
+| Python | 3.13.16 |
+| Node.js | 22.22 |
+| PySide6 | 6.12 |
+| OpenCV | 5.0 |
+| NumPy | 2.5 |
+| PyTorch | Not installed |
+| Free disk space | 29.4 GB |
+| Planning disk budget | 14.7 GB |
+| Demo wall time | Approximately 1.3 seconds |
 
 ## Open questions
 
-1. How do real phone photos of hand-drawn sketches compare? (needs a small real set, Phase 5)
-2. Does a model trained from scratch (Phase 6) beat the heuristics on the `thin`/`blur` conditions?
-3. Should repair be allowed to fix baseline detection artefacts (merge split text boxes) rather than
-   only injected faults?
+1. How does detection perform on real phone photographs of hand-drawn sketches? This requires a small real-world dataset in Phase 5.
+2. Can a model trained from scratch in Phase 6 outperform the heuristic detector on thin-stroke and blur conditions?
+3. Should the repair engine also correct baseline detection artefacts, such as merging text boxes split across multiple lines, instead of handling only injected faults?
