@@ -1,90 +1,112 @@
-# Evaluation: what is measured, how, and what the numbers do **not** mean
+# Evaluation: what is measured and what the results mean
 
-Two different questions are measured separately and must not be conflated:
+SketchForge evaluates two separate aspects of a design. They should be treated independently because they answer different questions.
 
-1. **Is the detection right?** (needs ground truth) → `evaluation/component_metrics.py`,
-   `scripts/evaluate_layout.py`. Only possible on generated sketches today.
-2. **Is the design structurally sound?** (needs no ground truth) → the *issue* checks below,
-   run on any Design IR document, including after user edits.
+1. **Detection accuracy:** Are the detected components correct? This requires ground-truth data and is currently supported only for generated sketches. The relevant code is in `evaluation/component_metrics.py` and `scripts/evaluate_layout.py`.
+2. **Structural quality:** Does the design have layout or accessibility issues? These checks do not require ground truth and can run on any Design IR document, including documents modified by users.
 
-A visual-similarity score is **never** reported as semantic correctness.
+Visual similarity scores are never presented as evidence of semantic correctness.
 
-## Issue codes (`evaluation/issues.py`)
+## Issue codes and measurements
 
-All thresholds come from `config/evaluation.yaml`; all distances are design-space pixels (page is
-1024 px wide for landscape sketches, 414 px for portrait). `measure` is the issue's size in its unit
-and is always > 0. An issue's `key` (`CODE:component,ids:discriminator`) is stable across
-re-evaluations so before/after comparisons are about *the same problem*.
+The checks are implemented in `evaluation/issues.py`. Thresholds come from `config/evaluation.yaml`, and all distances use design-space pixels. Landscape sketches have a width of 1024 px, while portrait sketches have a width of 414 px.
 
-| Code | Severity | Definition | Measure |
+Every issue has a `measure` greater than zero, expressed in the relevant unit. Its stable `key`, formatted as `CODE:component,ids:discriminator`, allows the evaluator to track the same problem across repeated evaluations and compare results before and after a change.
+
+| Issue code | Severity | What it detects | Measurement |
 |---|---|---|---|
-| `OVERFLOW_PARENT` | error | a component extends beyond its parent's box by more than `containment_tolerance_px` (2) | px past the worst side |
-| `OVERFLOW_PAGE` | error | same, for a direct child of the page | px |
-| `OVERLAP` | warning | two siblings overlap by more than `overlap_tolerance_ratio` (5 %) of the smaller area (parent/child nesting is not overlap; sliver overlaps < 8 px are trimmed at build time) | intersection ÷ smaller area |
-| `MISALIGNED` | warning | sibling edges within `align_snap_radius_px` (16) of each other — i.e. "meant to be aligned" — but not within `align_tolerance_px` (2) | px off the group's anchor |
-| `UNEVEN_SPACING` | warning | in a repeated group (≥ 3 similar siblings) the gaps differ by more than `spacing_tolerance_px` (4) | px deviation from the fitted pitch |
-| `TEXT_OVERFLOW` | warning | *estimated* text width exceeds the box's inner width by more than 1 px | px |
-| `TEXT_CLIPPED` | warning | line box (font size × line height) taller than the component | px |
-| `LOW_CONTRAST` | warning | WCAG 2.x contrast of text colour vs the effective (composited) background < 4.5 | shortfall in ratio |
-| `TOUCH_TARGET_SMALL` | warning | button/input shorter than 24 px, or checkbox/radio smaller than 16 px | px short |
-| `FONT_TOO_SMALL` | info | font size < 10 px | px short |
+| `OVERFLOW_PARENT` | Error | A component extends beyond its parent's bounding box by more than the 2 px `containment_tolerance_px`. | Pixels beyond the worst side. |
+| `OVERFLOW_PAGE` | Error | A direct child of the page extends beyond the page boundary. | Pixels beyond the boundary. |
+| `OVERLAP` | Warning | Two siblings overlap by more than 5% of the smaller component's area, using `overlap_tolerance_ratio`. Parent-child nesting is excluded, and overlaps narrower than 8 px are trimmed during building. | Intersection area divided by the smaller area. |
+| `MISALIGNED` | Warning | Sibling edges fall within the 16 px `align_snap_radius_px`, suggesting intended alignment, but differ by more than the 2 px `align_tolerance_px`. | Distance from the group's alignment anchor. |
+| `UNEVEN_SPACING` | Warning | Gaps in a repeated group of at least three similar siblings differ by more than the 4 px `spacing_tolerance_px`. | Deviation from the fitted spacing pitch. |
+| `TEXT_OVERFLOW` | Warning | Estimated text width exceeds the inner width of its component by more than 1 px. | Estimated overflow in pixels. |
+| `TEXT_CLIPPED` | Warning | The estimated line box, calculated from font size and line height, is taller than its component. | Height exceeding the component. |
+| `LOW_CONTRAST` | Warning | Text contrast against the effective composited background falls below the WCAG 2.x ratio of 4.5. | Shortfall in the contrast ratio. |
+| `TOUCH_TARGET_SMALL` | Warning | A button or input is shorter than 24 px, or a checkbox or radio control is smaller than 16 px. | Pixels below the minimum size. |
+| `FONT_TOO_SMALL` | Info | Font size is below 10 px. | Pixels below the minimum font size. |
 
-Counts and summed magnitudes per code are exposed as metrics (`count.CODE`, `magnitude.CODE`) plus
-`issues_total/error/warning/info`.
+The evaluator exposes counts and summed magnitudes for each issue through `count.CODE` and `magnitude.CODE`. Overall totals are available as `issues_total`, `issues_error`, `issues_warning`, and `issues_info`.
 
-### Limitations of the checks
+## Limitations of the checks
 
-* **Text width is an estimate** (`domain/typography.py`: 0.55 em per character, plus 0.015 em per
-  100 weight units above 400), roughly ±10 % of real glyph advances. `TEXT_OVERFLOW` means *probably does
-  not fit*; a font engine would be needed to say more. Renderers do not clip text, so a pixel
-  check would agree only approximately.
-* **Alignment/spacing are intent heuristics.** Two edges 12 px apart are treated as "meant to be
-  aligned"; a deliberate offset smaller than the snap radius will be flagged. Tune
-  `align_snap_radius_px` for your drawings.
-* **Contrast** uses WCAG relative luminance on sRGB hex colours; it ignores images and gradients
-  behind text.
-* **No semantic checks**: nothing here knows whether a button should be a link, or whether the
-  layout is good design.
+The measurements are useful for identifying likely problems, but each has limitations.
 
-## Fidelity to the sketch (`geometry_metrics.py`)
+- **Text width is estimated.** `domain/typography.py` assumes an average width of 0.55 em per character, adding 0.015 em per 100 font-weight units above 400. This is roughly within ±10% of actual glyph advances. A `TEXT_OVERFLOW` finding means the text probably does not fit. Accurate verification would require a font engine. Renderers do not clip text, so pixel-based checks would only provide an approximate comparison.
+- **Alignment and spacing rely on heuristics.** Two edges separated by 12 px may be treated as intended to align. A deliberate offset smaller than the snap radius can therefore trigger a warning. The `align_snap_radius_px` setting can be adjusted for different drawings.
+- **Contrast calculations have limited background support.** The evaluator uses WCAG relative luminance on sRGB hexadecimal colors. It does not account for images or gradients behind text.
+- **Semantic quality is not evaluated.** The checks cannot determine whether a button should link to another page or whether the overall design is appropriate for its intended purpose.
 
-For every visible component, the current box is compared with the box implied by its detection
-(`detection.source_bbox` mapped through `metadata.source_transform`). Reported: **mean IoU**, **mean
-and max position error (px)**. It measures how far edits/repairs moved the design *from the
-detections*; it is **not** evidence that the detections are right.
+## Fidelity to the original sketch
 
-## Pixel metrics (`image_metrics.py`)
+`geometry_metrics.py` compares each visible component's current bounding box with the box derived from its detection. The original detection box, `detection.source_bbox`, is mapped through `metadata.source_transform`.
 
-Changed-pixel fraction, bounding box of change, and mean **SSIM** (Gaussian window, grayscale)
-between two raster renders. Used to show that a patch's visual footprint is small. They say how
-much changed, not whether the change is correct.
+The evaluator reports:
 
-## Detection metrics (`component_metrics.py`, `evaluation/benchmark_runner.py`)
+- Mean intersection over union (IoU).
+- Mean position error in pixels.
+- Maximum position error in pixels.
 
-Greedy one-to-one IoU matching (threshold 0.5) between detected and ground-truth
-boxes → precision, recall, F1; **type accuracy** among matched pairs; mean IoU of matched pairs;
-page-frame IoU. Reported per photo condition and per layout, separately for *tuning layouts* (the
-rules were adjusted while looking at these) and *held-out layouts* (never looked at).
-**Synthetic only** — see KNOWN_LIMITATIONS.
+These metrics show how far editing or repair has moved the design from the original detections. They do not establish whether those detections were correct.
 
-## Regression policy (`config/evaluation.yaml → regression`)
+## Pixel-level comparison
 
-A patch is accepted only if **all** hold: (1) the target issue's measure drops by ≥ 0.01 (absolute)
-or it disappears; (2) no issue appears that was not there before — an issue whose key changed only
-because its group changed (same code, shared component, an old issue vanished) is matched as a
-*continuation*, not counted as new; (3) no existing or continued issue grows by more than 0.5;
-(4) mean fidelity IoU against the sketch detections drops ≤ 0.02; (5) mean position error rises
-≤ 2 px. Checks 4–5 are skipped, and the report says so, for documents without sketch provenance.
+`image_metrics.py` compares two raster renders and reports the changed-pixel fraction, the bounding box of the changed region, and mean structural similarity (SSIM).
+
+SSIM uses a Gaussian window on grayscale images. These metrics help estimate the visual footprint of a patch. They indicate how much the rendered output changed, not whether the change improved the design.
+
+## Detection accuracy metrics
+
+`component_metrics.py` and `evaluation/benchmark_runner.py` evaluate detected components against ground-truth bounding boxes.
+
+The evaluator uses greedy one-to-one IoU matching with a threshold of 0.5. It reports:
+
+- Precision, recall, and F1 score.
+- Type accuracy among matched component pairs.
+- Mean IoU of matched pairs.
+- Page-frame IoU.
+
+Results are separated by photo condition and layout. Tuning layouts, which were used to adjust the detection rules, are reported separately from held-out layouts that were never used during tuning.
+
+These benchmarks currently use synthetic data only. See `KNOWN_LIMITATIONS` for the associated restrictions.
+
+## Regression policy
+
+The rules in `config/evaluation.yaml` under `regression` determine whether a patch is accepted. All five conditions must pass:
+
+1. The target issue's measurement decreases by at least 0.01 in absolute terms, or the issue disappears.
+2. No new issue appears. If an issue's key changes because its group changes, it can be matched as a continuation when it has the same code and shared component and the previous issue has disappeared.
+3. No existing or continued issue increases in magnitude by more than 0.5.
+4. Mean fidelity IoU against the sketch detections decreases by no more than 0.02.
+5. Mean position error increases by no more than 2 px.
+
+The last two checks are skipped when a document has no sketch provenance. The evaluation report explicitly records when they are skipped.
 
 ## Repair outcome labels
 
-`IMPROVED` (fewer errors, then fewer issues) · `REGRESSED` · `NO_MEASURABLE_DIFFERENCE` ·
-`UNABLE_TO_VERIFY`. Code changed ≠ quality improved: the report states which.
+Each repair receives one of four outcome labels:
 
-## Reproduce
+- `IMPROVED`: Fewer errors, followed by fewer issues.
+- `REGRESSED`: The repair made the measured outcome worse.
+- `NO_MEASURABLE_DIFFERENCE`: The evaluation found no measurable change.
+- `UNABLE_TO_VERIFY`: The available measurements could not establish an outcome.
+
+A code change alone does not count as an improvement. The report identifies the measured result.
+
+## Reproducing the evaluation
+
+Run these commands from the repository root:
 
 ```bash
-python scripts/evaluate_layout.py     # detection benchmark  → experiments/results/detection_benchmark.json
-python scripts/evaluate_repair.py     # repair matrix (~2 min) → experiments/results/repair_matrix.json
+python scripts/evaluate_layout.py
+# Detection benchmark:
+# experiments/results/detection_benchmark.json
+
+python scripts/evaluate_repair.py
+# Repair matrix, approximately 2 minutes:
+# experiments/results/repair_matrix.json
+
 python -m pytest tests -q
 ```
+
+The first command runs the detection benchmark, the second evaluates the repair matrix, and the final command runs the test suite.
