@@ -76,7 +76,7 @@ In accordance with hackathon guidelines, SketchForge does not use a single monol
 
 ---
 
-## 🔍 Live Web Research with Tavily AI Search ($3,000 Special Prize)
+## 🔍 Live Web Research with Tavily AI Search 
 
 SketchForge integrates **Tavily Search API** (`src/sketchforge/integrations/tavily/client.py`) to give the coding agent live, grounded web awareness:
 - **Design Tokens & Icons**: Fetches modern Lucide icon names, Tailwind CSS color variables, and fluid typography scales.
