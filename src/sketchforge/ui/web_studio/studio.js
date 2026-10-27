@@ -13,6 +13,15 @@
   let pendingSketchLayoutBlock = null; // full Design IR block from /api/sketch-analysis
   let pendingAnalysisId = null;
   let sketchAnalysisAttempted = false;
+  let tavilyEnabled = true;
+
+  function setActiveTier(tier) {
+    document.querySelectorAll('.tier-pill').forEach(pill => pill.classList.remove('active'));
+    if (tier) {
+      const activeEl = document.getElementById('tier-' + tier);
+      if (activeEl) activeEl.classList.add('active');
+    }
+  }
 
   function addLog(text) { log.textContent = text + '\n' + log.textContent; }
 
@@ -210,6 +219,10 @@
         pendingSketchLayoutBlock = payload.layout_block || null;  // rich Design IR block
         pendingAnalysisId = payload.analysis_id || null;
         sketchAnalysisAttempted = true;
+        setActiveTier('supervl');
+        if (payload.semantic_critique) {
+          addLog(`👁️ Nemotron-3.5-Super-VL Perception: "${payload.semantic_critique}"`);
+        }
         if (!pendingAnalysisId) {
           throw new Error('Sketch analysis did not produce a usable Design IR. Upload a clearer sketch or generate without a sketch.');
         }
@@ -244,8 +257,19 @@
   $('#mic').onclick   = () => addLog('ℹ️  Voice input — Coming Soon.');
 
   // ---------------------------------------------------------------------------
-  // Mode selector — visual toggle only (no generation mode change yet)
+  // Tavily Search toggle & Mode selector
   // ---------------------------------------------------------------------------
+  const tavilyBtn = $('#tavily-toggle');
+  if (tavilyBtn) {
+    tavilyBtn.onclick = () => {
+      tavilyEnabled = !tavilyEnabled;
+      tavilyBtn.classList.toggle('active', tavilyEnabled);
+      addLog(tavilyEnabled
+        ? '🌐 Tavily AI Search: Enabled (Live modern UI tokens, Tailwind & Lucide patterns active).'
+        : '🌐 Tavily AI Search: Paused (Standard template generation).');
+    };
+  }
+
   document.querySelectorAll('.mode-toggle button').forEach(b => b.onclick = () => {
     document.querySelectorAll('.mode-toggle button').forEach(x => x.classList.remove('active'));
     b.classList.add('active');
@@ -303,7 +327,15 @@
     try {
       const start = await fetch(
         revising ? '/api/revise/' + encodeURIComponent(currentSlug) : '/api/generate',
-        { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prompt: text, analysis_id: analysisId }) }
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            prompt: text,
+            analysis_id: analysisId,
+            tavily_search: tavilyEnabled,
+          }),
+        }
       );
       const payload = await start.json();
       if (!start.ok) throw Error(payload.error);
@@ -317,9 +349,18 @@
           if (job.progress && job.progress !== lastLoggedMessage) {
             addLog(job.progress);
             lastLoggedMessage = job.progress;
+            const pLower = job.progress.toLowerCase();
+            if (pLower.includes('stage 1') || pLower.includes('appspec') || pLower.includes('ultra') || pLower.includes('plan')) {
+              setActiveTier('ultra');
+            } else if (pLower.includes('stage 2') || pLower.includes('generating') || pLower.includes('lightning') || pLower.includes('file')) {
+              setActiveTier('lightning');
+            } else if (pLower.includes('discrepancy') || pLower.includes('repair') || pLower.includes('nano') || pLower.includes('patch')) {
+              setActiveTier('nano');
+            }
           }
           if (job.status === 'complete') {
             clearInterval(pollTimer);
+            setActiveTier('lightning');
             $('#empty').hidden = true;
             const verification = job.verification_status === 'passed' ? 'verification passed'
               : job.verification_status === 'failed' ? 'verification failed'

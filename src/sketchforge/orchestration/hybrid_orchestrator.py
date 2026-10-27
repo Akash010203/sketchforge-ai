@@ -218,12 +218,14 @@ class HybridOrchestrator:
 
             # 2. Generating Files (with per-file AI fallback)
             job.transition(HybridJobState.GENERATING_FILES, "Generating full-stack project files…")
+            enable_tavily = getattr(job, "enable_tavily", True)
             project_root = ai_generate_project(
                 job.prompt,
                 target_dir,
                 include_backend=True,
                 design_doc=job.design_doc,
                 layout_block=job.layout_block,
+                enable_tavily=enable_tavily,
                 progress=_progress_cb,
             )
 

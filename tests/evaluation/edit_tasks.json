@@ -1,0 +1,1508 @@
+{
+ "version": 1,
+ "fixture": {
+  "layouts": [
+   "login_page",
+   "dashboard",
+   "mobile_form"
+  ],
+  "seed": 11,
+  "condition": "clean"
+ },
+ "tasks": [
+  {
+   "id": "c01",
+   "doc": "login_page",
+   "category": "color",
+   "instruction": "make the button blue",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_fill",
+      "target": "button-1",
+      "color": "blue"
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "button-1",
+      "fill": "blue"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "c02",
+   "doc": "login_page",
+   "category": "color",
+   "instruction": "change the heading text to red",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_text_color",
+      "target": "heading-1",
+      "color": "red"
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "heading-1",
+      "text_color": "red"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "c03",
+   "doc": "dashboard",
+   "category": "color",
+   "instruction": "give the first card a light blue background",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_fill",
+      "target": "card-1",
+      "color": "light blue"
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "card-1",
+      "fill": "light blue"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "c04",
+   "doc": "mobile_form",
+   "category": "color",
+   "instruction": "make the button green",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_fill",
+      "target": "button-1",
+      "color": "green"
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "button-1",
+      "fill": "green"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "c05",
+   "doc": "login_page",
+   "category": "color",
+   "instruction": "make the button text white",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_text_color",
+      "target": "button-1",
+      "color": "white"
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "button-1",
+      "text_color": "white"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "c06",
+   "doc": "dashboard",
+   "category": "color",
+   "instruction": "add a border to the second card",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_border",
+      "target": "card-2",
+      "color": "gray"
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "card-2",
+      "border": "gray"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "c07",
+   "doc": "mobile_form",
+   "category": "color",
+   "instruction": "make the heading purple",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_text_color",
+      "target": "heading-1",
+      "color": "purple"
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "heading-1",
+      "text_color": "purple"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "c08",
+   "doc": "login_page",
+   "category": "color",
+   "instruction": "make the card background #f3f4f6",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_fill",
+      "target": "card-1",
+      "color": "#f3f4f6"
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "card-1",
+      "fill": "#f3f4f6"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "t01",
+   "doc": "login_page",
+   "category": "text",
+   "instruction": "change the button text to 'Log in'",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_text",
+      "target": "button-1",
+      "text": "Log in"
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "button-1",
+      "text": "Log in"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "t02",
+   "doc": "login_page",
+   "category": "text",
+   "instruction": "rename the heading to \"Welcome back\"",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_text",
+      "target": "heading-1",
+      "text": "Welcome back"
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "heading-1",
+      "text": "Welcome back"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "t03",
+   "doc": "dashboard",
+   "category": "text",
+   "instruction": "change the first heading to 'Revenue'",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_text",
+      "target": "heading-1",
+      "text": "Revenue"
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "heading-1",
+      "text": "Revenue"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "t04",
+   "doc": "mobile_form",
+   "category": "text",
+   "instruction": "change the text of the first input to 'Full name'",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_text",
+      "target": "input-1",
+      "text": "Full name"
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "input-1",
+      "text": "Full name"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "t05",
+   "doc": "login_page",
+   "category": "text",
+   "instruction": "set the button label to Sign in",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_text",
+      "target": "button-1",
+      "text": "Sign in"
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "button-1",
+      "text": "Sign in"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "t06",
+   "doc": "dashboard",
+   "category": "text",
+   "instruction": "change the button text to 'Export CSV' and make it green",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_text",
+      "target": "button-1",
+      "text": "Export CSV"
+     },
+     {
+      "op": "set_fill",
+      "target": "button-1",
+      "color": "green"
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "button-1",
+      "text": "Export CSV",
+      "fill": "green"
+     }
+    ],
+    "no_new_issues": true
+   },
+   "note": "text must still fit the button"
+  },
+  {
+   "id": "m01",
+   "doc": "login_page",
+   "category": "move",
+   "instruction": "move the button down 10 px",
+   "reference": {
+    "ops": [
+     {
+      "op": "move",
+      "target": "button-1",
+      "dx": 0,
+      "dy": 10
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "button-1",
+      "dy": 10
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "m02",
+   "doc": "dashboard",
+   "category": "move",
+   "instruction": "move the second image up 15 px",
+   "reference": {
+    "ops": [
+     {
+      "op": "move",
+      "target": "image-2",
+      "dx": 0,
+      "dy": -15
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "image-2",
+      "dy": -15
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "m03",
+   "doc": "login_page",
+   "category": "move",
+   "instruction": "center the heading horizontally",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_position",
+      "target": "heading-1",
+      "x": 418
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "heading-1",
+      "center_x": true
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "m04",
+   "doc": "mobile_form",
+   "category": "move",
+   "instruction": "move the heading right 30 px",
+   "reference": {
+    "ops": [
+     {
+      "op": "move",
+      "target": "heading-1",
+      "dx": 30,
+      "dy": 0
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "heading-1",
+      "dx": 30
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "m05",
+   "doc": "dashboard",
+   "category": "move",
+   "instruction": "move the button to 300, 590",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_position",
+      "target": "button-1",
+      "x": 300,
+      "y": 590
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "button-1",
+      "x": 300,
+      "y": 590
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "m06",
+   "doc": "login_page",
+   "category": "move",
+   "instruction": "nudge the checkbox left 6 px",
+   "reference": {
+    "ops": [
+     {
+      "op": "move",
+      "target": "checkbox-1",
+      "dx": -6,
+      "dy": 0
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "checkbox-1",
+      "dx": -6
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "r01",
+   "doc": "login_page",
+   "category": "resize",
+   "instruction": "make the button wider",
+   "reference": {
+    "ops": [
+     {
+      "op": "grow",
+      "target": "button-1",
+      "dw": 30,
+      "dh": 0
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "button-1",
+      "w": ">"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "r02",
+   "doc": "mobile_form",
+   "category": "resize",
+   "instruction": "make the button 10 px taller",
+   "reference": {
+    "ops": [
+     {
+      "op": "grow",
+      "target": "button-1",
+      "dw": 0,
+      "dh": 10
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "button-1",
+      "h": ">"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "r03",
+   "doc": "dashboard",
+   "category": "resize",
+   "instruction": "make the sidebar narrower by 20 px",
+   "reference": {
+    "ops": [
+     {
+      "op": "grow",
+      "target": "sidebar-1",
+      "dw": -20,
+      "dh": 0
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "sidebar-1",
+      "w": "<"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "r04",
+   "doc": "login_page",
+   "category": "resize",
+   "instruction": "set the button width to 280",
+   "reference": {
+    "ops": [
+     {
+      "op": "resize",
+      "target": "button-1",
+      "width": 280
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "button-1",
+      "w": 280
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "r05",
+   "doc": "login_page",
+   "category": "resize",
+   "instruction": "make the card 500 x 420",
+   "reference": {
+    "ops": [
+     {
+      "op": "resize",
+      "target": "card-1",
+      "width": 500,
+      "height": 420
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "card-1",
+      "w": 500,
+      "h": 420
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "r06",
+   "doc": "mobile_form",
+   "category": "resize",
+   "instruction": "make the button twice as wide",
+   "reference": {
+    "ops": [
+     {
+      "op": "grow",
+      "target": "button-1",
+      "dw": 20,
+      "dh": 0
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "button-1",
+      "w": ">"
+     }
+    ],
+    "no_new_issues": true
+   },
+   "note": "literal doubling cannot fit the page; success = wider, no new issue"
+  },
+  {
+   "id": "r07",
+   "doc": "dashboard",
+   "category": "resize",
+   "instruction": "make the first card taller by 20",
+   "reference": {
+    "ops": [
+     {
+      "op": "grow",
+      "target": "card-1",
+      "dw": 0,
+      "dh": 20
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "card-1",
+      "h": ">"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "f01",
+   "doc": "login_page",
+   "category": "font",
+   "instruction": "set the font size of the heading to 30",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_font_size",
+      "target": "heading-1",
+      "size": 30
+     },
+     {
+      "op": "grow",
+      "target": "heading-1",
+      "dw": 0,
+      "dh": 9
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "heading-1",
+      "font_size": 30
+     }
+    ],
+    "no_new_issues": true
+   },
+   "note": "30 px needs a taller box; success = size 30 and no clipping"
+  },
+  {
+   "id": "f02",
+   "doc": "dashboard",
+   "category": "font",
+   "instruction": "make the second heading text larger",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_font_size",
+      "target": "heading-2",
+      "size": 24
+     },
+     {
+      "op": "grow",
+      "target": "heading-2",
+      "dw": 0,
+      "dh": 6
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "heading-2",
+      "font_size": ">"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "f03",
+   "doc": "mobile_form",
+   "category": "font",
+   "instruction": "set the heading font size to 26",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_font_size",
+      "target": "heading-1",
+      "size": 26
+     },
+     {
+      "op": "grow",
+      "target": "heading-1",
+      "dw": 0,
+      "dh": 10
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "heading-1",
+      "font_size": 26
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "k01",
+   "doc": "login_page",
+   "category": "corner",
+   "instruction": "round the corners of the button",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_corner_radius",
+      "target": "button-1",
+      "radius": 20
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "button-1",
+      "corner_radius": ">"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "k02",
+   "doc": "dashboard",
+   "category": "corner",
+   "instruction": "make the cards rounded",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_corner_radius",
+      "target": "card-1",
+      "radius": 16
+     },
+     {
+      "op": "set_corner_radius",
+      "target": "card-2",
+      "radius": 16
+     },
+     {
+      "op": "set_corner_radius",
+      "target": "card-3",
+      "radius": 16
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "card-1",
+      "corner_radius": ">"
+     },
+     {
+      "id": "card-2",
+      "corner_radius": ">"
+     },
+     {
+      "id": "card-3",
+      "corner_radius": ">"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "k03",
+   "doc": "mobile_form",
+   "category": "paraphrase",
+   "instruction": "make the first input square",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_corner_radius",
+      "target": "input-1",
+      "radius": 0
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "input-1",
+      "corner_radius": 0
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "x01",
+   "doc": "login_page",
+   "category": "multi",
+   "instruction": "make the button red and move it down 10 px",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_fill",
+      "target": "button-1",
+      "color": "red"
+     },
+     {
+      "op": "move",
+      "target": "button-1",
+      "dx": 0,
+      "dy": 10
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "button-1",
+      "fill": "red",
+      "dy": 10
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "x02",
+   "doc": "dashboard",
+   "category": "multi",
+   "instruction": "make the button blue and wider",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_fill",
+      "target": "button-1",
+      "color": "blue"
+     },
+     {
+      "op": "grow",
+      "target": "button-1",
+      "dw": 30,
+      "dh": 0
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "button-1",
+      "fill": "blue",
+      "w": ">"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "x03",
+   "doc": "login_page",
+   "category": "multi",
+   "instruction": "change the heading to 'Hello' and make it blue",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_text",
+      "target": "heading-1",
+      "text": "Hello"
+     },
+     {
+      "op": "set_text_color",
+      "target": "heading-1",
+      "color": "blue"
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "heading-1",
+      "text": "Hello",
+      "text_color": "blue"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "x04",
+   "doc": "mobile_form",
+   "category": "multi",
+   "instruction": "make the first and last input green",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_fill",
+      "target": "input-1",
+      "color": "green"
+     },
+     {
+      "op": "set_fill",
+      "target": "input-3",
+      "color": "green"
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "input-1",
+      "fill": "green"
+     },
+     {
+      "id": "input-3",
+      "fill": "green"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "x05",
+   "doc": "dashboard",
+   "category": "multi",
+   "instruction": "make all the cards light gray and rounder",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_fill",
+      "target": "card-1",
+      "color": "light gray"
+     },
+     {
+      "op": "set_corner_radius",
+      "target": "card-1",
+      "radius": 16
+     },
+     {
+      "op": "set_fill",
+      "target": "card-2",
+      "color": "light gray"
+     },
+     {
+      "op": "set_corner_radius",
+      "target": "card-2",
+      "radius": 16
+     },
+     {
+      "op": "set_fill",
+      "target": "card-3",
+      "color": "light gray"
+     },
+     {
+      "op": "set_corner_radius",
+      "target": "card-3",
+      "radius": 16
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "card-1",
+      "fill": "light gray",
+      "corner_radius": ">"
+     },
+     {
+      "id": "card-2",
+      "fill": "light gray",
+      "corner_radius": ">"
+     },
+     {
+      "id": "card-3",
+      "fill": "light gray",
+      "corner_radius": ">"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "x06",
+   "doc": "login_page",
+   "category": "multi",
+   "instruction": "move the button down 10 px then make it wider",
+   "reference": {
+    "ops": [
+     {
+      "op": "move",
+      "target": "button-1",
+      "dx": 0,
+      "dy": 10
+     },
+     {
+      "op": "grow",
+      "target": "button-1",
+      "dw": 30,
+      "dh": 0
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "button-1",
+      "dy": 10,
+      "w": ">"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "p01",
+   "doc": "login_page",
+   "category": "paraphrase",
+   "instruction": "Can you paint the main call-to-action blue?",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_fill",
+      "target": "button-1",
+      "color": "blue"
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "button-1",
+      "fill": "blue"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "p02",
+   "doc": "login_page",
+   "category": "paraphrase",
+   "instruction": "I want the sign-in button to be red",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_fill",
+      "target": "button-1",
+      "color": "red"
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "button-1",
+      "fill": "red"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "p03",
+   "doc": "dashboard",
+   "category": "paraphrase",
+   "instruction": "The title of the second card should say 'Expenses'",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_text",
+      "target": "heading-2",
+      "text": "Expenses"
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "heading-2",
+      "text": "Expenses"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "p04",
+   "doc": "mobile_form",
+   "category": "paraphrase",
+   "instruction": "Make the form heading a bit bigger",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_font_size",
+      "target": "heading-1",
+      "size": 24
+     },
+     {
+      "op": "grow",
+      "target": "heading-1",
+      "dw": 0,
+      "dh": 6
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "heading-1",
+      "font_size": ">"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "p05",
+   "doc": "login_page",
+   "category": "paraphrase",
+   "instruction": "Shift the log-in button toward the bottom by about 10 pixels",
+   "reference": {
+    "ops": [
+     {
+      "op": "move",
+      "target": "button-1",
+      "dx": 0,
+      "dy": 10
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "button-1",
+      "dy": 10
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "p06",
+   "doc": "dashboard",
+   "category": "paraphrase",
+   "instruction": "Colour the navigation panel on the left light blue",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_fill",
+      "target": "sidebar-1",
+      "color": "light blue"
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "sidebar-1",
+      "fill": "light blue"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "l01",
+   "doc": "login_page",
+   "category": "risk",
+   "instruction": "make the button 100 px wider",
+   "reference": {
+    "ops": [
+     {
+      "op": "grow",
+      "target": "button-1",
+      "dw": 30,
+      "dh": 0
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "button-1",
+      "w": ">"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "l02",
+   "doc": "login_page",
+   "category": "risk",
+   "instruction": "move the button down 150 px",
+   "reference": {
+    "ops": [
+     {
+      "op": "move",
+      "target": "button-1",
+      "dx": 0,
+      "dy": 10
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "button-1",
+      "dy": ">"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "l03",
+   "doc": "login_page",
+   "category": "risk",
+   "instruction": "make the heading font size 60",
+   "reference": {
+    "ops": [
+     {
+      "op": "set_font_size",
+      "target": "heading-1",
+      "size": 44
+     },
+     {
+      "op": "resize",
+      "target": "heading-1",
+      "width": 275,
+      "height": 58
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "heading-1",
+      "font_size": ">"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "l04",
+   "doc": "dashboard",
+   "category": "risk",
+   "instruction": "make the sidebar 150 px wider",
+   "reference": {
+    "ops": [
+     {
+      "op": "grow",
+      "target": "sidebar-1",
+      "dw": 25,
+      "dh": 0
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "sidebar-1",
+      "w": ">"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "l05",
+   "doc": "mobile_form",
+   "category": "risk",
+   "instruction": "move the heading up 100 px",
+   "reference": {
+    "ops": [
+     {
+      "op": "move",
+      "target": "heading-1",
+      "dx": 0,
+      "dy": -10
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "heading-1",
+      "dy": "<"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "l06",
+   "doc": "login_page",
+   "category": "risk",
+   "instruction": "make the card 400 px taller",
+   "reference": {
+    "ops": [
+     {
+      "op": "grow",
+      "target": "card-1",
+      "dw": 0,
+      "dh": 60
+     }
+    ]
+   },
+   "expect": {
+    "kind": "edit",
+    "checks": [
+     {
+      "id": "card-1",
+      "h": ">"
+     }
+    ],
+    "no_new_issues": true
+   }
+  },
+  {
+   "id": "n01",
+   "doc": "login_page",
+   "category": "refusal",
+   "instruction": "make the input green",
+   "expect": {
+    "kind": "refuse"
+   },
+   "note": "two inputs: ambiguous"
+  },
+  {
+   "id": "n02",
+   "doc": "dashboard",
+   "category": "refusal",
+   "instruction": "make the card red",
+   "expect": {
+    "kind": "refuse"
+   },
+   "note": "three cards: ambiguous"
+  },
+  {
+   "id": "n03",
+   "doc": "login_page",
+   "category": "refusal",
+   "instruction": "delete the checkbox",
+   "expect": {
+    "kind": "refuse"
+   },
+   "note": "no delete operation exists"
+  },
+  {
+   "id": "n04",
+   "doc": "mobile_form",
+   "category": "refusal",
+   "instruction": "make the sidebar red",
+   "expect": {
+    "kind": "refuse"
+   },
+   "note": "the design has no sidebar"
+  },
+  {
+   "id": "n05",
+   "doc": "login_page",
+   "category": "refusal",
+   "instruction": "make it bigger",
+   "expect": {
+    "kind": "refuse"
+   },
+   "note": "no referent"
+  },
+  {
+   "id": "n06",
+   "doc": "dashboard",
+   "category": "refusal",
+   "instruction": "add a new button next to the existing one",
+   "expect": {
+    "kind": "refuse"
+   },
+   "note": "no add operation exists"
+  },
+  {
+   "id": "n07",
+   "doc": "login_page",
+   "category": "refusal",
+   "instruction": "make the cancel button red",
+   "expect": {
+    "kind": "refuse"
+   },
+   "note": "there is no cancel button, only one button"
+  }
+ ]
+}

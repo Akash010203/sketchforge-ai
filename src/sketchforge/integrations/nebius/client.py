@@ -20,6 +20,7 @@ from typing import Any
 from sketchforge.integrations.nebius.configuration import NebiusConfig
 from sketchforge.integrations.nebius.request_policy import ConsentGate, authorize, check_request
 from sketchforge.integrations.provider_interface import (
+    ChatMessage,
     CompletionRequest,
     CompletionResult,
     HealthStatus,
@@ -156,6 +157,70 @@ class NebiusClient:
         except Exception as exc:  # noqa: BLE001
             raise self._translate(exc) from exc
 
+    def complete_multimodal(
+        self,
+        prompt: str,
+        image_b64: str,
+        mime_type: str = "image/png",
+        model: str = "nvidia/Nemotron-3.5-Super-VL",
+        max_tokens: int = 1024,
+        temperature: float = 0.2,
+    ) -> CompletionResult:
+        """Execute multimodal visual chat completion using Nemotron-3.5-Super-VL on Token Factory."""
+        authorize(self.config, self.consent)
+        sdk = self._sdk()
+        clean_b64 = image_b64.split(",")[-1].strip()
+        data_url = f"data:{mime_type};base64,{clean_b64}" if not image_b64.startswith("data:") else image_b64
+
+        messages = [
+            {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": prompt},
+                    {"type": "image_url", "image_url": {"url": data_url}},
+                ],
+            }
+        ]
+
+        attempts = self.config.max_retries + 1
+        started = self._clock()
+        last: ProviderError | None = None
+        for attempt in range(1, attempts + 1):
+            try:
+                response = sdk.chat.completions.create(
+                    model=model,
+                    messages=messages,
+                    max_tokens=max_tokens,
+                    temperature=temperature,
+                )
+                result = self._parse(response, model, attempt, (self._clock() - started) * 1000)
+                dummy_req = CompletionRequest(
+                    messages=(ChatMessage("user", prompt),),
+                    purpose="studio_vision",
+                    model=model,
+                )
+                self._record(dummy_req, model, True, result.latency_ms, result.usage, attempt, None, len(prompt))
+                return result
+            except ProviderError as err:
+                last = err
+                break
+            except Exception as exc:  # noqa: BLE001
+                last = self._translate(exc)
+                if not last.retryable or attempt == attempts:
+                    break
+                delay = self._delay(attempt, last)
+                log.info("nebius multimodal attempt %d failed (%s); retrying in %.2fs", attempt, last, delay)
+                self._sleep(delay)
+                continue
+        assert last is not None
+        dummy_req = CompletionRequest(
+            messages=(ChatMessage("user", prompt),),
+            purpose="studio_vision",
+            model=model,
+        )
+        self._record(dummy_req, model, False, (self._clock() - started) * 1000, Usage(), attempt, str(last), len(prompt))
+        raise last
+
     def health(self) -> HealthStatus:
         from sketchforge.integrations.nebius.health_check import run_health_check
 
@@ -184,9 +249,13 @@ class NebiusClient:
         content = getattr(getattr(choice, "message", None), "content", None)
         finish = getattr(choice, "finish_reason", None)
         if not isinstance(content, str) or not content.strip():
-            raise ProviderBadResponse("the service returned an empty answer")
+            reasoning = getattr(getattr(choice, "message", None), "reasoning_content", None) or getattr(getattr(choice, "message", None), "reasoning", None)
+            if isinstance(reasoning, str) and reasoning.strip():
+                content = reasoning
+            else:
+                raise ProviderBadResponse("the service returned an empty answer")
         if finish == "length":
-            if request is not None and getattr(request, "purpose", None) in ("studio_file", "studio_ping"):
+            if request is not None and getattr(request, "purpose", None) in ("studio_file", "studio_ping", "studio_vision"):
                 log.warning(
                     "nebius: finish_reason=length for model=%s (request may be truncated); "
                     "returning partial content for caller to handle.",

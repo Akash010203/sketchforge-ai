@@ -40,12 +40,13 @@ class ModelRouter:
         """Select appropriate model based on computational complexity."""
         task_norm = task.lower()
         if "plan" in task_norm or "architect" in task_norm or "schema" in task_norm:
-            # Fall back to Lightning if Ultra exceeds quota/latency limits
             return self.planner_model
-        elif "repair" in task_norm or "patch" in task_norm or "micro_edit" in task_norm:
+        elif "repair" in task_norm or "patch" in task_norm or "micro_edit" in task_norm or "revise" in task_norm:
             return self.repair_model
-        elif "vision" in task_norm or "multimodal" in task_norm:
+        elif "vision" in task_norm or "multimodal" in task_norm or "sketch" in task_norm:
             return self.vision_model
+        elif "code" in task_norm or "synth" in task_norm:
+            return self.coder_model
         return self.coder_model
 
     def describe_tiers(self) -> dict[str, str]:

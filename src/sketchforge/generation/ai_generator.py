@@ -22,18 +22,21 @@ import re
 from pathlib import Path
 from typing import Callable
 
+from sketchforge.agent.model_router import ModelRouter, NemotronTier
+from sketchforge.integrations.tavily.client import TavilyResearcher
+
 log = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
-# Model selection: candidate priority order
+# Model selection: candidate priority order & router integration
 # ---------------------------------------------------------------------------
 
-# Pinned active model: nvidia/Nemotron-3_5-Lightning for reliable latency and adherence
-_PINNED_MODEL = "nvidia/Nemotron-3_5-Lightning"
+_PINNED_MODEL = NemotronTier.CODER
 _NEMOTRON_MODEL = _PINNED_MODEL
 _FALLBACK_MODELS = (
-    "nvidia/nemotron-3-super-120b-a12b",
-    "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    NemotronTier.CODER,
+    NemotronTier.SUPER_120B,
+    NemotronTier.REPAIR,
 )
 
 
@@ -46,22 +49,26 @@ def _select_active_model(
     client,
     emit,
     *,
+    preferred_model: str | None = None,
+    candidate_models: tuple[str, ...] | None = None,
     ping_max_tokens: int = 64,
 ) -> tuple[str | None, str | None]:
-    """Verify availability of the pinned Nemotron-3_5-Lightning model.
+    """Verify availability of the preferred Nemotron model with graceful fallback.
 
-    Emits transparent, timestamped progress. If the pinned model fails,
+    Emits transparent, timestamped progress. If the preferred model fails,
     tries candidate fallbacks without rapid flapping or oscillation.
     """
     from sketchforge.integrations.provider_interface import ChatMessage, CompletionRequest
 
-    models_to_try = (_PINNED_MODEL, *_FALLBACK_MODELS)
+    target = preferred_model or _PINNED_MODEL
+    fallbacks = candidate_models or _FALLBACK_MODELS
+    models_to_try = (target,) + tuple(m for m in fallbacks if m != target)
     last_err: str | None = None
 
     for idx, model in enumerate(models_to_try, start=1):
         short = model.split("/")[-1]
-        is_pinned = (model == _PINNED_MODEL)
-        emit(f"[{_ts()}] Stage 1 — {'connecting to pinned model' if is_pinned else 'trying fallback model'}: {short}…")
+        is_target = (model == target)
+        emit(f"[{_ts()}] Stage 1 — {'connecting to pinned model' if is_target else 'trying fallback model'}: {short}…")
         ping = CompletionRequest(
             messages=(
                 ChatMessage(role="user", content="ping"),
@@ -420,11 +427,12 @@ def ai_generate_project(
     design_doc: object | None = None,
     layout_block: dict | None = None,
     progress: Callable[[str], None] | None = None,
+    enable_tavily: bool = True,
 ) -> Path | None:
     """Two-stage AI generation pipeline:
 
-    1. Plan – ask Nemotron for a compact AppSpec (~500 tokens).
-    2. Files – generate each dynamic file individually with per-file fallback.
+    1. Plan – ask Nemotron-3-Ultra-550b (with Lightning fallback) for AppSpec (~500 tokens).
+    2. Files – generate each file with Nemotron-3_5-Lightning augmented by Tavily UI research.
 
     Never discards AI output: if any individual file fails model generation,
     it is populated from the verified template generator so all 12 files are delivered.
@@ -456,17 +464,39 @@ def ai_generate_project(
 
     layout_context = _format_layout_context(layout_block) if layout_block else ""
 
-    _emit("Connecting to AI service…")
+    _emit("Connecting to Nebius Token Factory…")
     try:
         client = _make_client()
     except Exception as exc:  # noqa: BLE001
         _emit(f"AI service unavailable ({exc}); using template generator.")
         return None
 
+    router = ModelRouter(client)
+
+    # Live UI research via Tavily AI Search
+    tavily_context = ""
+    if enable_tavily:
+        try:
+            tavily = TavilyResearcher()
+            _emit(f"[{_ts()}] Querying Tavily AI Search for modern web UI patterns…")
+            tavily_context = tavily.build_research_context(prompt)
+            if tavily_context:
+                _emit(f"[{_ts()}] Tavily Search: retrieved modern CSS tokens, accessible colors & UI guidelines.")
+        except Exception as t_exc:  # noqa: BLE001
+            log.warning("Tavily research failed: %s", t_exc)
+
     # ------------------------------------------------------------------
-    # Stage 1 — AppSpec plan
+    # Stage 1 — AppSpec plan (Routed to Nemotron-3-Ultra-550b with Lightning fallback)
     # ------------------------------------------------------------------
-    spec, active_model = _stage1_plan(client, prompt, include_backend, _emit, layout_block=layout_block)
+    spec, active_model = _stage1_plan(
+        client,
+        prompt,
+        include_backend,
+        _emit,
+        layout_block=layout_block,
+        tavily_context=tavily_context,
+        router=router,
+    )
     if spec is None:
         return None
 
@@ -492,10 +522,11 @@ def ai_generate_project(
     )
 
     # ------------------------------------------------------------------
-    # Stage 2 — per-file generation with per-file fallback
+    # Stage 2 — per-file generation (Routed to Nemotron-3_5-Lightning)
     # ------------------------------------------------------------------
+    coder_model = router.route_for_task("code")
     manifest = _file_manifest(spec)
-    _emit(f"Stage 2 — generating {len(manifest)} files individually…")
+    _emit(f"Stage 2 — generating {len(manifest)} files using {coder_model.split('/')[-1]}…")
 
     written = 0
     fallback_count = 0
@@ -505,8 +536,9 @@ def ai_generate_project(
         import inspect
         _sig = inspect.signature(_stage2_file)
         _s2_kwargs = {
-            "model": active_model or _NEMOTRON_MODEL,
+            "model": coder_model,
             "layout_context": layout_context,
+            "tavily_context": tavily_context,
         }
         if "entity_route_context" in _sig.parameters:
             _s2_kwargs["entity_route_context"] = entity_route_context
@@ -590,10 +622,12 @@ def ai_revise_project(
     project_root: Path,
     instruction: str,
     *,
+    model: str | None = None,
     progress: Callable[[str], None] | None = None,
 ) -> bool:
     """
     Ask the LLM to apply a follow-up instruction to an already-generated project.
+    Routes by default to Nemotron-3-Nano-30B for fast surgical repairs and micro-edits.
 
     Returns True when files were updated, False on any failure.
     """
@@ -608,12 +642,16 @@ def ai_revise_project(
         _emit("No readable files found in the project.")
         return False
 
-    _emit("Sending revision instruction to the model…")
     try:
         client = _make_client()
     except Exception as exc:  # noqa: BLE001
         _emit(f"AI service unavailable ({exc}).")
         return False
+
+    router = ModelRouter(client)
+    repair_model = model or router.route_for_task("repair")
+    short_repair = repair_model.split("/")[-1]
+    _emit(f"Routing surgical repair to {short_repair}…")
 
     revise_system = (
         "You are SketchForge Studio's revision assistant.\n"
@@ -644,7 +682,7 @@ def ai_revise_project(
         purpose="studio_revise",
         max_tokens=2048,
         temperature=0.3,
-        model=_NEMOTRON_MODEL,
+        model=repair_model,
     )
 
     try:
@@ -797,8 +835,10 @@ def _stage1_plan(
     include_backend: bool,
     emit: Callable[[str], None],
     layout_block: dict | None = None,
+    tavily_context: str | None = None,
+    router: ModelRouter | None = None,
 ) -> tuple[dict | None, str | None]:
-    """Stage 1: request a compact AppSpec JSON from a single verified Nemotron model."""
+    """Stage 1: request a compact AppSpec JSON from Nemotron-3-Ultra-550B (with graceful Lightning fallback)."""
     from sketchforge.integrations.provider_interface import ChatMessage, CompletionRequest
 
     # ------------------------------------------------------------------
@@ -813,9 +853,23 @@ def _stage1_plan(
         )
 
     # ------------------------------------------------------------------
-    # Probe once — select a single verified model before planning.
+    # Probe tier — route "plan" to Ultra-550b, with Lightning fallback
     # ------------------------------------------------------------------
-    active_model, probe_err = _select_active_model(client, emit)
+    if router is None:
+        try:
+            router = ModelRouter(client)
+        except Exception:
+            router = None
+
+    preferred_tier = router.route_for_task("plan") if router else NemotronTier.PLANNER
+    fallback_tier = router.route_for_task("code") if router else NemotronTier.CODER
+
+    active_model, probe_err = _select_active_model(
+        client,
+        emit,
+        preferred_model=preferred_tier,
+        candidate_models=(fallback_tier, NemotronTier.SUPER_120B, NemotronTier.REPAIR),
+    )
 
     if active_model is None:
         if seeded_spec:
@@ -833,17 +887,18 @@ def _stage1_plan(
         return None, None
 
     # ------------------------------------------------------------------
-    # Single plan request against the verified model.
+    # Plan request against the routed model (with live Tavily & OpenCV context).
     # ------------------------------------------------------------------
     layout_context = _format_layout_context(layout_block) if layout_block else ""
     layout_snippet = f"\n\n### Grounded Sketch Layout (OpenCV Vision Analysis):\n{layout_context}\n" if layout_context else ""
+    tavily_snippet = f"\n\n{tavily_context}\n" if tavily_context else ""
 
     user_msg = _PLAN_USER.format(
         brief=prompt.strip(),
         backend="yes" if include_backend else "no",
-    ) + layout_snippet
+    ) + layout_snippet + tavily_snippet
     short_model = active_model.split("/")[-1]
-    emit(f"[{_ts()}] Stage 1 — requesting AppSpec plan from {short_model}…")
+    emit(f"[{_ts()}] Stage 1 — requesting AppSpec architecture plan from {short_model}…")
 
     request = CompletionRequest(
         messages=(
@@ -855,21 +910,36 @@ def _stage1_plan(
         temperature=0.2,
         model=active_model,
     )
+    spec = None
     try:
         result = client.complete(request)
         spec = _parse_response(result.text)
     except Exception as exc:  # noqa: BLE001
         failure_reason = f"{type(exc).__name__}: {exc}"
         log.warning("Stage 1 plan request with %s failed: %s", active_model, exc)
+        # Graceful fallback to Lightning if Ultra-550b was rate-limited or failed
+        if active_model == preferred_tier and fallback_tier != preferred_tier:
+            short_fb = fallback_tier.split("/")[-1]
+            emit(f"[{_ts()}] Stage 1 — {preferred_tier.split('/')[-1]} call failed ({failure_reason}); gracefully falling back to {short_fb}…")
+            try:
+                request.model = fallback_tier
+                result = client.complete(request)
+                spec = _parse_response(result.text)
+                active_model = fallback_tier
+            except Exception as fb_exc:
+                log.warning("Stage 1 plan fallback to %s failed: %s", fallback_tier, fb_exc)
+                spec = None
+
+    if spec is None:
         if seeded_spec:
             emit(
-                f"[{_ts()}] Stage 1 — plan request failed ({failure_reason}); "
+                f"[{_ts()}] Stage 1 — plan request failed; "
                 "using sketch-derived layout as fallback plan."
             )
             seeded_spec.setdefault("include_backend", include_backend)
             return seeded_spec, None
         emit(
-            f"[{_ts()}] Stage 1 — plan request failed ({failure_reason}); "
+            f"[{_ts()}] Stage 1 — plan request failed; "
             "falling back to template generator."
         )
         return None, None
@@ -890,7 +960,7 @@ def _stage1_plan(
     emit(
         f"[{_ts()}] Stage 1 complete — app: '{spec.get('name', '?')}', "
         f"{len(spec.get('pages', []))} page(s), "
-        f"{len(spec.get('entities', []))} entity/entities."
+        f"{len(spec.get('entities', []))} entity/entities (via {active_model.split('/')[-1]})."
     )
     return spec, active_model
 
@@ -904,6 +974,7 @@ def _stage2_file(
     model: str = _NEMOTRON_MODEL,
     layout_context: str | None = None,
     entity_route_context: str | None = None,
+    tavily_context: str | None = None,
 ) -> str | None:
     """Stage 2: generate ONE file and return its content string, or None on failure."""
     from sketchforge.integrations.provider_interface import ChatMessage, CompletionRequest
@@ -932,6 +1003,14 @@ def _stage2_file(
             f"Faithfully reproduce these component bounding boxes, alignments, and hierarchy in {path_hint}."
         )
 
+    tavily_section = ""
+    if tavily_context and any(path_hint.endswith(ext) for ext in (".html", ".css", ".js")):
+        tavily_section = (
+            f"\n\n### Modern Web UI Research (Tavily AI Search):\n"
+            f"{tavily_context}\n"
+            f"Apply these modern CSS styling tokens, accessible color rules, and clean patterns in {path_hint}."
+        )
+
     # Always include the entity route context so every file uses the same endpoint.
     route_section = entity_route_context or ""
 
@@ -939,7 +1018,7 @@ def _stage2_file(
         spec=spec_str,
         path=path_hint,
         description=description,
-    ) + layout_section + rag_section + route_section
+    ) + layout_section + rag_section + route_section + tavily_section
 
     request = CompletionRequest(
         messages=(
@@ -1114,3 +1193,8 @@ def _ensure_entry(root: Path) -> None:
             f'<title>Opening app…</title><a href="{target}">Open the app</a>',
             encoding="utf-8",
         )
+
+
+# Backward-compatible and serverless handler alias
+generate_project_ai = ai_generate_project
+

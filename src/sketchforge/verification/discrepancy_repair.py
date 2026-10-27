@@ -221,7 +221,13 @@ def run_discrepancy_repair_loop(
 
     # Closed-loop repair
     for attempt in range(1, max_attempts + 1):
-        _emit(f"Discrepancy ({report.score:.2f}) > threshold ({threshold:.2f}); executing patch repair ({attempt}/{max_attempts})…")
+        from sketchforge.agent.model_router import ModelRouter
+        router = ModelRouter()
+        repair_model = router.route_for_task("repair")
+        _emit(
+            f"Discrepancy ({report.score:.2f}) > threshold ({threshold:.2f}); "
+            f"executing surgical patch repair with {repair_model.split('/')[-1]} ({attempt}/{max_attempts})…"
+        )
         instruction = (
             f"Visual discrepancy repair: The rendered preview differs from the sketch design. "
             f"Issues: {report.summary()}. Adjust css/style.css and home.html so element positions, "
@@ -229,7 +235,7 @@ def run_discrepancy_repair_loop(
         )
 
         from sketchforge.generation.ai_generator import ai_revise_project
-        revised = ai_revise_project(project_root, instruction, progress=progress)
+        revised = ai_revise_project(project_root, instruction, model=repair_model, progress=progress)
         if not revised:
             _emit("Revision assistant could not apply changes; retaining current output.")
             break

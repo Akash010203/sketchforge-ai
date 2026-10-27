@@ -1,17 +1,130 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SketchForge Studio</title><link rel="stylesheet" href="/assets/studio.css"><style>.canvas-tools button.tool-active{background:#765be4;color:#fff;box-shadow:0 0 0 2px #a58cff66}.canvas-tools button.tool-coming-soon{opacity:.5;cursor:not-allowed}.artboard.frame-outline-hidden{border-color:transparent;box-shadow:none}</style></head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SketchForge AI Studio · Powered by NVIDIA Nemotron on Nebius Token Factory</title>
+  <link rel="stylesheet" href="/assets/studio.css">
+  <style>
+    .canvas-tools button.tool-active{background:#765be4;color:#fff;box-shadow:0 0 0 2px #a58cff66}
+    .canvas-tools button.tool-coming-soon{opacity:.5;cursor:not-allowed}
+    .artboard.frame-outline-hidden{border-color:transparent;box-shadow:none}
+  </style>
+</head>
 <body>
-  <header class="topbar"><a class="brand" href="/studio"><span class="spark">✳</span> SketchForge <small>STUDIO</small></a><div class="top-actions"><button id="undo" title="Undo">↶</button><button id="redo" title="Redo">↷</button><button id="export-project" disabled title="Download project ZIP">⇩ Export ZIP</button><button id="share">↗ Share</button><button class="avatar">A</button></div></header>
-  <aside class="sidebar"><div class="side-tabs"><button class="selected">▦ My Projects</button><button>♧ Shared with me</button></div><input id="search" placeholder="⌕  Search projects"><h3>Recent projects</h3><div id="project-list"><p class="muted">Your generated projects will appear here.</p></div><div class="side-bottom"><button id="agent-toggle">🚀 Agent log <span>⌃</span></button><div id="agent-log">Ready when you are. Describe an app to begin.</div></div></aside>
-  <main class="canvas" id="canvas"><div class="canvas-head"><span class="status"><i></i><span id="status">Canvas ready</span></span><div class="device-switch"><button data-size="desktop" class="active">Desktop</button><button data-size="tablet">Tablet</button><button data-size="mobile">Mobile</button><button id="popout" title="Open preview in browser">↗</button></div></div>
-    <section id="empty" class="empty"><span class="empty-spark">✳</span><h1>Design at the speed of AI</h1><p>Turn an idea into a working frontend and backend.</p><div class="examples"><button data-prompt="A calm project management dashboard for a small creative studio">Creative studio dashboard</button><button data-prompt="A welcoming travel planner for California getaways and live music">California trip planner</button><button data-prompt="A polished habit tracker with weekly progress and gentle reminders">A gentle habit tracker</button></div></section>
+  <header class="topbar">
+    <a class="brand" href="/studio"><span class="spark">✳</span> SketchForge <small>AI STUDIO</small></a>
+    <div class="top-actions">
+      <button id="undo" title="Undo">↶</button>
+      <button id="redo" title="Redo">↷</button>
+      <button id="export-project" disabled title="Download project ZIP">⇩ Export ZIP</button>
+      <button id="share">↗ Share</button>
+      <button class="avatar">A</button>
+    </div>
+  </header>
+
+  <aside class="sidebar">
+    <div class="side-tabs">
+      <button class="selected">▦ My Projects</button>
+      <button>♧ Shared with me</button>
+    </div>
+    <input id="search" placeholder="⌕  Search projects">
+    <h3>Recent projects</h3>
+    <div id="project-list">
+      <p class="muted">Your generated projects will appear here.</p>
+    </div>
+    <div class="side-bottom">
+      <button id="agent-toggle">🚀 Agent log <span>⌃</span></button>
+      <div id="agent-log">Ready when you are. Describe an app or drop a sketch to begin.</div>
+    </div>
+  </aside>
+
+  <main class="canvas" id="canvas">
+    <div class="canvas-head">
+      <div class="canvas-head-left">
+        <span class="status"><i></i><span id="status">Canvas ready</span></span>
+        <div class="model-tier-pills" id="model-tier-pills" title="NVIDIA Nemotron Multi-Tier Routing on Nebius Token Factory">
+          <span class="tier-pill" id="tier-ultra" title="Stage 1: Architecture & DB Planning (nvidia/Nemotron-3-Ultra-550b-a55b)"><span class="tier-dot"></span>Ultra 550B <small>Plan</small></span>
+          <span class="tier-pill active" id="tier-lightning" title="Stage 2: Full-Stack Code Synthesis (nvidia/Nemotron-3_5-Lightning)"><span class="tier-dot"></span>Lightning <small>Code</small></span>
+          <span class="tier-pill" id="tier-nano" title="Closed-Loop Surgical Repair (nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B)"><span class="tier-dot"></span>Nano 30B <small>Repair</small></span>
+          <span class="tier-pill" id="tier-supervl" title="Multimodal Visual Sketch Perception (nvidia/Nemotron-3.5-Super-VL)"><span class="tier-dot"></span>Super-VL <small>Vision</small></span>
+        </div>
+      </div>
+      <div class="device-switch">
+        <button data-size="desktop" class="active">Desktop</button>
+        <button data-size="tablet">Tablet</button>
+        <button data-size="mobile">Mobile</button>
+        <button id="popout" title="Open preview in browser">↗</button>
+      </div>
+    </div>
+
+    <section id="empty" class="empty">
+      <span class="empty-spark">✳</span>
+      <h1>Design at the speed of AI</h1>
+      <p>Autonomous agentic developer workbench powered by NVIDIA Nemotron on Nebius Token Factory.</p>
+      <div class="examples">
+        <button data-prompt="A calm project management dashboard for a small creative studio">Creative studio dashboard</button>
+        <button data-prompt="A welcoming travel planner for California getaways and live music">California trip planner</button>
+        <button data-prompt="A polished habit tracker with weekly progress and gentle reminders">A gentle habit tracker</button>
+      </div>
+    </section>
+
     <section id="artboards" class="artboards" aria-live="polite"></section>
-    <div class="canvas-tools"><button title="Select and edit">➤</button><button title="Frame">▣</button><button title="Draw">／</button><button title="Pan">✋</button><button title="Image">▧</button><button title="Theme">◉</button><button title="Add text">T</button></div>
-    <div class="zoom"><button id="zoom-out">−</button><span id="zoom-label">75%</span><button id="zoom-in">+</button><button title="Help">?</button></div>
-    <div id="error-badge" class="error-badge" hidden><span id="error-text"></span><button id="reload">↻ Reload</button></div>
+
+    <div class="canvas-tools">
+      <button title="Select and edit">➤</button>
+      <button title="Frame">▣</button>
+      <button title="Draw">／</button>
+      <button title="Pan">✋</button>
+      <button title="Image">▧</button>
+      <button title="Theme">◉</button>
+      <button title="Add text">T</button>
+    </div>
+
+    <div class="zoom">
+      <button id="zoom-out">−</button>
+      <span id="zoom-label">75%</span>
+      <button id="zoom-in">+</button>
+      <button title="Help">?</button>
+    </div>
+
+    <div id="error-badge" class="error-badge" hidden>
+      <span id="error-text"></span>
+      <button id="reload">↻ Reload</button>
+    </div>
   </main>
-  <form id="prompt-form" class="prompt-card"><textarea id="prompt" placeholder="What would you like to create? Try “A modern booking app for a neighborhood yoga studio”…" rows="2"></textarea><div class="prompt-controls"><button type="button" id="attach" title="Add an image or video reference">＋</button><input id="image-input" type="file" accept="image/png,image/jpeg,image/webp,image/gif,video/mp4,video/webm,video/ogg" hidden><button type="button" id="slash" title="Commands">/</button><div class="mode-toggle"><button type="button" data-mode="App" class="active">▯ App</button><button type="button" data-mode="Web">▣ Web</button></div><span class="spacer"></span><label class="model">✧ <select aria-label="Generation mode"><option>Balanced</option><option>Fast</option><option>Detailed</option></select></label><button type="button" id="mic" title="Voice input">♩</button><button class="submit" type="submit" title="Generate">↑</button></div></form>
-  <dialog id="share-dialog"><button class="close" id="close-share">×</button><h2>Share project</h2><label class="share-toggle">Enable sharing &amp; remixing <input id="share-switch" type="checkbox"><span></span></label><p id="share-state" class="muted">Only you can access this project</p><div class="disclaimer">By making your project public, you allow anyone with the link to view and remix its generated designs and code. You can revoke public access at any time.</div><button id="copy-link" disabled>Copy link to prototype</button></dialog>
+
+  <form id="prompt-form" class="prompt-card">
+    <textarea id="prompt" placeholder="What would you like to create? Try “A modern booking app for a neighborhood yoga studio” or drop a sketch…" rows="2"></textarea>
+    <div class="prompt-controls">
+      <button type="button" id="attach" title="Add a sketch image or wireframe (analyzed by OpenCV + Nemotron-3.5-Super-VL)">＋</button>
+      <input id="image-input" type="file" accept="image/png,image/jpeg,image/webp,image/gif,video/mp4,video/webm,video/ogg" hidden>
+      <button type="button" id="slash" title="Commands">/</button>
+      <div class="mode-toggle">
+        <button type="button" data-mode="App" class="active">▯ App</button>
+        <button type="button" data-mode="Web">▣ Web</button>
+      </div>
+      <button type="button" id="tavily-toggle" class="tavily-toggle-btn active" title="Toggle live web UI & pattern research with Tavily AI Search">
+        <span class="tavily-globe">🌐</span>
+        <span class="tavily-label">Tavily UI Search</span>
+        <span class="tavily-dot"></span>
+      </button>
+      <span class="spacer"></span>
+      <label class="model">✧ <select aria-label="Generation mode"><option>Tiered Nemotron</option><option>Fast</option><option>Detailed</option></select></label>
+      <button type="button" id="mic" title="Voice input">♩</button>
+      <button class="submit" type="submit" title="Generate">↑</button>
+    </div>
+  </form>
+
+  <dialog id="share-dialog">
+    <button class="close" id="close-share">×</button>
+    <h2>Share project</h2>
+    <label class="share-toggle">Enable sharing &amp; remixing <input id="share-switch" type="checkbox"><span></span></label>
+    <p id="share-state" class="muted">Only you can access this project</p>
+    <div class="disclaimer">By making your project public, you allow anyone with the link to view and remix its generated designs and code. You can revoke public access at any time.</div>
+    <button id="copy-link" disabled>Copy link to prototype</button>
+  </dialog>
+
   <script type="module" src="/assets/studio.js"></script>
-</body></html>
+</body>
+</html>

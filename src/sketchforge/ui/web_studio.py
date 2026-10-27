@@ -232,13 +232,53 @@ class StudioHandler(BaseHTTPRequestHandler):
                     layout_block = None
                     design_doc = None
 
+                # Nemotron-3.5-Super-VL Multimodal Vision Perception
+                semantic_critique = None
+                try:
+                    import base64
+                    import os
+                    from sketchforge.agent.model_router import ModelRouter
+                    from sketchforge.integrations.nebius.client import NebiusClient
+                    from sketchforge.integrations.nebius.configuration import load_nebius_config
+                    from sketchforge.integrations.nebius.request_policy import ConsentGate
+
+                    nebius_cfg = load_nebius_config(overrides={"enabled": True})
+                    if nebius_cfg.enabled or os.environ.get("NEBIUS_API_KEY"):
+                        consent = ConsentGate(consented=True)
+                        n_client = NebiusClient(nebius_cfg, consent)
+                        router = ModelRouter(n_client)
+                        vision_model = router.route_for_task("vision")
+                        b64_img = base64.b64encode(data).decode("utf-8")
+                        v_prompt = (
+                            "Analyze this wireframe/sketch image. Briefly describe what application this represents, "
+                            "key UI components (navigation, inputs, buttons, tables, cards), and the recommended layout structure."
+                        )
+                        vl_res = n_client.complete_multimodal(
+                            v_prompt,
+                            b64_img,
+                            mime_type=content_type,
+                            model=vision_model,
+                            max_tokens=512,
+                        )
+                        semantic_critique = vl_res.text.strip()
+                        log.info("Nemotron-3.5-Super-VL semantic critique obtained: %s", semantic_critique[:120])
+                except Exception as vl_exc:  # noqa: BLE001
+                    log.warning("Nemotron Super-VL multimodal analysis skipped or failed: %s", vl_exc)
+
                 analysis_id = None
                 if layout_block is not None and design_doc is not None:
+                    if semantic_critique:
+                        layout_block["semantic_critique"] = semantic_critique
                     analysis_id = uuid.uuid4().hex
                     with _LOCK:
                         _ANALYSES[analysis_id] = (design_doc, layout_block)
 
                 n_components = len(layout_block.get("components", [])) if layout_block else 0
+                summary_text = (
+                    f"Analyzed sketch ({width}×{height}); detected {len(result.detections)} UI region(s)"
+                    + (f", mapped to {n_components} design component(s)." if n_components else ".")
+                    + (f"\n\n🤖 Nemotron-3.5-Super-VL Critique: {semantic_critique}" if semantic_critique else "")
+                )
                 self._json(200, {
                     "width": width, "height": height,
                     "count": len(result.detections),
@@ -248,11 +288,9 @@ class StudioHandler(BaseHTTPRequestHandler):
                     "analysis_id": analysis_id,
                     # Structured fields consumed by the Nemotron generation pipeline
                     "layout_block": layout_block,
-                    "summary": (
-                        f"Analyzed sketch ({width}×{height}); "
-                        f"detected {len(result.detections)} UI region(s)"
-                        + (f", mapped to {n_components} design component(s)." if n_components else ".")
-                    ),
+                    "semantic_critique": semantic_critique,
+                    "vision_model": "nvidia/Nemotron-3.5-Super-VL" if semantic_critique else None,
+                    "summary": summary_text,
                 })
             except Exception as exc:  # noqa: BLE001
                 self._json(400, {"error": f"Could not analyze sketch: {exc}"})
@@ -279,6 +317,7 @@ class StudioHandler(BaseHTTPRequestHandler):
                     prompt, design_doc=design_doc, job_id=job_id,
                 )
                 hjob.layout_block = layout_block
+                hjob.enable_tavily = bool(data.get("tavily_search", True))
                 with _LOCK:
                     global _ACTIVE_JOB
                     if _ACTIVE_JOB is not None:
