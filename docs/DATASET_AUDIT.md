@@ -9,7 +9,7 @@ Current filesystem free space: 368.48 GiB; conservative planning budget (50%): 1
 
 | Candidate | Dataset license | Access | Size estimate | Training | Decision |
 |---|---|---|---:|---|---|
-| [SALT-NLP Sketch2Code](https://huggingface.co/datasets/SALT-NLP/Sketch2Code) | `ODC-By-1.0` | public | unknown | eligible | eligible_for_pilot_review |
+| [SALT-NLP Sketch2Code](https://huggingface.co/datasets/SALT-NLP/Sketch2Code) | `ODC-By-1.0` | public | 1.00 gib | eligible | eligible_for_pilot_review |
 | [HuggingFaceM4 WebSight v0.2](https://huggingface.co/datasets/HuggingFaceM4/WebSight) | `CC-BY-4.0` | public | 20.00 GiB | eligible | eligible_for_pilot_review |
 | [WebCode2M](https://huggingface.co/datasets/xcodemind/webcode2m) | `CC-BY-4.0` | public | 20.00 GiB | eligible | eligible_for_pilot_review |
 | [Teklia IAM-line Handwriting](https://huggingface.co/datasets/Teklia/IAM-line) | `LicenseRef-custom` | public | 0.26 GiB | eligible | eligible_for_pilot_review |
