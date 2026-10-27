@@ -1,0 +1,619 @@
+{
+  "fixture": {
+    "condition": "clean",
+    "layouts": [
+      "login_page",
+      "dashboard",
+      "mobile_form"
+    ],
+    "seed": 11
+  },
+  "rows": [
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.76,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "c01"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.5,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "c02"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 15.26,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "c03"
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "oracle",
+      "duration_ms": 6.72,
+      "errors": [
+        "new or worsened evaluator issues: ['LOW_CONTRAST:button-1:']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "c04"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.31,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "c05"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 6.5,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "c06"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.82,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "c07"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.22,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "c08"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.23,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "t01"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.04,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "t02"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 6.43,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "t03"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.68,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "t04"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.02,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "t05"
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "oracle",
+      "duration_ms": 6.57,
+      "errors": [
+        "new or worsened evaluator issues: ['LOW_CONTRAST:button-1:']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "t06"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.05,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "m01"
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "oracle",
+      "duration_ms": 6.38,
+      "errors": [
+        "new or worsened evaluator issues: ['MISALIGNED:sidebar-1:center_y']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "m02"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 4.99,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "m03"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.69,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "m04"
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "oracle",
+      "duration_ms": 6.49,
+      "errors": [
+        "new or worsened evaluator issues: ['MISALIGNED:button-1:right']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "m05"
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "oracle",
+      "duration_ms": 5.34,
+      "errors": [
+        "new or worsened evaluator issues: ['MISALIGNED:checkbox-1:left']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "m06"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.25,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "r01"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.93,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "r02"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 6.35,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "r03"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.34,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "r04"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.5,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "r05"
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "oracle",
+      "duration_ms": 6.4,
+      "errors": [
+        "new or worsened evaluator issues: ['MISALIGNED:header-1:right']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "r06"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 6.74,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "r07"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.28,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "f01"
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "oracle",
+      "duration_ms": 7.07,
+      "errors": [
+        "new or worsened evaluator issues: ['TEXT_OVERFLOW:heading-2:']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "f02"
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "oracle",
+      "duration_ms": 5.79,
+      "errors": [
+        "new or worsened evaluator issues: ['TEXT_OVERFLOW:heading-1:']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "f03"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.41,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "k01"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 6.46,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "k02"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.76,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "k03"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.21,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "x01"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 6.55,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "x02"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.99,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "x03"
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "oracle",
+      "duration_ms": 9.18,
+      "errors": [
+        "new or worsened evaluator issues: ['LOW_CONTRAST:input-1:', 'LOW_CONTRAST:input-3:']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "x04"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 9.19,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "x05"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 6.15,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "x06"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.31,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "p01"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.41,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "p02"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 6.76,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "p03"
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "oracle",
+      "duration_ms": 7.11,
+      "errors": [
+        "new or worsened evaluator issues: ['TEXT_OVERFLOW:heading-1:']"
+      ],
+      "expected": "edit",
+      "passed": false,
+      "repair_patches": 0,
+      "task_id": "p04"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.71,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "p05"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 6.99,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "p06"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.37,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "l01"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.43,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "l02"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 6.25,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "l03"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 6.63,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "l04"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 6.15,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "l05"
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "oracle",
+      "duration_ms": 5.16,
+      "errors": [],
+      "expected": "edit",
+      "passed": true,
+      "repair_patches": 0,
+      "task_id": "l06"
+    },
+    {
+      "actual": "refuse",
+      "arm": "oracle",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "passed": true,
+      "task_id": "n01"
+    },
+    {
+      "actual": "refuse",
+      "arm": "oracle",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "passed": true,
+      "task_id": "n02"
+    },
+    {
+      "actual": "refuse",
+      "arm": "oracle",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "passed": true,
+      "task_id": "n03"
+    },
+    {
+      "actual": "refuse",
+      "arm": "oracle",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "passed": true,
+      "task_id": "n04"
+    },
+    {
+      "actual": "refuse",
+      "arm": "oracle",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "passed": true,
+      "task_id": "n05"
+    },
+    {
+      "actual": "refuse",
+      "arm": "oracle",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "passed": true,
+      "task_id": "n06"
+    },
+    {
+      "actual": "refuse",
+      "arm": "oracle",
+      "duration_ms": 0.0,
+      "errors": [],
+      "expected": "refuse",
+      "passed": true,
+      "task_id": "n07"
+    }
+  ],
+  "summary": {
+    "oracle": {
+      "outcomes": {
+        "applied_clean": 41,
+        "applied_with_issues": 10,
+        "refuse": 7
+      },
+      "pass_rate": 0.8276,
+      "passed": 48,
+      "tasks": 58
+    }
+  },
+  "version": 1
+}

@@ -1,0 +1,11 @@
+# Dataset preparation is license-gated; no external dataset is downloaded automatically.
+manifest: datasets/manifests/manifest.json
+raw_dir: datasets/raw
+processed_dir: datasets/processed
+synthetic_dir: datasets/synthetic
+quarantine_dir: datasets/quarantine
+evaluation_dir: datasets/evaluation
+approved_training_licenses:
+  - Apache-2.0
+  - MIT
+  - MPL-2.0

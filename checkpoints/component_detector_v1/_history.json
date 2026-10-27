@@ -1,0 +1,97 @@
+[
+  {
+    "epoch": 1,
+    "score": 0.0,
+    "metrics": {
+      "epoch": 1,
+      "phase": "val",
+      "loss": 0.376131,
+      "cls_loss": 0.093302,
+      "box_loss": 0.141414,
+      "accuracy": 0.8506,
+      "mean_iou": 0.0,
+      "mAP": 0.0,
+      "samples": 1128,
+      "duration_s": 196.78
+    },
+    "path": "C:\\Users\\akash\\Downloads\\sketchforge\\checkpoints\\component_detector_v1\\epoch_0001_score_0.000000.pt",
+    "sha256": "13b026a5e2c258e1",
+    "timestamp": "2026-10-22T05:21:15Z"
+  },
+  {
+    "epoch": 2,
+    "score": 0.0,
+    "metrics": {
+      "epoch": 2,
+      "phase": "val",
+      "loss": 0.281987,
+      "cls_loss": 0.048647,
+      "box_loss": 0.11667,
+      "accuracy": 0.9064,
+      "mean_iou": 0.0,
+      "mAP": 0.0,
+      "samples": 1128,
+      "duration_s": 199.3
+    },
+    "path": "C:\\Users\\akash\\Downloads\\sketchforge\\checkpoints\\component_detector_v1\\epoch_0002_score_0.000000.pt",
+    "sha256": "3ba5e8f762efc990",
+    "timestamp": "2026-10-22T05:25:29Z"
+  },
+  {
+    "epoch": 3,
+    "score": 0.0,
+    "metrics": {
+      "epoch": 3,
+      "phase": "val",
+      "loss": 0.274895,
+      "cls_loss": 0.044569,
+      "box_loss": 0.115163,
+      "accuracy": 0.9361,
+      "mean_iou": 0.5005,
+      "mAP": 0.0,
+      "samples": 1128,
+      "duration_s": 185.2
+    },
+    "path": "C:\\Users\\akash\\Downloads\\sketchforge\\checkpoints\\component_detector_v1\\epoch_0003_score_0.000000.pt",
+    "sha256": "a7635ac9f36a82d0",
+    "timestamp": "2026-10-22T05:29:27Z"
+  },
+  {
+    "epoch": 4,
+    "score": 0.0001,
+    "metrics": {
+      "epoch": 4,
+      "phase": "val",
+      "loss": 0.26076,
+      "cls_loss": 0.043096,
+      "box_loss": 0.108832,
+      "accuracy": 0.9475,
+      "mean_iou": 0.5045,
+      "mAP": 0.0001,
+      "samples": 1128,
+      "duration_s": 187.92
+    },
+    "path": "C:\\Users\\akash\\Downloads\\sketchforge\\checkpoints\\component_detector_v1\\epoch_0004_score_0.000100.pt",
+    "sha256": "207f3f2a6a51fde7",
+    "timestamp": "2026-10-22T05:33:30Z"
+  },
+  {
+    "epoch": 5,
+    "score": 0.0,
+    "metrics": {
+      "epoch": 5,
+      "phase": "val",
+      "loss": 0.257025,
+      "cls_loss": 0.043074,
+      "box_loss": 0.106976,
+      "accuracy": 0.9494,
+      "mean_iou": 0.5001,
+      "mAP": 0.0,
+      "samples": 1128,
+      "duration_s": 186.55
+    },
+    "path": "C:\\Users\\akash\\Downloads\\sketchforge\\checkpoints\\component_detector_v1\\epoch_0005_score_0.000000.pt",
+    "sha256": "4619a4da7291f4d4",
+    "timestamp": "2026-10-22T05:37:32Z"
+  }
+]

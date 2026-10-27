@@ -1,0 +1,47 @@
+{
+  "summary": {
+    "images": 1,
+    "synthetic": false,
+    "mean_f1": 0.0031,
+    "mean_type_accuracy": 0.0,
+    "mean_iou": 0.6716
+  },
+  "cases": [
+    {
+      "image": "rough_mobile_ux.jpg",
+      "scores": {
+        "n_pred": 627,
+        "n_gt": 21,
+        "n_matched": 1,
+        "precision": 0.001594896331738437,
+        "recall": 0.047619047619047616,
+        "f1": 0.00308641975308642,
+        "type_accuracy": 0.0,
+        "mean_iou": 0.6716317060228931,
+        "mean_center_error_px": 11.898120245528371,
+        "confusion": {
+          "image": {
+            "heading": 1
+          }
+        },
+        "missed_types": {
+          "container": 1,
+          "image": 11,
+          "text": 4,
+          "button": 4
+        },
+        "extra_types": {
+          "heading": 14,
+          "checkbox": 557,
+          "unknown": 37,
+          "text": 18
+        }
+      },
+      "perspective_corrected": true,
+      "notes": [
+        "perspective corrected: 3072\u00d74096 \u2192 2752\u00d73502 (area fraction 0.73)",
+        "no page outline found; page area taken from the extent of the drawing"
+      ]
+    }
+  ]
+}

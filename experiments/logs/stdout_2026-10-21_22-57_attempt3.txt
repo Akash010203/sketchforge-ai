@@ -1,0 +1,62 @@
+Loaded config from C:\Users\akash\Downloads\sketchforge\config\overnight_train.yaml
+============================================================
+SketchForge Component Detector Training
+============================================================
+  Data:       C:\Users\akash\Downloads\sketchforge\datasets\synthetic (5529 images)
+  Device:     cuda
+  Epochs:     60
+  Batch size: 24
+  Lr:         0.0008
+  Checkpoint: C:\Users\akash\Downloads\sketchforge\checkpoints
+  Seed:       42
+
+Starting full training run. Press Ctrl+C to stop early (checkpoint is kept).
+
+[trainer] device=cuda  seed=42
+[dataloader] split by layout: train=['dashboard', 'login_page', 'settings_page'] val=['mobile_form'] test=['landing_page']
+[trainer] train=3286 val=1128 test=1114
+[trainer] model=Model params=183,307
+[train] epoch=1 loss=1.0402 acc=0.832 IoU=0.000 mAP=0.000
+[val] epoch=1 loss=0.4977 acc=0.983 IoU=0.000 mAP=0.000
+[train] epoch=2 loss=0.1038 acc=0.985 IoU=0.000 mAP=0.000
+[val] epoch=2 loss=0.4094 acc=0.964 IoU=0.000 mAP=0.000
+[train] epoch=3 loss=0.0445 acc=0.993 IoU=0.000 mAP=0.000
+[val] epoch=3 loss=0.3643 acc=0.968 IoU=0.000 mAP=0.000
+[train] epoch=4 loss=0.0269 acc=0.995 IoU=0.000 mAP=0.000
+[val] epoch=4 loss=0.3785 acc=0.957 IoU=0.000 mAP=0.000
+[train] epoch=5 loss=0.0186 acc=0.997 IoU=0.000 mAP=0.000
+[val] epoch=5 loss=0.3458 acc=0.960 IoU=0.000 mAP=0.000
+[train] epoch=6 loss=0.0139 acc=0.998 IoU=0.000 mAP=0.000
+[val] epoch=6 loss=0.3283 acc=0.962 IoU=0.000 mAP=0.000
+[train] epoch=7 loss=0.0112 acc=0.998 IoU=0.000 mAP=0.000
+[val] epoch=7 loss=0.3221 acc=0.961 IoU=0.000 mAP=0.000
+[train] epoch=8 loss=0.0093 acc=0.998 IoU=0.000 mAP=0.000
+[val] epoch=8 loss=0.3172 acc=0.962 IoU=0.000 mAP=0.000
+[train] epoch=9 loss=0.0079 acc=0.999 IoU=0.000 mAP=0.000
+[val] epoch=9 loss=0.3206 acc=0.962 IoU=0.000 mAP=0.000
+[train] epoch=10 loss=0.0069 acc=0.999 IoU=0.000 mAP=0.000
+[val] epoch=10 loss=0.3273 acc=0.959 IoU=0.000 mAP=0.000
+[train] epoch=11 loss=0.0061 acc=0.999 IoU=0.000 mAP=0.000
+[val] epoch=11 loss=0.3234 acc=0.957 IoU=0.000 mAP=0.000
+[train] epoch=12 loss=0.0054 acc=0.999 IoU=0.000 mAP=0.000
+[val] epoch=12 loss=0.3268 acc=0.957 IoU=0.000 mAP=0.000
+[train] epoch=13 loss=0.0049 acc=0.999 IoU=0.000 mAP=0.000
+[val] epoch=13 loss=0.3373 acc=0.955 IoU=0.000 mAP=0.000
+[train] epoch=14 loss=0.0045 acc=0.999 IoU=0.000 mAP=0.000
+[val] epoch=14 loss=0.3251 acc=0.957 IoU=0.000 mAP=0.000
+[train] epoch=15 loss=0.0041 acc=0.999 IoU=0.000 mAP=0.000
+[val] epoch=15 loss=0.3676 acc=0.949 IoU=0.000 mAP=0.000
+[train] epoch=16 loss=0.0038 acc=0.999 IoU=0.000 mAP=0.000
+[val] epoch=16 loss=0.3521 acc=0.952 IoU=0.000 mAP=0.000
+[trainer] early stop at epoch 16. EarlyStopping: best=0.317236 @ epoch 8, counter=8/8
+[trainer] report saved: C:\Users\akash\Downloads\sketchforge\checkpoints\reports\component_detector_v1_report.md
+
+============================================================
+Training run completed in 1065.4s
+  Test accuracy: 0.9183
+  Test loss:     0.7783
+  Best checkpoint epoch: 8
+  Best val metric:       0.3172
+
+Report saved to experiments\results\training_report.json
+Training complete.

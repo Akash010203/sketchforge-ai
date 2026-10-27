@@ -1,0 +1,23 @@
+# Optional remote model provider. EVERYTHING here is off by default: SketchForge makes no network
+# requests unless `enabled: true` AND the user acknowledges the egress notice in the session.
+# Credentials are never stored here: set NEBIUS_API_KEY in the environment (see .env.example).
+nebius:
+  enabled: false
+  base_url: "https://api.tokenfactory.nebius.com/v1/"
+  api_key_env: NEBIUS_API_KEY
+  # Identifiers taken from Nebius's August-2026 deprecation notice (replacements for removed NVIDIA
+  # models). They are NOT verified live: run scripts/verify_nebius.py with a key to confirm them.
+  default_model: "nvidia/Nemotron-3_5-Lightning"
+  candidate_models:
+    - "nvidia/Nemotron-3_5-Lightning"
+    - "nvidia/nemotron-3-super-120b-a12b"
+  timeout_s: 30
+  max_retries: 2            # extra attempts for 429 / 5xx / timeouts only
+  backoff_base_s: 0.8
+  backoff_cap_s: 8
+  # What may leave the machine:
+  privacy:
+    allow_images: false       # the sketch image is never sent
+    include_user_text: false  # text inside components is replaced by its length unless true
+    max_prompt_chars: 12000
+    max_components: 120

@@ -1,0 +1,8 @@
+# Training is not active yet. These bounded defaults are the starting policy for its milestone.
+seed: 42
+device: auto
+max_epochs: 20
+batch_size: 8
+early_stopping_patience: 4
+checkpoint_dir: checkpoints
+dataset_manifest: datasets/manifests/manifest.json

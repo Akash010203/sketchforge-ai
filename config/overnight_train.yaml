@@ -1,0 +1,55 @@
+﻿# ============================================================
+# SketchForge — Overnight Training Config
+# Hardware: RTX 4050 Laptop (6.4 GB VRAM) | 16 GB RAM
+# Start: python -I scripts/train_component_detector.py --config config/overnight_train.yaml
+# ============================================================
+
+# -- Model -------------------------------------------------------------------
+model_name: component_detector_v1
+num_classes: 15
+
+# -- Data --------------------------------------------------------------------
+# Point at processed real data. Run scripts/process_datasets.py first.
+# Falls back to datasets/synthetic if processed does not exist yet.
+data_dir: datasets/synthetic
+manifest_path: datasets/manifests/manifest.json
+train_split: 0.80
+val_split: 0.10         # test = 10%
+image_size: 416         # 416 px fits RTX4050 safely with batch=24; 512 needs batch<=16
+
+# -- Optimiser ---------------------------------------------------------------
+epochs: 60              # hard ceiling — early stopping will cut this short
+batch_size: 48          # tested on RTX 4050 6 GB with CUDA AMP; lower to 32 if VRAM runs out
+learning_rate: 0.0008   # slightly lower than default; more stable overnight
+weight_decay: 0.0001
+lr_scheduler: cosine    # smooth warmdown over all 60 epochs
+lr_step_size: 10
+lr_gamma: 0.5
+
+# -- Regularisation ----------------------------------------------------------
+dropout: 0.15           # slightly higher — more regularisation for large dataset
+label_smoothing: 0.05
+
+# -- Early Stopping ----------------------------------------------------------
+# With 40 GB data, each epoch is expensive. Stop after 8 non-improving epochs.
+patience: 8
+min_delta: 0.0001
+
+# -- Checkpoints -------------------------------------------------------------
+checkpoint_dir: checkpoints
+save_every_n_epochs: 1  # save after EVERY epoch — safe overnight recovery
+keep_best_n: 5          # keep 5 best in case you want to compare
+
+# -- Reproducibility ---------------------------------------------------------
+seed: 42
+# 4 workers = optimal for 16 GB RAM without thrashing
+# Each worker prefetches ~2 batches; 4 workers use ~2-3 GB RAM total
+num_workers: 4
+pin_memory: true        # faster GPU transfers with pinned RAM
+mixed_precision: true   # CUDA FP16 autocast + gradient scaling
+channels_last: true     # faster convolution layout on recent NVIDIA GPUs
+prefetch_factor: 3      # keep batches ready while the GPU is working
+
+# -- Device ------------------------------------------------------------------
+device: cuda            # RTX 4050 confirmed available
+

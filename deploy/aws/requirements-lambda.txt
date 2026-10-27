@@ -1,0 +1,18 @@
+# Lambda Python dependency lockfile
+# Installed inside the ECR Lambda Python 3.11 container (Amazon Linux 2023).
+# Keep this minimal: all heavy CV work is done by the pinned opencv package.
+
+# --- Core CV stack (competition requirement: OpenCV 5) ---
+opencv-python-headless>=5.0.0
+
+# --- Data validation (required by SketchForge domain models) ---
+pydantic>=2.6
+
+# --- Image I/O helper ---
+Pillow>=10.1
+
+# --- NumPy (transitive dep of OpenCV; pin for reproducibility) ---
+numpy>=2.0
+
+# --- YAML config support ---
+PyYAML>=6.0

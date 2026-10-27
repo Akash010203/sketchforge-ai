@@ -1,0 +1,54 @@
+﻿[22:57:54] === SketchForge Overnight Training Launcher ===
+[22:57:54] Root:       C:\Users\akash\Downloads\sketchforge
+[22:57:54] Config:     C:\Users\akash\Downloads\sketchforge\config\overnight_train.yaml
+[22:57:54] Log file:   C:\Users\akash\Downloads\sketchforge\experiments\logs\overnight_2026-10-21_22-57.log
+[22:57:54] Max auto-restarts: 3
+[22:57:54] 
+[22:57:54] --- Pre-flight checks ---
+[22:57:54] Python: Python 3.11.9
+[22:57:56] PyTorch CUDA: CUDA OK
+[22:57:56] Synthetic dataset: 5529 labeled PNG files found (minimum needed: 2000)
+[22:57:56] Sufficient labeled data found. Skipping generation.
+[22:57:56] 
+[22:57:56] === Starting training in 5 seconds... ===
+[22:57:56]     Press Ctrl+C NOW to cancel.
+[22:57:56] 
+[22:58:01] 
+[22:58:01] >>> TRAINING ATTEMPT 1 of 4 <<<
+[22:58:01] 
+[22:58:01] Training PID: 14488
+[23:11:00] 
+[23:11:00] Training attempt 1 finished — exit code: 
+[23:11:00] CRASH detected. Waiting 15 seconds before restart (attempt 2)...
+[23:11:00] Checkpoints are saved — training will continue from last epoch if resumed.
+[23:11:15] 
+[23:11:15] >>> TRAINING ATTEMPT 2 of 4 <<<
+[23:11:15] 
+[23:11:15] Training PID: 2388
+[23:23:28] 
+[23:23:28] Training attempt 2 finished — exit code: 
+[23:23:28] CRASH detected. Waiting 15 seconds before restart (attempt 3)...
+[23:23:28] Checkpoints are saved — training will continue from last epoch if resumed.
+[23:23:43] 
+[23:23:43] >>> TRAINING ATTEMPT 3 of 4 <<<
+[23:23:43] 
+[23:23:43] Training PID: 22156
+[23:41:31] 
+[23:41:31] Training attempt 3 finished — exit code: 
+[23:41:31] CRASH detected. Waiting 15 seconds before restart (attempt 4)...
+[23:41:31] Checkpoints are saved — training will continue from last epoch if resumed.
+[23:41:46] 
+[23:41:46] >>> TRAINING ATTEMPT 4 of 4 <<<
+[23:41:46] 
+[23:41:46] Training PID: 5620
+[23:53:50] 
+[23:53:50] Training attempt 4 finished — exit code: 
+[23:53:50] All 4 attempts exhausted. Check log for errors.
+[23:53:50] 
+[23:53:50] ==================================================
+[23:53:50] Overnight training session ended: 2026-10-21 23:53:50
+[23:53:50] Exit code: 
+[23:53:50] Best checkpoint:  C:\Users\akash\Downloads\sketchforge\checkpoints\component_detector_v1\best.pt
+[23:53:50] Full log:         C:\Users\akash\Downloads\sketchforge\experiments\logs\overnight_2026-10-21_22-57.log
+[23:53:50] Training report:  C:\Users\akash\Downloads\sketchforge\checkpoints\reports\
+[23:53:50] ==================================================

@@ -1,0 +1,54 @@
+{
+  "approved_training_licenses": [
+    "Apache-2.0",
+    "MIT",
+    "MPL-2.0"
+  ],
+  "datasets": [
+    {
+      "access": "public",
+      "decision": "blocked_pending_rights_or_license_review",
+      "expected_download_bytes": null,
+      "fits_half_free_space": false,
+      "id": "salt-sketch2code",
+      "license_spdx": "ODC-By-1.0",
+      "name": "SALT-NLP Sketch2Code",
+      "notes": "The upstream code is MIT, but the dataset inherits Design2Code data terms; do not treat the code license as a data license. Design2Code states research-only terms and ODC-By provenance from C4. Excluded from training pending rights review.",
+      "source_url": "https://github.com/SALT-NLP/Sketch2Code",
+      "training_eligible": false
+    },
+    {
+      "access": "public",
+      "decision": "blocked_pending_rights_or_license_review",
+      "expected_download_bytes": 31394170440,
+      "fits_half_free_space": true,
+      "id": "websight",
+      "license_spdx": "CC-BY-4.0",
+      "name": "HuggingFaceM4 WebSight v0.1",
+      "notes": "Dataset card requires compliance with source-content licenses and disclosure of dataset use when releasing a trained model or ML application. Full compressed dataset exceeds the requested 1 GB pilot and is not on the approved license allowlist.",
+      "source_url": "https://huggingface.co/datasets/HuggingFaceM4/WebSight",
+      "training_eligible": false
+    },
+    {
+      "access": "gated",
+      "decision": "blocked_pending_rights_or_license_review",
+      "expected_download_bytes": null,
+      "fits_half_free_space": false,
+      "id": "imageclef-drawnui-2021",
+      "license_spdx": "NOASSERTION",
+      "name": "ImageCLEFdrawnUI 2021 wireframe task",
+      "notes": "Official task page describes the 4,291 image wireframe set but does not state a dataset license or provide an unconditional public download. Excluded until the rights holder confirms terms and access.",
+      "source_url": "https://www.imageclef.org/2021/drawnui",
+      "training_eligible": false
+    }
+  ],
+  "disk": {
+    "free_bytes": 476809625600,
+    "planning_budget_bytes": 238404812800,
+    "safety_fraction": 0.5
+  },
+  "manifest": "datasets\\manifest.json",
+  "pilot_downloaded": false,
+  "reason_no_download": "No reviewed candidate is both clearly licensed for the requested use and within the pilot policy.",
+  "reviewed_on": "2026-10-19"
+}

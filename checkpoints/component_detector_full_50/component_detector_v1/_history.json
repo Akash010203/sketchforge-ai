@@ -1,0 +1,71 @@
+[
+  {
+    "epoch": 29,
+    "score": 0.0619671526413572,
+    "metrics": {
+      "epoch": 29,
+      "phase": "val",
+      "loss": 0.130321,
+      "cls_loss": 0.042536,
+      "box_loss": 0.043892,
+      "accuracy": 0.9441,
+      "mean_iou": 0.3306,
+      "mAP": 0.031,
+      "mAP@0.25": 0.062,
+      "mAP@0.35": 0.0257,
+      "mAP@0.50": 0.0054,
+      "samples": 2074,
+      "duration_s": 476.78,
+      "selection_score": 0.0619671526413572
+    },
+    "path": "C:\\Users\\akash\\Downloads\\sketchforge\\checkpoints\\component_detector_full_50\\component_detector_v1\\epoch_0029_score_0.061967.pt",
+    "sha256": "610e63204d5c8c92",
+    "timestamp": "2026-10-24T23:47:40Z"
+  },
+  {
+    "epoch": 38,
+    "score": 0.06196493046828637,
+    "metrics": {
+      "epoch": 38,
+      "phase": "val",
+      "loss": 0.133248,
+      "cls_loss": 0.046219,
+      "box_loss": 0.043515,
+      "accuracy": 0.9405,
+      "mean_iou": 0.3373,
+      "mAP": 0.0317,
+      "mAP@0.25": 0.062,
+      "mAP@0.35": 0.0257,
+      "mAP@0.50": 0.0073,
+      "samples": 2074,
+      "duration_s": 478.79,
+      "selection_score": 0.06196493046828637
+    },
+    "path": "C:\\Users\\akash\\Downloads\\sketchforge\\checkpoints\\component_detector_full_50\\component_detector_v1\\epoch_0038_score_0.061965.pt",
+    "sha256": "a720eb0b32ca7c71",
+    "timestamp": "2026-10-25T01:25:13Z"
+  },
+  {
+    "epoch": 43,
+    "score": 0.062033809028739034,
+    "metrics": {
+      "epoch": 43,
+      "phase": "val",
+      "loss": 0.131468,
+      "cls_loss": 0.04536,
+      "box_loss": 0.043054,
+      "accuracy": 0.9415,
+      "mean_iou": 0.3359,
+      "mAP": 0.0332,
+      "mAP@0.25": 0.062,
+      "mAP@0.35": 0.0271,
+      "mAP@0.50": 0.0104,
+      "samples": 2074,
+      "duration_s": 481.09,
+      "selection_score": 0.062033809028739034
+    },
+    "path": "C:\\Users\\akash\\Downloads\\sketchforge\\checkpoints\\component_detector_full_50\\component_detector_v1\\epoch_0043_score_0.062034.pt",
+    "sha256": "d28ad855ba6c915f",
+    "timestamp": "2026-10-25T02:19:29Z"
+  }
+]

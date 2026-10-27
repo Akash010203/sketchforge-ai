@@ -1,11 +1,13 @@
-# Tavily AI Search Integration ($3,000 Best Use Award)
+## Tavily AI Search Integration 
 
-SketchForge AI utilizes **Tavily Search API** to give its coding agents real-time web awareness.
+SketchForge AI uses the Tavily Search API to help its coding agents find up-to-date information online.
 
-### Problem Solved
-Code generation models often suffer from training cutoffs, generating outdated CSS properties or hallucinating non-existent icon names.
+### Problem
 
-### Architecture
-1. **Pre-Synthesis Retrieval**: When a user inputs an app brief (e.g. *"Modern SaaS Analytics Dashboard with dark glassmorphism and Lucide icons"*), `TavilyResearcher` (`sketchforge/integrations/tavily/client.py`) performs an advanced query.
-2. **Context Injection**: Relevant UI design patterns, CSS gradient snippets, and accessibility best practices are parsed and injected into the Nemotron-3-Ultra and Nemotron-3_5-Lightning prompts.
-3. **Outcome**: Clean, modern applications using state-of-the-art styling rather than generic 2021-era templates.
+AI coding models can rely on outdated training data, leading to old CSS techniques or incorrect icon names.
+
+### How it works
+
+1. **Search before generation:** When a user submits an app brief, `TavilyResearcher` (`sketchforge/integrations/tavily/client.py`) searches for relevant web resources.
+2. **Add context to prompts:** The system extracts useful UI design patterns, CSS examples, and accessibility guidelines, then adds them to the Nemotron-3-Ultra and Nemotron-3_5-Lightning prompts.
+3. **Generate better interfaces:** This gives the models current design references to work with, helping them produce more modern, polished applications.

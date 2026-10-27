@@ -1,0 +1,44 @@
+﻿# Full training config for the SketchForge component detector
+# Target: 40 GB real dataset on RTX 4050 (6 GB VRAM)
+# Run: python -I scripts/train_component_detector.py --config config/full_train.yaml
+
+# -- Model --------------------------------------------------------------------
+model_name: component_detector_v1
+num_classes: 15
+
+# -- Data ---------------------------------------------------------------------
+data_dir: datasets/processed
+manifest_path: datasets/manifests/manifest.json
+train_split: 0.80
+val_split: 0.10
+image_size: 512
+
+# -- Optimiser ----------------------------------------------------------------
+epochs: 20
+batch_size: 16
+learning_rate: 0.001
+weight_decay: 0.0001
+lr_scheduler: cosine
+lr_step_size: 5
+lr_gamma: 0.5
+
+# -- Regularisation -----------------------------------------------------------
+dropout: 0.1
+label_smoothing: 0.05
+
+# -- Early Stopping -----------------------------------------------------------
+patience: 5
+min_delta: 0.0001
+
+# -- Checkpoints --------------------------------------------------------------
+checkpoint_dir: checkpoints
+save_every_n_epochs: 1
+keep_best_n: 3
+
+# -- Reproducibility ----------------------------------------------------------
+seed: 42
+num_workers: 4
+pin_memory: true
+
+# -- Device -------------------------------------------------------------------
+device: cuda

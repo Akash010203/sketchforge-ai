@@ -12,7 +12,7 @@
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 9.71,
+      "duration_ms": 4.81,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -20,42 +20,41 @@
       "task_id": "c01"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_clean",
       "arm": "model",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
+      "duration_ms": 5.26,
+      "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 20524.23,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "c01",
-      "total_tokens": 0
+      "total_tokens": 3353
     },
     {
       "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 9.41,
+      "duration_ms": 7.81,
       "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 19851.71,
       "passed": true,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 0,
       "task_id": "c01",
-      "total_tokens": 0
+      "total_tokens": 2757
     },
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 9.08,
+      "duration_ms": 5.08,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -63,42 +62,41 @@
       "task_id": "c02"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_clean",
       "arm": "model",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
+      "duration_ms": 5.67,
+      "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 4811.39,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "c02",
-      "total_tokens": 0
+      "total_tokens": 2246
     },
     {
       "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 10.01,
+      "duration_ms": 5.74,
       "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 2348.14,
       "passed": true,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 0,
       "task_id": "c02",
-      "total_tokens": 0
+      "total_tokens": 2087
     },
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 13.33,
+      "duration_ms": 8.81,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -106,42 +104,41 @@
       "task_id": "c03"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_clean",
       "arm": "model",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
+      "duration_ms": 7.35,
+      "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 18602.41,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "c03",
-      "total_tokens": 0
+      "total_tokens": 3233
     },
     {
       "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 7.52,
+      "duration_ms": 9.45,
       "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 5729.72,
       "passed": true,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 0,
       "task_id": "c03",
-      "total_tokens": 0
+      "total_tokens": 2752
     },
     {
       "actual": "applied_with_issues",
       "arm": "local",
-      "duration_ms": 6.03,
+      "duration_ms": 8.25,
       "errors": [
         "new or worsened evaluator issues: ['LOW_CONTRAST:button-1:']"
       ],
@@ -151,42 +148,43 @@
       "task_id": "c04"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_with_issues",
       "arm": "model",
-      "duration_ms": 0.0,
+      "duration_ms": 7.24,
       "errors": [
-        "planner refused an edit task"
+        "new or worsened evaluator issues: ['LOW_CONTRAST:button-1:']"
       ],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 6800.49,
       "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "c04",
-      "total_tokens": 0
+      "total_tokens": 2317
     },
     {
       "actual": "applied_repaired",
       "arm": "hybrid",
-      "duration_ms": 162.5,
+      "duration_ms": 132.96,
       "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 3960.93,
       "passed": true,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 1,
       "task_id": "c04",
-      "total_tokens": 0
+      "total_tokens": 2526
     },
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 4.88,
+      "duration_ms": 4.65,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -194,42 +192,41 @@
       "task_id": "c05"
     },
     {
-      "actual": "refuse",
-      "arm": "model",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
-      "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
-      "task_id": "c05",
-      "total_tokens": 0
-    },
-    {
       "actual": "applied_clean",
-      "arm": "hybrid",
-      "duration_ms": 5.26,
+      "arm": "model",
+      "duration_ms": 5.97,
       "errors": [],
       "expected": "edit",
       "model": "nvidia/Nemotron-3_5-Lightning",
-      "model_latency_ms": 8196.68,
+      "model_latency_ms": 4707.87,
       "passed": true,
       "planner": "model",
       "planner_outcome": "ok",
       "planner_reason": null,
       "repair_patches": 0,
       "task_id": "c05",
-      "total_tokens": 2058
+      "total_tokens": 2770
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 8.43,
+      "errors": [],
+      "expected": "edit",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 3689.29,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
+      "task_id": "c05",
+      "total_tokens": 2426
     },
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 6.96,
+      "duration_ms": 8.15,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -249,14 +246,14 @@
       "passed": false,
       "planner": "model_unavailable",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "task_id": "c06",
       "total_tokens": 0
     },
     {
       "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 8.68,
+      "duration_ms": 9.48,
       "errors": [],
       "expected": "edit",
       "model": null,
@@ -264,7 +261,7 @@
       "passed": true,
       "planner": "local_fallback",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "repair_patches": 0,
       "task_id": "c06",
       "total_tokens": 0
@@ -272,7 +269,7 @@
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 6.04,
+      "duration_ms": 6.09,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -280,42 +277,41 @@
       "task_id": "c07"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_clean",
       "arm": "model",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
+      "duration_ms": 7.55,
+      "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 4667.35,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "c07",
-      "total_tokens": 0
+      "total_tokens": 2445
     },
     {
       "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 9.03,
+      "duration_ms": 6.71,
       "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 6730.6,
       "passed": true,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 0,
       "task_id": "c07",
-      "total_tokens": 0
+      "total_tokens": 2597
     },
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 5.95,
+      "duration_ms": 4.53,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -323,42 +319,41 @@
       "task_id": "c08"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_clean",
       "arm": "model",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
+      "duration_ms": 5.09,
+      "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 4916.85,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "c08",
-      "total_tokens": 0
+      "total_tokens": 2251
     },
     {
       "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 5.35,
+      "duration_ms": 5.33,
       "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 4883.07,
       "passed": true,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 0,
       "task_id": "c08",
-      "total_tokens": 0
+      "total_tokens": 2179
     },
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 4.59,
+      "duration_ms": 6.85,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -368,39 +363,39 @@
     {
       "actual": "applied_clean",
       "arm": "model",
-      "duration_ms": 5.7,
+      "duration_ms": 5.12,
       "errors": [],
       "expected": "edit",
       "model": "nvidia/Nemotron-3_5-Lightning",
-      "model_latency_ms": 7907.47,
+      "model_latency_ms": 24434.4,
       "passed": true,
       "planner": "model",
       "planner_outcome": "ok",
       "planner_reason": null,
       "repair_patches": 0,
       "task_id": "t01",
-      "total_tokens": 2055
+      "total_tokens": 2122
     },
     {
       "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 5.57,
+      "duration_ms": 5.26,
       "errors": [],
       "expected": "edit",
       "model": "nvidia/Nemotron-3_5-Lightning",
-      "model_latency_ms": 10681.22,
+      "model_latency_ms": 8726.96,
       "passed": true,
       "planner": "model",
       "planner_outcome": "ok",
       "planner_reason": null,
       "repair_patches": 0,
       "task_id": "t01",
-      "total_tokens": 2026
+      "total_tokens": 2257
     },
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 4.51,
+      "duration_ms": 4.53,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -408,42 +403,41 @@
       "task_id": "t02"
     },
     {
-      "actual": "refuse",
-      "arm": "model",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
-      "expected": "edit",
-      "model": "nvidia/Nemotron-3_5-Lightning",
-      "model_latency_ms": 8555.74,
-      "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
-      "task_id": "t02",
-      "total_tokens": 2118
-    },
-    {
       "actual": "applied_clean",
-      "arm": "hybrid",
-      "duration_ms": 7.32,
+      "arm": "model",
+      "duration_ms": 5.06,
       "errors": [],
       "expected": "edit",
       "model": "nvidia/Nemotron-3_5-Lightning",
-      "model_latency_ms": 8611.86,
+      "model_latency_ms": 5759.33,
       "passed": true,
       "planner": "model",
       "planner_outcome": "ok",
       "planner_reason": null,
       "repair_patches": 0,
       "task_id": "t02",
-      "total_tokens": 2118
+      "total_tokens": 1954
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 7.66,
+      "errors": [],
+      "expected": "edit",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 6153.44,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
+      "task_id": "t02",
+      "total_tokens": 2065
     },
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 7.14,
+      "duration_ms": 10.46,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -451,42 +445,41 @@
       "task_id": "t03"
     },
     {
-      "actual": "refuse",
-      "arm": "model",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
-      "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
-      "task_id": "t03",
-      "total_tokens": 0
-    },
-    {
       "actual": "applied_clean",
-      "arm": "hybrid",
-      "duration_ms": 7.36,
+      "arm": "model",
+      "duration_ms": 14.87,
       "errors": [],
       "expected": "edit",
       "model": "nvidia/Nemotron-3_5-Lightning",
-      "model_latency_ms": 3397.49,
+      "model_latency_ms": 50318.38,
       "passed": true,
       "planner": "model",
       "planner_outcome": "ok",
       "planner_reason": null,
       "repair_patches": 0,
       "task_id": "t03",
-      "total_tokens": 2424
+      "total_tokens": 2740
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 7.39,
+      "errors": [],
+      "expected": "edit",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 5396.06,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
+      "task_id": "t03",
+      "total_tokens": 2698
     },
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 7.57,
+      "duration_ms": 6.17,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -494,42 +487,41 @@
       "task_id": "t04"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_clean",
       "arm": "model",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
+      "duration_ms": 11.79,
+      "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 7647.83,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "t04",
-      "total_tokens": 0
+      "total_tokens": 2590
     },
     {
       "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 6.98,
+      "duration_ms": 18.63,
       "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 3633.47,
       "passed": true,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 0,
       "task_id": "t04",
-      "total_tokens": 0
+      "total_tokens": 2254
     },
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 5.1,
+      "duration_ms": 9.86,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -537,42 +529,41 @@
       "task_id": "t05"
     },
     {
-      "actual": "refuse",
-      "arm": "model",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
-      "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
-      "task_id": "t05",
-      "total_tokens": 0
-    },
-    {
       "actual": "applied_clean",
-      "arm": "hybrid",
-      "duration_ms": 11.43,
+      "arm": "model",
+      "duration_ms": 18.44,
       "errors": [],
       "expected": "edit",
       "model": "nvidia/Nemotron-3_5-Lightning",
-      "model_latency_ms": 4026.21,
+      "model_latency_ms": 3698.03,
       "passed": true,
       "planner": "model",
       "planner_outcome": "ok",
       "planner_reason": null,
       "repair_patches": 0,
       "task_id": "t05",
-      "total_tokens": 1982
+      "total_tokens": 2188
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 10.09,
+      "errors": [],
+      "expected": "edit",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 4373.83,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
+      "task_id": "t05",
+      "total_tokens": 2282
     },
     {
       "actual": "applied_with_issues",
       "arm": "local",
-      "duration_ms": 13.55,
+      "duration_ms": 13.73,
       "errors": [
         "new or worsened evaluator issues: ['LOW_CONTRAST:button-1:']"
       ],
@@ -594,14 +585,14 @@
       "passed": false,
       "planner": "model_unavailable",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "task_id": "t06",
       "total_tokens": 0
     },
     {
       "actual": "applied_repaired",
       "arm": "hybrid",
-      "duration_ms": 577.43,
+      "duration_ms": 571.54,
       "errors": [],
       "expected": "edit",
       "model": null,
@@ -609,7 +600,7 @@
       "passed": true,
       "planner": "local_fallback",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "repair_patches": 1,
       "task_id": "t06",
       "total_tokens": 0
@@ -617,7 +608,7 @@
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 9.46,
+      "duration_ms": 13.48,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -627,39 +618,39 @@
     {
       "actual": "applied_clean",
       "arm": "model",
-      "duration_ms": 5.18,
+      "duration_ms": 10.57,
       "errors": [],
       "expected": "edit",
       "model": "nvidia/Nemotron-3_5-Lightning",
-      "model_latency_ms": 8042.22,
+      "model_latency_ms": 4459.21,
       "passed": true,
       "planner": "model",
       "planner_outcome": "ok",
       "planner_reason": null,
       "repair_patches": 0,
       "task_id": "m01",
-      "total_tokens": 2080
+      "total_tokens": 2320
     },
     {
       "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 5.15,
+      "duration_ms": 13.31,
       "errors": [],
       "expected": "edit",
       "model": "nvidia/Nemotron-3_5-Lightning",
-      "model_latency_ms": 8448.68,
+      "model_latency_ms": 4294.77,
       "passed": true,
       "planner": "model",
       "planner_outcome": "ok",
       "planner_reason": null,
       "repair_patches": 0,
       "task_id": "m01",
-      "total_tokens": 2106
+      "total_tokens": 2289
     },
     {
       "actual": "applied_with_issues",
       "arm": "local",
-      "duration_ms": 6.88,
+      "duration_ms": 19.99,
       "errors": [
         "new or worsened evaluator issues: ['MISALIGNED:sidebar-1:center_y']"
       ],
@@ -669,26 +660,27 @@
       "task_id": "m02"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_with_issues",
       "arm": "model",
-      "duration_ms": 0.0,
+      "duration_ms": 14.6,
       "errors": [
-        "planner refused an edit task"
+        "new or worsened evaluator issues: ['MISALIGNED:sidebar-1:center_y']"
       ],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 9242.54,
       "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "m02",
-      "total_tokens": 0
+      "total_tokens": 2711
     },
     {
       "actual": "applied_with_issues",
       "arm": "hybrid",
-      "duration_ms": 341.27,
+      "duration_ms": 591.0,
       "errors": [
         "new or worsened evaluator issues: ['MISALIGNED:sidebar-1:center_y']"
       ],
@@ -698,7 +690,7 @@
       "passed": false,
       "planner": "local_fallback",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "repair_patches": 0,
       "task_id": "m02",
       "total_tokens": 0
@@ -706,7 +698,7 @@
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 6.15,
+      "duration_ms": 14.85,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -726,14 +718,14 @@
       "passed": false,
       "planner": "model_unavailable",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "task_id": "m03",
       "total_tokens": 0
     },
     {
       "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 6.82,
+      "duration_ms": 10.84,
       "errors": [],
       "expected": "edit",
       "model": null,
@@ -741,7 +733,7 @@
       "passed": true,
       "planner": "local_fallback",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "repair_patches": 0,
       "task_id": "m03",
       "total_tokens": 0
@@ -749,7 +741,7 @@
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 6.16,
+      "duration_ms": 12.91,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -769,14 +761,14 @@
       "passed": false,
       "planner": "model_unavailable",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "task_id": "m04",
       "total_tokens": 0
     },
     {
       "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 7.49,
+      "duration_ms": 6.94,
       "errors": [],
       "expected": "edit",
       "model": null,
@@ -784,7 +776,7 @@
       "passed": true,
       "planner": "local_fallback",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "repair_patches": 0,
       "task_id": "m04",
       "total_tokens": 0
@@ -792,7 +784,7 @@
     {
       "actual": "applied_with_issues",
       "arm": "local",
-      "duration_ms": 8.12,
+      "duration_ms": 6.87,
       "errors": [
         "new or worsened evaluator issues: ['MISALIGNED:button-1:right']"
       ],
@@ -802,44 +794,45 @@
       "task_id": "m05"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_with_issues",
       "arm": "model",
-      "duration_ms": 0.0,
+      "duration_ms": 14.46,
       "errors": [
-        "planner refused an edit task"
+        "new or worsened evaluator issues: ['MISALIGNED:button-1:right']"
       ],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 4905.85,
       "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "m05",
-      "total_tokens": 0
+      "total_tokens": 2880
     },
     {
       "actual": "applied_repaired",
       "arm": "hybrid",
-      "duration_ms": 345.17,
+      "duration_ms": 471.88,
       "errors": [
         "button-1.x: expected 300, got 312.016"
       ],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 6231.79,
       "passed": false,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 1,
       "task_id": "m05",
-      "total_tokens": 0
+      "total_tokens": 3214
     },
     {
       "actual": "applied_with_issues",
       "arm": "local",
-      "duration_ms": 4.68,
+      "duration_ms": 8.76,
       "errors": [
         "new or worsened evaluator issues: ['MISALIGNED:checkbox-1:left']"
       ],
@@ -849,44 +842,45 @@
       "task_id": "m06"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_with_issues",
       "arm": "model",
-      "duration_ms": 0.0,
+      "duration_ms": 8.27,
       "errors": [
-        "planner refused an edit task"
+        "new or worsened evaluator issues: ['MISALIGNED:checkbox-1:left']"
       ],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 3405.86,
       "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "m06",
-      "total_tokens": 0
+      "total_tokens": 2265
     },
     {
       "actual": "applied_repaired",
       "arm": "hybrid",
-      "duration_ms": 338.22,
+      "duration_ms": 444.44,
       "errors": [
         "checkbox-1.dx: expected -6, got None"
       ],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 3447.17,
       "passed": false,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 1,
       "task_id": "m06",
-      "total_tokens": 0
+      "total_tokens": 2313
     },
     {
       "actual": "applied_with_issues",
       "arm": "local",
-      "duration_ms": 5.11,
+      "duration_ms": 6.34,
       "errors": [
         "new or worsened evaluator issues: ['OVERFLOW_PARENT:button-1:right']"
       ],
@@ -908,14 +902,14 @@
       "passed": false,
       "planner": "model_unavailable",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "task_id": "r01",
       "total_tokens": 0
     },
     {
       "actual": "applied_repaired",
       "arm": "hybrid",
-      "duration_ms": 336.95,
+      "duration_ms": 334.76,
       "errors": [],
       "expected": "edit",
       "model": null,
@@ -923,7 +917,7 @@
       "passed": true,
       "planner": "local_fallback",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "repair_patches": 1,
       "task_id": "r01",
       "total_tokens": 0
@@ -931,7 +925,7 @@
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 8.47,
+      "duration_ms": 6.39,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -939,42 +933,41 @@
       "task_id": "r02"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_clean",
       "arm": "model",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
+      "duration_ms": 7.92,
+      "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 4854.41,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "r02",
-      "total_tokens": 0
+      "total_tokens": 2673
     },
     {
       "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 6.87,
+      "duration_ms": 7.99,
       "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 5152.85,
       "passed": true,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 0,
       "task_id": "r02",
-      "total_tokens": 0
+      "total_tokens": 2952
     },
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 8.36,
+      "duration_ms": 7.94,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -982,42 +975,41 @@
       "task_id": "r03"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_clean",
       "arm": "model",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
+      "duration_ms": 8.13,
+      "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 4249.66,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "r03",
-      "total_tokens": 0
+      "total_tokens": 3002
     },
     {
       "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 10.93,
+      "duration_ms": 8.07,
       "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 7762.8,
       "passed": true,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 0,
       "task_id": "r03",
-      "total_tokens": 0
+      "total_tokens": 3000
     },
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 6.97,
+      "duration_ms": 4.47,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -1025,42 +1017,41 @@
       "task_id": "r04"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_clean",
       "arm": "model",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
+      "duration_ms": 5.18,
+      "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 6442.23,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "r04",
-      "total_tokens": 0
+      "total_tokens": 2733
     },
     {
       "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 5.41,
+      "duration_ms": 5.21,
       "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 5923.14,
       "passed": true,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 0,
       "task_id": "r04",
-      "total_tokens": 0
+      "total_tokens": 2413
     },
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 4.66,
+      "duration_ms": 4.59,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -1068,42 +1059,41 @@
       "task_id": "r05"
     },
     {
-      "actual": "refuse",
-      "arm": "model",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
-      "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
-      "task_id": "r05",
-      "total_tokens": 0
-    },
-    {
       "actual": "applied_clean",
-      "arm": "hybrid",
-      "duration_ms": 6.22,
+      "arm": "model",
+      "duration_ms": 5.94,
       "errors": [],
       "expected": "edit",
       "model": "nvidia/Nemotron-3_5-Lightning",
-      "model_latency_ms": 4002.59,
+      "model_latency_ms": 7676.66,
       "passed": true,
       "planner": "model",
       "planner_outcome": "ok",
       "planner_reason": null,
       "repair_patches": 0,
       "task_id": "r05",
-      "total_tokens": 2167
+      "total_tokens": 2702
+    },
+    {
+      "actual": "applied_clean",
+      "arm": "hybrid",
+      "duration_ms": 7.32,
+      "errors": [],
+      "expected": "edit",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 6545.66,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
+      "task_id": "r05",
+      "total_tokens": 2661
     },
     {
       "actual": "applied_with_issues",
       "arm": "local",
-      "duration_ms": 6.59,
+      "duration_ms": 5.98,
       "errors": [
         "new or worsened evaluator issues: ['OVERFLOW_PAGE:button-1:right']"
       ],
@@ -1113,26 +1103,27 @@
       "task_id": "r06"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_with_issues",
       "arm": "model",
-      "duration_ms": 0.0,
+      "duration_ms": 7.41,
       "errors": [
-        "planner refused an edit task"
+        "new or worsened evaluator issues: ['OVERFLOW_PAGE:button-1:right']"
       ],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 7580.54,
       "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "r06",
-      "total_tokens": 0
+      "total_tokens": 3385
     },
     {
       "actual": "applied_repaired",
       "arm": "hybrid",
-      "duration_ms": 144.47,
+      "duration_ms": 119.23,
       "errors": [],
       "expected": "edit",
       "model": null,
@@ -1140,7 +1131,7 @@
       "passed": true,
       "planner": "local_fallback",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "repair_patches": 1,
       "task_id": "r06",
       "total_tokens": 0
@@ -1148,7 +1139,7 @@
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 7.11,
+      "duration_ms": 6.75,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -1168,30 +1159,30 @@
       "passed": false,
       "planner": "model_unavailable",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "task_id": "r07",
       "total_tokens": 0
     },
     {
       "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 8.39,
+      "duration_ms": 7.68,
       "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 18543.08,
       "passed": true,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 0,
       "task_id": "r07",
-      "total_tokens": 0
+      "total_tokens": 3702
     },
     {
       "actual": "applied_with_issues",
       "arm": "local",
-      "duration_ms": 4.66,
+      "duration_ms": 4.77,
       "errors": [
         "new or worsened evaluator issues: ['TEXT_CLIPPED:heading-1:']"
       ],
@@ -1201,26 +1192,27 @@
       "task_id": "f01"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_with_issues",
       "arm": "model",
-      "duration_ms": 0.0,
+      "duration_ms": 5.23,
       "errors": [
-        "planner refused an edit task"
+        "new or worsened evaluator issues: ['TEXT_CLIPPED:heading-1:']"
       ],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 4790.06,
       "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "f01",
-      "total_tokens": 0
+      "total_tokens": 2445
     },
     {
       "actual": "applied_repaired",
       "arm": "hybrid",
-      "duration_ms": 381.59,
+      "duration_ms": 304.7,
       "errors": [],
       "expected": "edit",
       "model": null,
@@ -1228,7 +1220,7 @@
       "passed": true,
       "planner": "local_fallback",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "repair_patches": 1,
       "task_id": "f01",
       "total_tokens": 0
@@ -1236,7 +1228,7 @@
     {
       "actual": "applied_with_issues",
       "arm": "local",
-      "duration_ms": 7.64,
+      "duration_ms": 6.88,
       "errors": [
         "new or worsened evaluator issues: ['TEXT_CLIPPED:heading-2:', 'TEXT_OVERFLOW:heading-2:']"
       ],
@@ -1258,30 +1250,30 @@
       "passed": false,
       "planner": "model_unavailable",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "task_id": "f02",
       "total_tokens": 0
     },
     {
       "actual": "applied_repaired",
       "arm": "hybrid",
-      "duration_ms": 572.38,
+      "duration_ms": 539.73,
       "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 6920.2,
       "passed": true,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 2,
       "task_id": "f02",
-      "total_tokens": 0
+      "total_tokens": 3186
     },
     {
       "actual": "applied_with_issues",
       "arm": "local",
-      "duration_ms": 6.53,
+      "duration_ms": 10.82,
       "errors": [
         "new or worsened evaluator issues: ['TEXT_CLIPPED:heading-1:', 'TEXT_OVERFLOW:heading-1:']"
       ],
@@ -1291,44 +1283,45 @@
       "task_id": "f03"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_with_issues",
       "arm": "model",
-      "duration_ms": 0.0,
+      "duration_ms": 6.86,
       "errors": [
-        "planner refused an edit task"
+        "new or worsened evaluator issues: ['TEXT_CLIPPED:heading-1:', 'TEXT_OVERFLOW:heading-1:']"
       ],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 2574.99,
       "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "f03",
-      "total_tokens": 0
+      "total_tokens": 2107
     },
     {
       "actual": "applied_repaired",
       "arm": "hybrid",
-      "duration_ms": 196.04,
+      "duration_ms": 191.83,
       "errors": [
         "heading-1.font_size: expected 26, got 21.5"
       ],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 7452.79,
       "passed": false,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 2,
       "task_id": "f03",
-      "total_tokens": 0
+      "total_tokens": 4983
     },
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 4.86,
+      "duration_ms": 4.95,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -1348,30 +1341,32 @@
       "passed": false,
       "planner": "model_unavailable",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "task_id": "k01",
       "total_tokens": 0
     },
     {
       "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 5.63,
-      "errors": [],
+      "duration_ms": 5.28,
+      "errors": [
+        "button-1.corner_radius: expected '>', got 4.0"
+      ],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": true,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 7997.97,
+      "passed": false,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 0,
       "task_id": "k01",
-      "total_tokens": 0
+      "total_tokens": 3116
     },
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 6.98,
+      "duration_ms": 7.56,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -1379,26 +1374,29 @@
       "task_id": "k02"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_clean",
       "arm": "model",
-      "duration_ms": 0.0,
+      "duration_ms": 7.66,
       "errors": [
-        "planner refused an edit task"
+        "card-1.corner_radius: expected '>', got 10.0",
+        "card-2.corner_radius: expected '>', got 10.0",
+        "card-3.corner_radius: expected '>', got 10.0"
       ],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 8071.13,
       "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "k02",
-      "total_tokens": 0
+      "total_tokens": 3236
     },
     {
       "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 8.22,
+      "duration_ms": 7.62,
       "errors": [],
       "expected": "edit",
       "model": null,
@@ -1406,7 +1404,7 @@
       "passed": true,
       "planner": "local_fallback",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "repair_patches": 0,
       "task_id": "k02",
       "total_tokens": 0
@@ -1435,7 +1433,7 @@
       "passed": false,
       "planner": "model_unavailable",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "task_id": "k03",
       "total_tokens": 0
     },
@@ -1452,14 +1450,14 @@
       "passed": false,
       "planner": "local_fallback",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "task_id": "k03",
       "total_tokens": 0
     },
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 4.89,
+      "duration_ms": 6.49,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -1467,42 +1465,41 @@
       "task_id": "x01"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_clean",
       "arm": "model",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
+      "duration_ms": 5.27,
+      "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 5012.0,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "x01",
-      "total_tokens": 0
+      "total_tokens": 2398
     },
     {
       "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 6.78,
+      "duration_ms": 6.95,
       "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 5265.28,
       "passed": true,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 0,
       "task_id": "x01",
-      "total_tokens": 0
+      "total_tokens": 2451
     },
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 7.18,
+      "duration_ms": 6.99,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -1522,14 +1519,14 @@
       "passed": false,
       "planner": "model_unavailable",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "task_id": "x02",
       "total_tokens": 0
     },
     {
       "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 7.99,
+      "duration_ms": 7.48,
       "errors": [],
       "expected": "edit",
       "model": null,
@@ -1537,7 +1534,7 @@
       "passed": true,
       "planner": "local_fallback",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "repair_patches": 0,
       "task_id": "x02",
       "total_tokens": 0
@@ -1545,7 +1542,7 @@
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 5.09,
+      "duration_ms": 4.61,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -1553,37 +1550,36 @@
       "task_id": "x03"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_clean",
       "arm": "model",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
+      "duration_ms": 5.14,
+      "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 4091.4,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "x03",
-      "total_tokens": 0
+      "total_tokens": 2439
     },
     {
       "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 5.61,
+      "duration_ms": 6.85,
       "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 5370.5,
       "passed": true,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 0,
       "task_id": "x03",
-      "total_tokens": 0
+      "total_tokens": 2822
     },
     {
       "actual": "refuse",
@@ -1597,43 +1593,43 @@
       "task_id": "x04"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_with_issues",
       "arm": "model",
-      "duration_ms": 0.0,
+      "duration_ms": 7.16,
       "errors": [
-        "planner refused an edit task"
+        "new or worsened evaluator issues: ['LOW_CONTRAST:input-1:', 'LOW_CONTRAST:input-3:']"
       ],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 4674.95,
       "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "x04",
-      "total_tokens": 0
+      "total_tokens": 2651
     },
     {
-      "actual": "refuse",
+      "actual": "applied_repaired",
       "arm": "hybrid",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
+      "duration_ms": 236.6,
+      "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 6451.44,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 2,
       "task_id": "x04",
-      "total_tokens": 0
+      "total_tokens": 3133
     },
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 7.72,
+      "duration_ms": 9.5,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -1641,42 +1637,45 @@
       "task_id": "x05"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_clean",
       "arm": "model",
-      "duration_ms": 0.0,
+      "duration_ms": 14.2,
       "errors": [
-        "planner refused an edit task"
+        "card-1.corner_radius: expected '>', got 10.0",
+        "card-2.corner_radius: expected '>', got 10.0",
+        "card-3.corner_radius: expected '>', got 10.0"
       ],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 5141.65,
       "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "x05",
-      "total_tokens": 0
+      "total_tokens": 3161
     },
     {
       "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 7.98,
+      "duration_ms": 15.46,
       "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 5836.68,
       "passed": true,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 0,
       "task_id": "x05",
-      "total_tokens": 0
+      "total_tokens": 3249
     },
     {
       "actual": "applied_with_issues",
       "arm": "local",
-      "duration_ms": 4.9,
+      "duration_ms": 10.89,
       "errors": [
         "new or worsened evaluator issues: ['OVERFLOW_PARENT:button-1:right']"
       ],
@@ -1698,25 +1697,25 @@
       "passed": false,
       "planner": "model_unavailable",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "task_id": "x06",
       "total_tokens": 0
     },
     {
       "actual": "applied_repaired",
       "arm": "hybrid",
-      "duration_ms": 325.27,
+      "duration_ms": 340.21,
       "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 6947.54,
       "passed": true,
       "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_outcome": "refused",
+      "planner_reason": "The instruction does not specify how much wider to make the button, so the resize amount is ambiguous.",
       "repair_patches": 1,
       "task_id": "x06",
-      "total_tokens": 0
+      "total_tokens": 3323
     },
     {
       "actual": "refuse",
@@ -1730,38 +1729,36 @@
       "task_id": "p01"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_clean",
       "arm": "model",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
+      "duration_ms": 5.18,
+      "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 5284.29,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "p01",
-      "total_tokens": 0
+      "total_tokens": 2873
     },
     {
-      "actual": "refuse",
+      "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
+      "duration_ms": 9.58,
+      "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 6508.41,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "p01",
-      "total_tokens": 0
+      "total_tokens": 3179
     },
     {
       "actual": "refuse",
@@ -1775,43 +1772,41 @@
       "task_id": "p02"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_clean",
       "arm": "model",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
+      "duration_ms": 11.35,
+      "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 10553.72,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "p02",
-      "total_tokens": 0
+      "total_tokens": 2972
     },
     {
-      "actual": "refuse",
+      "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
+      "duration_ms": 11.03,
+      "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 11686.03,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "p02",
-      "total_tokens": 0
+      "total_tokens": 3223
     },
     {
       "actual": "applied_clean",
       "arm": "local",
-      "duration_ms": 8.48,
+      "duration_ms": 14.09,
       "errors": [],
       "expected": "edit",
       "passed": true,
@@ -1819,42 +1814,41 @@
       "task_id": "p03"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_clean",
       "arm": "model",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
+      "duration_ms": 17.54,
+      "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 7597.05,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "p03",
-      "total_tokens": 0
+      "total_tokens": 2670
     },
     {
       "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 7.98,
+      "duration_ms": 13.85,
       "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 10490.29,
       "passed": true,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 0,
       "task_id": "p03",
-      "total_tokens": 0
+      "total_tokens": 2914
     },
     {
       "actual": "applied_with_issues",
       "arm": "local",
-      "duration_ms": 6.2,
+      "duration_ms": 11.59,
       "errors": [
         "new or worsened evaluator issues: ['TEXT_CLIPPED:heading-1:', 'TEXT_OVERFLOW:heading-1:']"
       ],
@@ -1864,37 +1858,38 @@
       "task_id": "p04"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_with_issues",
       "arm": "model",
-      "duration_ms": 0.0,
+      "duration_ms": 12.38,
       "errors": [
-        "planner refused an edit task"
+        "new or worsened evaluator issues: ['TEXT_CLIPPED:heading-1:', 'TEXT_OVERFLOW:heading-1:']"
       ],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 42297.33,
       "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "p04",
-      "total_tokens": 0
+      "total_tokens": 6182
     },
     {
       "actual": "applied_repaired",
       "arm": "hybrid",
-      "duration_ms": 195.49,
+      "duration_ms": 192.38,
       "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 59502.82,
       "passed": true,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 2,
       "task_id": "p04",
-      "total_tokens": 0
+      "total_tokens": 2779
     },
     {
       "actual": "refuse",
@@ -1908,38 +1903,36 @@
       "task_id": "p05"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_clean",
       "arm": "model",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
+      "duration_ms": 6.15,
+      "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 21781.21,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "p05",
-      "total_tokens": 0
+      "total_tokens": 2494
     },
     {
-      "actual": "refuse",
+      "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
+      "duration_ms": 8.01,
+      "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 43995.46,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "p05",
-      "total_tokens": 0
+      "total_tokens": 2574
     },
     {
       "actual": "refuse",
@@ -1953,43 +1946,41 @@
       "task_id": "p06"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_clean",
       "arm": "model",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
+      "duration_ms": 9.54,
+      "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 14790.78,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "p06",
-      "total_tokens": 0
+      "total_tokens": 2901
     },
     {
-      "actual": "refuse",
+      "actual": "applied_clean",
       "arm": "hybrid",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
+      "duration_ms": 9.15,
+      "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 16676.37,
+      "passed": true,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "p06",
-      "total_tokens": 0
+      "total_tokens": 3040
     },
     {
       "actual": "applied_with_issues",
       "arm": "local",
-      "duration_ms": 5.21,
+      "duration_ms": 5.77,
       "errors": [
         "new or worsened evaluator issues: ['OVERFLOW_PARENT:button-1:right']"
       ],
@@ -1999,42 +1990,43 @@
       "task_id": "l01"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_with_issues",
       "arm": "model",
-      "duration_ms": 0.0,
+      "duration_ms": 6.09,
       "errors": [
-        "planner refused an edit task"
+        "new or worsened evaluator issues: ['OVERFLOW_PARENT:button-1:right']"
       ],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 14155.4,
       "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "l01",
-      "total_tokens": 0
+      "total_tokens": 2557
     },
     {
       "actual": "applied_repaired",
       "arm": "hybrid",
-      "duration_ms": 325.31,
+      "duration_ms": 272.04,
       "errors": [],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 18389.31,
       "passed": true,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 1,
       "task_id": "l01",
-      "total_tokens": 0
+      "total_tokens": 2820
     },
     {
       "actual": "applied_with_issues",
       "arm": "local",
-      "duration_ms": 4.8,
+      "duration_ms": 4.94,
       "errors": [
         "new or worsened evaluator issues: ['OVERFLOW_PARENT:button-1:bottom']"
       ],
@@ -2044,26 +2036,27 @@
       "task_id": "l02"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_with_issues",
       "arm": "model",
-      "duration_ms": 0.0,
+      "duration_ms": 5.13,
       "errors": [
-        "planner refused an edit task"
+        "new or worsened evaluator issues: ['OVERFLOW_PARENT:button-1:bottom']"
       ],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 12984.71,
       "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "l02",
-      "total_tokens": 0
+      "total_tokens": 2426
     },
     {
       "actual": "applied_with_issues",
       "arm": "hybrid",
-      "duration_ms": 130.27,
+      "duration_ms": 220.87,
       "errors": [
         "new or worsened evaluator issues: ['OVERFLOW_PARENT:button-1:bottom']"
       ],
@@ -2073,7 +2066,7 @@
       "passed": false,
       "planner": "local_fallback",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "repair_patches": 0,
       "task_id": "l02",
       "total_tokens": 0
@@ -2081,7 +2074,7 @@
     {
       "actual": "applied_with_issues",
       "arm": "local",
-      "duration_ms": 5.46,
+      "duration_ms": 8.82,
       "errors": [
         "new or worsened evaluator issues: ['TEXT_CLIPPED:heading-1:', 'TEXT_OVERFLOW:heading-1:']"
       ],
@@ -2091,44 +2084,45 @@
       "task_id": "l03"
     },
     {
-      "actual": "refuse",
+      "actual": "applied_with_issues",
       "arm": "model",
-      "duration_ms": 0.0,
+      "duration_ms": 12.33,
       "errors": [
-        "planner refused an edit task"
+        "new or worsened evaluator issues: ['TEXT_CLIPPED:heading-1:', 'TEXT_OVERFLOW:heading-1:']"
       ],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 16993.57,
       "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
       "task_id": "l03",
-      "total_tokens": 0
+      "total_tokens": 2461
     },
     {
       "actual": "applied_repaired",
       "arm": "hybrid",
-      "duration_ms": 323.55,
+      "duration_ms": 723.45,
       "errors": [
         "heading-1.font_size: expected '>', got 10.0"
       ],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 9013.81,
       "passed": false,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 1,
       "task_id": "l03",
-      "total_tokens": 0
+      "total_tokens": 2353
     },
     {
       "actual": "applied_with_issues",
       "arm": "local",
-      "duration_ms": 7.72,
+      "duration_ms": 20.78,
       "errors": [
         "new or worsened evaluator issues: ['OVERLAP:button-1,sidebar-1:', 'OVERLAP:card-1,sidebar-1:', 'OVERLAP:image-2,sidebar-1:']"
       ],
@@ -2138,44 +2132,45 @@
       "task_id": "l04"
     },
     {
-      "actual": "refuse",
-      "arm": "model",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
-      "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
-      "task_id": "l04",
-      "total_tokens": 0
-    },
-    {
       "actual": "applied_with_issues",
-      "arm": "hybrid",
-      "duration_ms": 337.9,
+      "arm": "model",
+      "duration_ms": 7.81,
       "errors": [
         "new or worsened evaluator issues: ['OVERLAP:button-1,sidebar-1:', 'OVERLAP:card-1,sidebar-1:', 'OVERLAP:image-2,sidebar-1:']"
       ],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 10724.5,
       "passed": false,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 0,
       "task_id": "l04",
-      "total_tokens": 0
+      "total_tokens": 2575
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "hybrid",
+      "duration_ms": 338.69,
+      "errors": [
+        "new or worsened evaluator issues: ['OVERLAP:button-1,sidebar-1:', 'OVERLAP:card-1,sidebar-1:', 'OVERLAP:image-2,sidebar-1:']"
+      ],
+      "expected": "edit",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 10740.72,
+      "passed": false,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
+      "task_id": "l04",
+      "total_tokens": 2584
     },
     {
       "actual": "applied_with_issues",
       "arm": "local",
-      "duration_ms": 6.4,
+      "duration_ms": 6.47,
       "errors": [
         "new or worsened evaluator issues: ['OVERFLOW_PAGE:heading-1:top']"
       ],
@@ -2185,44 +2180,45 @@
       "task_id": "l05"
     },
     {
-      "actual": "refuse",
-      "arm": "model",
-      "duration_ms": 0.0,
-      "errors": [
-        "planner refused an edit task"
-      ],
-      "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
-      "passed": false,
-      "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
-      "task_id": "l05",
-      "total_tokens": 0
-    },
-    {
       "actual": "applied_with_issues",
-      "arm": "hybrid",
-      "duration_ms": 59.22,
+      "arm": "model",
+      "duration_ms": 6.93,
       "errors": [
         "new or worsened evaluator issues: ['OVERFLOW_PAGE:heading-1:top']"
       ],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 11833.39,
       "passed": false,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 0,
       "task_id": "l05",
-      "total_tokens": 0
+      "total_tokens": 2361
+    },
+    {
+      "actual": "applied_with_issues",
+      "arm": "hybrid",
+      "duration_ms": 63.91,
+      "errors": [
+        "new or worsened evaluator issues: ['OVERFLOW_PAGE:heading-1:top']"
+      ],
+      "expected": "edit",
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 12708.31,
+      "passed": false,
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
+      "repair_patches": 0,
+      "task_id": "l05",
+      "total_tokens": 2388
     },
     {
       "actual": "applied_with_issues",
       "arm": "local",
-      "duration_ms": 4.87,
+      "duration_ms": 5.32,
       "errors": [
         "new or worsened evaluator issues: ['OVERFLOW_PAGE:card-1:bottom', 'OVERLAP:card-1,text-4:']"
       ],
@@ -2244,27 +2240,27 @@
       "passed": false,
       "planner": "model_unavailable",
       "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_reason": "the answer was cut off (max_tokens reached); it would not be valid JSON",
       "task_id": "l06",
       "total_tokens": 0
     },
     {
       "actual": "applied_with_issues",
       "arm": "hybrid",
-      "duration_ms": 919.28,
+      "duration_ms": 1013.39,
       "errors": [
         "new or worsened evaluator issues: ['OVERFLOW_PAGE:card-1:bottom', 'OVERLAP:card-1,text-4:']"
       ],
       "expected": "edit",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 22145.09,
       "passed": false,
-      "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner": "model",
+      "planner_outcome": "ok",
+      "planner_reason": null,
       "repair_patches": 0,
       "task_id": "l06",
-      "total_tokens": 0
+      "total_tokens": 2888
     },
     {
       "actual": "refuse",
@@ -2281,14 +2277,14 @@
       "duration_ms": 0.0,
       "errors": [],
       "expected": "refuse",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 15847.8,
       "passed": true,
       "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_outcome": "refused",
+      "planner_reason": "There are two input components (input-1 and input-2) in the design, so 'the input' is ambiguous.",
       "task_id": "n01",
-      "total_tokens": 0
+      "total_tokens": 2158
     },
     {
       "actual": "refuse",
@@ -2296,14 +2292,14 @@
       "duration_ms": 0.0,
       "errors": [],
       "expected": "refuse",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 28698.65,
       "passed": true,
       "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_outcome": "refused",
+      "planner_reason": "There are two input components (input-1 and input-2), so \"the input\" is ambiguous.",
       "task_id": "n01",
-      "total_tokens": 0
+      "total_tokens": 2002
     },
     {
       "actual": "refuse",
@@ -2320,14 +2316,14 @@
       "duration_ms": 0.0,
       "errors": [],
       "expected": "refuse",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 8598.85,
       "passed": true,
       "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_outcome": "refused",
+      "planner_reason": "There are three card components (card-1, card-2, card-3) and the instruction does not specify which one to make red.",
       "task_id": "n02",
-      "total_tokens": 0
+      "total_tokens": 2795
     },
     {
       "actual": "refuse",
@@ -2335,14 +2331,14 @@
       "duration_ms": 0.0,
       "errors": [],
       "expected": "refuse",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 5194.95,
       "passed": true,
       "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_outcome": "refused",
+      "planner_reason": "The design contains multiple cards, so it's unclear which one to make red.",
       "task_id": "n02",
-      "total_tokens": 0
+      "total_tokens": 2474
     },
     {
       "actual": "refuse",
@@ -2360,13 +2356,13 @@
       "errors": [],
       "expected": "refuse",
       "model": "nvidia/Nemotron-3_5-Lightning",
-      "model_latency_ms": 8494.35,
+      "model_latency_ms": 4923.69,
       "passed": true,
       "planner": "model_unavailable",
       "planner_outcome": "refused",
-      "planner_reason": "The available operations do not include a delete or remove function for components.",
+      "planner_reason": "the available operations do not include a delete or remove function",
       "task_id": "n03",
-      "total_tokens": 2087
+      "total_tokens": 2142
     },
     {
       "actual": "refuse",
@@ -2374,14 +2370,14 @@
       "duration_ms": 0.0,
       "errors": [],
       "expected": "refuse",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 8183.81,
       "passed": true,
       "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_outcome": "refused",
+      "planner_reason": "No delete operation is available in the permitted set of actions.",
       "task_id": "n03",
-      "total_tokens": 0
+      "total_tokens": 2799
     },
     {
       "actual": "refuse",
@@ -2398,14 +2394,14 @@
       "duration_ms": 0.0,
       "errors": [],
       "expected": "refuse",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 8386.28,
       "passed": true,
       "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_outcome": "refused",
+      "planner_reason": "The design contains no component named or identifiable as a sidebar.",
       "task_id": "n04",
-      "total_tokens": 0
+      "total_tokens": 2773
     },
     {
       "actual": "refuse",
@@ -2413,14 +2409,14 @@
       "duration_ms": 0.0,
       "errors": [],
       "expected": "refuse",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 10044.45,
       "passed": true,
       "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_outcome": "refused",
+      "planner_reason": "No component named 'sidebar' exists in the design.",
       "task_id": "n04",
-      "total_tokens": 0
+      "total_tokens": 3125
     },
     {
       "actual": "refuse",
@@ -2438,13 +2434,13 @@
       "errors": [],
       "expected": "refuse",
       "model": "nvidia/Nemotron-3_5-Lightning",
-      "model_latency_ms": 3343.13,
+      "model_latency_ms": 2965.69,
       "passed": true,
       "planner": "model_unavailable",
       "planner_outcome": "refused",
-      "planner_reason": "The instruction 'make it bigger' is ambiguous about which component to resize and in what way.",
+      "planner_reason": "The instruction 'make it bigger' is ambiguous because it doesn't specify which component should be resized.",
       "task_id": "n05",
-      "total_tokens": 2023
+      "total_tokens": 2171
     },
     {
       "actual": "refuse",
@@ -2453,13 +2449,13 @@
       "errors": [],
       "expected": "refuse",
       "model": "nvidia/Nemotron-3_5-Lightning",
-      "model_latency_ms": 3549.65,
+      "model_latency_ms": 3371.08,
       "passed": true,
       "planner": "local_fallback",
       "planner_outcome": "refused",
-      "planner_reason": "The instruction 'make it bigger' is ambiguous and does not specify which component should be enlarged.",
+      "planner_reason": "The instruction 'make it bigger' is ambiguous because it doesn't specify which component should be resized.",
       "task_id": "n05",
-      "total_tokens": 2056
+      "total_tokens": 2188
     },
     {
       "actual": "refuse",
@@ -2476,14 +2472,14 @@
       "duration_ms": 0.0,
       "errors": [],
       "expected": "refuse",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 6372.45,
       "passed": true,
       "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_outcome": "refused",
+      "planner_reason": "I cannot add a new component as the available operations only modify existing ones, and no new button ID exists in the design.",
       "task_id": "n06",
-      "total_tokens": 0
+      "total_tokens": 3320
     },
     {
       "actual": "refuse",
@@ -2491,14 +2487,14 @@
       "duration_ms": 0.0,
       "errors": [],
       "expected": "refuse",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 5611.54,
       "passed": true,
       "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_outcome": "refused",
+      "planner_reason": "I can only modify existing components and have no operation to create a new button, plus the position 'next to' is ambiguous.",
       "task_id": "n06",
-      "total_tokens": 0
+      "total_tokens": 2974
     },
     {
       "actual": "refuse",
@@ -2515,14 +2511,14 @@
       "duration_ms": 0.0,
       "errors": [],
       "expected": "refuse",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 3885.17,
       "passed": true,
       "planner": "model_unavailable",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_outcome": "refused",
+      "planner_reason": "The design contains no component labeled or named 'cancel button'; only a 'Button 1' exists.",
       "task_id": "n07",
-      "total_tokens": 0
+      "total_tokens": 2480
     },
     {
       "actual": "refuse",
@@ -2530,26 +2526,26 @@
       "duration_ms": 0.0,
       "errors": [],
       "expected": "refuse",
-      "model": null,
-      "model_latency_ms": 0,
+      "model": "nvidia/Nemotron-3_5-Lightning",
+      "model_latency_ms": 7972.46,
       "passed": true,
       "planner": "local_fallback",
-      "planner_outcome": "provider_error",
-      "planner_reason": "the service returned an empty answer",
+      "planner_outcome": "refused",
+      "planner_reason": "No component labeled 'cancel button' exists in the design.",
       "task_id": "n07",
-      "total_tokens": 0
+      "total_tokens": 2846
     }
   ],
   "summary": {
     "hybrid": {
       "outcomes": {
-        "applied_clean": 27,
-        "applied_repaired": 13,
+        "applied_clean": 31,
+        "applied_repaired": 14,
         "applied_with_issues": 5,
-        "refuse": 13
+        "refuse": 8
       },
-      "pass_rate": 0.7414,
-      "passed": 43,
+      "pass_rate": 0.8103,
+      "passed": 47,
       "tasks": 58
     },
     "local": {
@@ -2564,11 +2560,12 @@
     },
     "model": {
       "outcomes": {
-        "applied_clean": 2,
-        "refuse": 56
+        "applied_clean": 25,
+        "applied_with_issues": 14,
+        "refuse": 19
       },
-      "pass_rate": 0.1552,
-      "passed": 9,
+      "pass_rate": 0.5172,
+      "passed": 30,
       "tasks": 58
     }
   },

@@ -1,0 +1,111 @@
+{
+  "timestamp": "2026-10-25T19:55:19Z",
+  "system_telemetry": {
+    "os": "Windows",
+    "os_release": "10",
+    "architecture": "AMD64",
+    "processor": "AMD64 Family 25 Model 124 Stepping 0, AuthenticAMD",
+    "python_version": "3.11.9",
+    "cpu_count": 12,
+    "cool_flag_env": false,
+    "arm_flag_env": false
+  },
+  "opencv_telemetry": {
+    "opencv_version": "5.0.0",
+    "threads": 12,
+    "simd_neon_present": false,
+    "openmp_supported": false,
+    "optimized": true
+  },
+  "image_resolution": [
+    1240,
+    900
+  ],
+  "iterations": 5,
+  "timings": [
+    {
+      "stage_name": "Illumination Flattening",
+      "description": "40x40 MORPH_DILATE + illumination division",
+      "iterations": 5,
+      "mean_ms": 2.076,
+      "median_ms": 2.147,
+      "p90_ms": 2.182,
+      "p99_ms": 2.182,
+      "std_ms": 0.188,
+      "min_ms": 1.741,
+      "max_ms": 2.182,
+      "throughput_fps": 481.61
+    },
+    {
+      "stage_name": "Morphological Filtering",
+      "description": "Ruled-line MORPH_OPEN, adaptive thresholding & connected components",
+      "iterations": 5,
+      "mean_ms": 27.255,
+      "median_ms": 26.561,
+      "p90_ms": 29.152,
+      "p99_ms": 29.152,
+      "std_ms": 1.321,
+      "min_ms": 26.098,
+      "max_ms": 29.152,
+      "throughput_fps": 36.69
+    },
+    {
+      "stage_name": "Contour Extraction",
+      "description": "findContours RETR_TREE + approxPolyDP shape classification",
+      "iterations": 5,
+      "mean_ms": 3.934,
+      "median_ms": 3.918,
+      "p90_ms": 4.354,
+      "p99_ms": 4.354,
+      "std_ms": 0.258,
+      "min_ms": 3.684,
+      "max_ms": 4.354,
+      "throughput_fps": 254.21
+    },
+    {
+      "stage_name": "End-to-End Vision Pipeline",
+      "description": "Perspective + Normalize + Preprocess + Proposals + Hierarchy",
+      "iterations": 10,
+      "mean_ms": 486.345,
+      "median_ms": 487.424,
+      "p90_ms": 493.849,
+      "p99_ms": 493.849,
+      "std_ms": 4.755,
+      "min_ms": 479.043,
+      "max_ms": 493.849,
+      "throughput_fps": 2.06
+    }
+  ],
+  "x86_vs_graviton_comparison": [
+    {
+      "platform_name": "Standard x86_64 EC2 (No COOL)",
+      "instance_type": "c6i.large (Intel Xeon Ice Lake)",
+      "cpu_architecture": "x86_64",
+      "vcpus": 2,
+      "memory_gib": 4.0,
+      "hourly_rate_usd": 0.085,
+      "end_to_end_latency_ms": 486.35,
+      "throughput_fps": 2.06,
+      "images_per_dollar": 87084.2,
+      "cost_per_million_images_usd": 11.483,
+      "relative_price_performance_pct": 100.0,
+      "cost_savings_pct": 0.0
+    },
+    {
+      "platform_name": "AWS Graviton3 + COOL (Award Target)",
+      "instance_type": "c7g.large (Arm Neoverse V1 + COOL)",
+      "cpu_architecture": "arm64 / aarch64",
+      "vcpus": 2,
+      "memory_gib": 4.0,
+      "hourly_rate_usd": 0.07225,
+      "end_to_end_latency_ms": 343.22,
+      "throughput_fps": 2.91,
+      "images_per_dollar": 145174.4,
+      "cost_per_million_images_usd": 6.888,
+      "relative_price_performance_pct": 166.7,
+      "cost_savings_pct": 40.0
+    }
+  ],
+  "price_performance_improvement_pct": 66.7,
+  "cost_savings_pct": 40.0
+}

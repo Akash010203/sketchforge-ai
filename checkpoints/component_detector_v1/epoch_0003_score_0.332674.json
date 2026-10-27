@@ -1,0 +1,19 @@
+{
+  "epoch": 3,
+  "score": 0.332674,
+  "metrics": {
+    "epoch": 3,
+    "phase": "val",
+    "loss": 0.332674,
+    "cls_loss": 0.0,
+    "box_loss": 0.0,
+    "accuracy": 0.9721,
+    "mean_iou": 0.0,
+    "mAP": 0.0,
+    "samples": 1128,
+    "duration_s": 17.44
+  },
+  "path": "C:\\Users\\akash\\Downloads\\sketchforge\\checkpoints\\component_detector_v1\\epoch_0003_score_0.332674.pt",
+  "sha256": "c59781a6b0e3ece9",
+  "timestamp": "2026-10-22T04:57:56Z"
+}

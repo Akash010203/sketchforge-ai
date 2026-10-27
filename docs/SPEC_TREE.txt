@@ -1,0 +1,364 @@
+sketchforge/
+│
+├── README.md
+├── pyproject.toml
+├── uv.lock                         # Only if using uv
+├── .gitignore
+├── .env.example
+├── LICENSE
+├── CONTRIBUTING.md
+├── TASKS.md
+├── CHANGELOG.md
+│
+├── config/
+│   ├── app.yaml
+│   ├── logging.yaml
+│   ├── models.yaml
+│   ├── training.yaml
+│   ├── datasets.yaml
+│   ├── evaluation.yaml
+│   └── providers.yaml
+│
+├── docs/
+│   ├── ARCHITECTURE.md
+│   ├── FILE_STRUCTURE.md
+│   ├── IMPLEMENTATION_PLAN.md
+│   ├── DESIGN_IR_SPEC.md
+│   ├── DATASET_AUDIT.md
+│   ├── DATASET_CARD.md
+│   ├── MODEL_CARD.md
+│   ├── TRAINING_GUIDE.md
+│   ├── EVALUATION.md
+│   ├── NEBIUS_NVIDIA_INTEGRATION.md
+│   ├── SECURITY.md
+│   ├── PERFORMANCE.md
+│   ├── TROUBLESHOOTING.md
+│   ├── KNOWN_LIMITATIONS.md
+│   ├── EXPERIMENT_LOG.md
+│   └── decisions/
+│       ├── 0001-desktop-architecture.md
+│       ├── 0002-design-ir.md
+│       └── 0003-model-training-strategy.md
+│
+├── assets/
+│   ├── icons/
+│   ├── themes/
+│   └── sample_sketches/
+│
+├── datasets/
+│   ├── README.md
+│   ├── manifests/
+│   ├── raw/                         # Downloaded files; do not commit
+│   ├── processed/                   # Generated locally; do not commit
+│   ├── synthetic/
+│   ├── quarantine/
+│   └── evaluation/
+│
+├── checkpoints/
+│   ├── README.md
+│   └── .gitkeep
+│
+├── experiments/
+│   ├── README.md
+│   ├── configs/
+│   └── results/
+│
+├── scripts/
+│   ├── inspect_environment.py
+│   ├── inspect_storage.py
+│   ├── audit_datasets.py
+│   ├── validate_manifest.py
+│   ├── prepare_datasets.py
+│   ├── generate_synthetic_data.py
+│   ├── train_component_detector.py
+│   ├── evaluate_component_detector.py
+│   ├── evaluate_layout.py
+│   ├── run_visual_benchmark.py
+│   ├── run_integration_tests.py
+│   └── package_application.py
+│
+├── src/
+│   └── sketchforge/
+│       ├── __init__.py
+│       ├── __main__.py
+│       ├── app.py
+│       ├── bootstrap.py
+│       ├── constants.py
+│       ├── exceptions.py
+│       ├── logging_setup.py
+│       │
+│       ├── ui/
+│       │   ├── __init__.py
+│       │   ├── main_window.py
+│       │   ├── workspace.py
+│       │   ├── sketch_import_view.py
+│       │   ├── design_canvas.py
+│       │   ├── component_tree.py
+│       │   ├── properties_panel.py
+│       │   ├── layer_panel.py
+│       │   ├── preview_panel.py
+│       │   ├── correction_panel.py
+│       │   ├── training_panel.py
+│       │   ├── dataset_panel.py
+│       │   ├── settings_dialog.py
+│       │   ├── task_progress.py
+│       │   └── widgets/
+│       │
+│       ├── application/
+│       │   ├── __init__.py
+│       │   ├── app_controller.py
+│       │   ├── commands.py
+│       │   ├── task_manager.py
+│       │   ├── project_manager.py
+│       │   ├── import_export.py
+│       │   └── user_preferences.py
+│       │
+│       ├── domain/
+│       │   ├── __init__.py
+│       │   ├── project.py
+│       │   ├── component.py
+│       │   ├── layout.py
+│       │   ├── typography.py
+│       │   ├── color_system.py
+│       │   ├── interaction.py
+│       │   └── validation.py
+│       │
+│       ├── design_ir/
+│       │   ├── __init__.py
+│       │   ├── schema.py
+│       │   ├── document.py
+│       │   ├── validation.py
+│       │   ├── migrations.py
+│       │   ├── serialization.py
+│       │   ├── geometry.py
+│       │   └── constraints.py
+│       │
+│       ├── vision/
+│       │   ├── __init__.py
+│       │   ├── image_loader.py
+│       │   ├── normalization.py
+│       │   ├── preprocessing.py
+│       │   ├── perspective.py
+│       │   ├── thresholding.py
+│       │   ├── morphology.py
+│       │   ├── line_detection.py
+│       │   ├── contour_detection.py
+│       │   ├── region_proposals.py
+│       │   ├── text_regions.py
+│       │   ├── component_detection.py
+│       │   ├── layout_inference.py
+│       │   ├── confidence.py
+│       │   └── visualization.py
+│       │
+│       ├── models/
+│       │   ├── __init__.py
+│       │   ├── registry.py
+│       │   ├── device.py
+│       │   ├── preprocessing.py
+│       │   ├── component_detector/
+│       │   │   ├── __init__.py
+│       │   │   ├── architecture.py
+│       │   │   ├── dataset.py
+│       │   │   ├── losses.py
+│       │   │   ├── decoder.py
+│       │   │   └── inference.py
+│       │   ├── layout_model/
+│       │   │   ├── __init__.py
+│       │   │   ├── architecture.py
+│       │   │   ├── dataset.py
+│       │   │   └── inference.py
+│       │   ├── checkpointing.py
+│       │   └── model_metadata.py
+│       │
+│       ├── layout/
+│       │   ├── __init__.py
+│       │   ├── hierarchy.py
+│       │   ├── alignment.py
+│       │   ├── spacing.py
+│       │   ├── grouping.py
+│       │   ├── responsive_rules.py
+│       │   └── design_refinement.py
+│       │
+│       ├── rendering/
+│       │   ├── __init__.py
+│       │   ├── renderer.py
+│       │   ├── html_renderer.py
+│       │   ├── css_renderer.py
+│       │   ├── svg_renderer.py
+│       │   ├── theme_engine.py
+│       │   ├── asset_manager.py
+│       │   └── render_snapshot.py
+│       │
+│       ├── editor/
+│       │   ├── __init__.py
+│       │   ├── selection.py
+│       │   ├── property_editing.py
+│       │   ├── layer_operations.py
+│       │   ├── undo_redo.py
+│       │   ├── design_commands.py
+│       │   └── change_history.py
+│       │
+│       ├── evaluation/
+│       │   ├── __init__.py
+│       │   ├── image_metrics.py
+│       │   ├── geometry_metrics.py
+│       │   ├── component_metrics.py
+│       │   ├── text_metrics.py
+│       │   ├── layout_metrics.py
+│       │   ├── functional_metrics.py
+│       │   ├── benchmark_runner.py
+│       │   └── report.py
+│       │
+│       ├── repair/
+│       │   ├── __init__.py
+│       │   ├── issue_detector.py
+│       │   ├── diagnosis.py
+│       │   ├── repair_planner.py
+│       │   ├── repair_rules.py
+│       │   ├── patch.py
+│       │   ├── regression_check.py
+│       │   └── rollback.py
+│       │
+│       ├── generation/
+│       │   ├── __init__.py
+│       │   ├── app_specification.py
+│       │   ├── project_planner.py
+│       │   ├── file_tree.py
+│       │   ├── frontend/
+│       │   │   ├── __init__.py
+│       │   │   ├── component_generator.py
+│       │   │   ├── page_generator.py
+│       │   │   ├── style_generator.py
+│       │   │   └── project_export.py
+│       │   ├── backend/
+│       │   │   ├── __init__.py
+│       │   │   ├── schema_generator.py
+│       │   │   ├── database_generator.py
+│       │   │   ├── business_logic_generator.py
+│       │   │   └── test_generator.py
+│       │   ├── templates/
+│       │   └── validation.py
+│       │
+│       ├── execution/
+│       │   ├── __init__.py
+│       │   ├── sandbox.py
+│       │   ├── command_policy.py
+│       │   ├── process_runner.py
+│       │   ├── resource_limits.py
+│       │   ├── environment_manager.py
+│       │   └── cleanup.py
+│       │
+│       ├── verification/
+│       │   ├── __init__.py
+│       │   ├── project_inspector.py
+│       │   ├── lint_runner.py
+│       │   ├── typecheck_runner.py
+│       │   ├── build_runner.py
+│       │   ├── test_runner.py
+│       │   ├── browser_runner.py
+│       │   ├── screenshot_capture.py
+│       │   └── verification_report.py
+│       │
+│       ├── retrieval/
+│       │   ├── __init__.py
+│       │   ├── document_loader.py
+│       │   ├── lexical_index.py
+│       │   ├── vector_index.py
+│       │   ├── metadata_filter.py
+│       │   ├── result_fusion.py
+│       │   └── retrieval_evaluation.py
+│       │
+│       ├── datasets/
+│       │   ├── __init__.py
+│       │   ├── registry.py
+│       │   ├── manifest_schema.py
+│       │   ├── source_adapters.py
+│       │   ├── license_audit.py
+│       │   ├── deduplication.py
+│       │   ├── quality_filter.py
+│       │   ├── splitting.py
+│       │   └── synthetic_generator.py
+│       │
+│       ├── training/
+│       │   ├── __init__.py
+│       │   ├── config.py
+│       │   ├── seed.py
+│       │   ├── dataloader.py
+│       │   ├── trainer.py
+│       │   ├── metrics.py
+│       │   ├── validation.py
+│       │   ├── early_stopping.py
+│       │   ├── checkpoint_manager.py
+│       │   └── training_report.py
+│       │
+│       ├── orchestration/
+│       │   ├── __init__.py
+│       │   ├── workflow.py
+│       │   ├── workflow_state.py
+│       │   ├── step_registry.py
+│       │   ├── retry_policy.py
+│       │   ├── budget_manager.py
+│       │   ├── stopping_rules.py
+│       │   └── workflow_history.py
+│       │
+│       ├── integrations/
+│       │   ├── __init__.py
+│       │   ├── provider_interface.py
+│       │   ├── nebius/
+│       │   │   ├── __init__.py
+│       │   │   ├── client.py
+│       │   │   ├── configuration.py
+│       │   │   ├── model_registry.py
+│       │   │   ├── request_policy.py
+│       │   │   └── health_check.py
+│       │   └── nvidia/
+│       │       ├── __init__.py
+│       │       ├── model_configuration.py
+│       │       ├── runtime.py
+│       │       ├── local_inference.py
+│       │       └── compatibility.py
+│       │
+│       ├── storage/
+│       │   ├── __init__.py
+│       │   ├── project_store.py
+│       │   ├── artifact_store.py
+│       │   ├── metadata_store.py
+│       │   └── migration.py
+│       │
+│       └── utilities/
+│           ├── __init__.py
+│           ├── paths.py
+│           ├── hashing.py
+│           ├── timing.py
+│           ├── memory.py
+│           └── validation.py
+│
+├── tests/
+│   ├── unit/
+│   │   ├── test_design_ir.py
+│   │   ├── test_geometry.py
+│   │   ├── test_preprocessing.py
+│   │   ├── test_component_detection.py
+│   │   ├── test_renderer.py
+│   │   ├── test_editor.py
+│   │   ├── test_metrics.py
+│   │   ├── test_repair.py
+│   │   └── test_workflow.py
+│   ├── integration/
+│   │   ├── test_sketch_pipeline.py
+│   │   ├── test_render_and_repair.py
+│   │   ├── test_model_loading.py
+│   │   └── test_nebius_integration.py
+│   ├── end_to_end/
+│   │   ├── test_first_demo.py
+│   │   └── test_generated_project.py
+│   ├── fixtures/
+│   └── evaluation/
+│       ├── test_sketches/
+│       └── expected_outputs/
+│
+└── output/
+    ├── projects/
+    ├── renders/
+    ├── reports/
+    └── logs/

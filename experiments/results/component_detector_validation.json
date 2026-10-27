@@ -1,0 +1,47 @@
+{
+  "checkpoint": "C:\\Users\\akash\\Downloads\\sketchforge\\checkpoints\\component_detector_v1\\best.pt",
+  "seeds": [
+    11
+  ],
+  "synthetic_only": true,
+  "note": "All numbers are from synthetic sketches. Do not report as real-sketch results.",
+  "groups": {
+    "tuning_layouts": {
+      "layouts": [
+        "dashboard",
+        "login_page",
+        "mobile_form"
+      ],
+      "model": {
+        "f1": 0.053,
+        "precision": 0.0878,
+        "recall": 0.0379,
+        "type_accuracy": 1.0,
+        "mean_iou": 0.7091,
+        "mAP50": 0.0199,
+        "confidence_threshold": 0.3,
+        "ap_candidate_threshold": 0.01,
+        "cases": 21
+      },
+      "elapsed_seconds": 17.3
+    },
+    "heldout_layouts": {
+      "layouts": [
+        "landing_page",
+        "settings_page"
+      ],
+      "model": {
+        "f1": 0.0173,
+        "precision": 0.0211,
+        "recall": 0.0147,
+        "type_accuracy": 1.0,
+        "mean_iou": 0.5485,
+        "mAP50": 0.0037,
+        "confidence_threshold": 0.3,
+        "ap_candidate_threshold": 0.01,
+        "cases": 14
+      },
+      "elapsed_seconds": 5.6
+    }
+  }
+}

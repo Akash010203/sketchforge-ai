@@ -1,0 +1,21 @@
+# SketchForge application configuration.
+# Every value here has a built-in default in sketchforge/bootstrap.py; this file only overrides.
+vision:
+  max_file_bytes: 26214400        # 25 MiB hard cap on imported images
+  max_pixels: 60000000            # decompression-bomb guard
+  min_side_px: 64
+  max_side_px: 12000
+  working_long_side: 1024         # normalized working resolution (long side)
+  min_component_side_px: 10       # smallest closed shape considered, in working pixels
+  design_width_landscape: 1024    # design-space page width when the sketch is landscape
+  design_width_portrait: 414      # design-space page width when the sketch is portrait
+
+workflow:
+  max_repair_iterations: 6
+  repair_time_budget_seconds: 20
+  max_attempts_per_failure: 3     # hard limit: stop and reassess after three tries on one failure
+  no_progress_window: 4
+
+paths:
+  output_dir: output
+  projects_dir: output/projects

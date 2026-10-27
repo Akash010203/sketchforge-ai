@@ -1,0 +1,8 @@
+# Model settings remain disabled until locally trained weights and metadata exist.
+component_detector:
+  enabled: false
+  checkpoint: checkpoints/component_detector.pt
+
+layout_model:
+  enabled: false
+  checkpoint: checkpoints/layout_model.pt

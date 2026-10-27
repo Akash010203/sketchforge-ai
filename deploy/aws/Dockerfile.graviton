@@ -1,0 +1,51 @@
+# SketchForge – Standalone EC2 Graviton (c7g.large / t4g.xlarge) Container
+# Runs serve_cloud.py with Cloud-Optimized OpenCV Library (COOL) on Arm64.
+#
+# Build on Graviton instance (or multi-arch buildx):
+#   docker build -t sketchforge-graviton -f deploy/aws/Dockerfile.graviton .
+#
+# Run on EC2 Graviton (c7g.large / t4g.xlarge):
+#   docker run -d --name sketchforge-cv -p 8080:8080 sketchforge-graviton
+#
+# Test live endpoint:
+#   curl http://localhost:8080/health
+
+FROM --platform=linux/arm64 public.ecr.aws/amazonlinux/amazonlinux:2023
+
+# Install system dependencies, OpenMP, OpenBLAS, Python 3.11
+RUN dnf install -y --setopt=install_weak_deps=False \
+        python3.11 \
+        python3.11-pip \
+        libgomp \
+        openblas-devel \
+        mesa-libGL \
+        shadow-utils \
+    && dnf clean all
+
+# Performance & SIMD flags for AWS Graviton (Neoverse V1/N1) + COOL
+ENV OPENCV_FOR_ARM=1 \
+    COOL_OPTIMIZED=1 \
+    OMP_NUM_THREADS=2 \
+    OPENBLAS_NUM_THREADS=2 \
+    PYTHONUNBUFFERED=1
+
+WORKDIR /app
+
+# Install Python requirements
+COPY deploy/aws/requirements-lambda.txt /app/
+RUN python3.11 -m pip install --no-cache-dir --upgrade pip \
+ && python3.11 -m pip install --no-cache-dir -r requirements-lambda.txt
+
+# Install SketchForge package
+COPY pyproject.toml /app/
+COPY src/ /app/src/
+RUN python3.11 -m pip install --no-cache-dir --no-deps -e /app/
+
+# Copy server entrypoint and assets
+COPY deploy/aws/serve_cloud.py /app/deploy/aws/
+COPY deploy/aws/lambda_function.py /app/deploy/aws/
+COPY assets/ /app/assets/
+
+EXPOSE 8080
+
+CMD ["python3.11", "/app/deploy/aws/serve_cloud.py", "--host", "0.0.0.0", "--port", "8080"]
